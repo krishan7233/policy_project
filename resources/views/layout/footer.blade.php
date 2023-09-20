@@ -27,8 +27,7 @@
     $(this).text("+ Enter different dates per applicant")
   }
 });
-<<<<<<< HEAD
-=======
+
 function singleCoverageValidateAge() {
     var ageInput = document.getElementById('ageInput');
     var errorDiv = document.getElementById('errorDiv');
@@ -64,7 +63,6 @@ function couplePolicyValidateAge2() {
 }
 
 
->>>>>>> 2f557a750caa89ad73948fe1f094214e093a8aee
 </script>
 
 
@@ -79,12 +77,7 @@ function couplePolicyValidateAge2() {
     $(this).text("+ Enter different coverage amount per applicant")
   }
 });
-<<<<<<< HEAD
-</script>
 
-<script>
-	$("#singledob").datepicker({ dateFormat:'dd/mm/yy'});
-=======
 // single coverage
 function singleCoverageUpdateEndDate() {
     var startDateInput = $('.startDate').val();  // Use .val() to get the value
@@ -177,7 +170,7 @@ function couplePolicyUpdateEndDate2() {
 $('.CoupleStartDate2').change(couplePolicyUpdateEndDate2);
 couplePolicyUpdateEndDate2();
 $("#singledob").datepicker({ dateFormat:'dd/mm/yy'});
->>>>>>> 2f557a750caa89ad73948fe1f094214e093a8aee
+
 </script>
 
 
