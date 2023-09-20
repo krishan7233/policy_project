@@ -27,6 +27,44 @@
     $(this).text("+ Enter different dates per applicant")
   }
 });
+<<<<<<< HEAD
+=======
+function singleCoverageValidateAge() {
+    var ageInput = document.getElementById('ageInput');
+    var errorDiv = document.getElementById('errorDiv');
+    var inputValue = parseInt(ageInput.value);
+
+    if (isNaN(inputValue) || inputValue < 40) {
+        errorDiv.textContent = 'age1 must be greater than 39';
+    } else {
+        errorDiv.textContent = '';
+    }
+}
+function couplePolicyValidateAge1() {
+    var ageInput = document.getElementById('couplepolicy1');
+    var errorDiv = document.getElementById('errorcouplepolicy1');
+    var inputValue = parseInt(ageInput.value);
+
+    if (isNaN(inputValue) || inputValue < 40) {
+        errorDiv.textContent = 'age1 must be greater than 39';
+    } else {
+        errorDiv.textContent = '';
+    }
+}
+function couplePolicyValidateAge2() {
+    var ageInput = document.getElementById('couplepolicy2');
+    var errorDiv = document.getElementById('errorcouplepolicy2');
+    var inputValue = parseInt(ageInput.value);
+
+    if (isNaN(inputValue) || inputValue < 40) {
+        errorDiv.textContent = 'age1 must be greater than 39';
+    } else {
+        errorDiv.textContent = '';
+    }
+}
+
+
+>>>>>>> 2f557a750caa89ad73948fe1f094214e093a8aee
 </script>
 
 
@@ -41,10 +79,105 @@
     $(this).text("+ Enter different coverage amount per applicant")
   }
 });
+<<<<<<< HEAD
 </script>
 
 <script>
 	$("#singledob").datepicker({ dateFormat:'dd/mm/yy'});
+=======
+// single coverage
+function singleCoverageUpdateEndDate() {
+    var startDateInput = $('.startDate').val();  // Use .val() to get the value
+    var endDateInput = $('.endDate').val();
+    var endFormattedDateLabel = $('.endFormattedDateLabel').text();  // Use .text() to get the text content
+    var startDateValue = startDateInput;
+    var endDate = new Date(startDateValue);
+    endDate.setDate(endDate.getDate() + 365);  // Add 365 days
+    var endYear = endDate.getFullYear();
+    var endMonth = endDate.getMonth() + 1;
+    var endDay = endDate.getDate();
+
+    if (endMonth < 10) {
+        endMonth = '0' + endMonth;
+    }
+
+    if (endDay < 10) {
+        endDay = '0' + endDay;
+    }
+
+    var formattedEndDate = `${endYear}-${endMonth}-${endDay}`;
+    $('.endDate').val(formattedEndDate);  // Use .val() to set the value
+
+    var formattedEndLabel = `${endDay}-${endMonth}-${endYear}`;
+    $('.endFormattedDateLabel').text(`DD-MM-YYYY format: ${formattedEndLabel}`);  // Use .text() to set the text content
+}
+$('.startDate').change(singleCoverageUpdateEndDate);
+singleCoverageUpdateEndDate();
+
+// couple policy
+
+function couplePolicyUpdateEndDate1() {
+    var startDateInput = $('.CoupleStartDate1').val();  // Use .val() to get the value
+    // alert(startDateInput);
+    var endDateInput = $('.coupleEndDate1').val();
+    var endFormattedDateLabel = $('.endFormattedDateLabel1').text();  // Use .text() to get the text content
+
+    var startDateValue = startDateInput;
+    var endDate = new Date(startDateValue);
+    endDate.setDate(endDate.getDate() + 365);  // Add 365 days
+
+    var endYear = endDate.getFullYear();
+    var endMonth = endDate.getMonth() + 1;
+    var endDay = endDate.getDate();
+
+    if (endMonth < 10) {
+        endMonth = '0' + endMonth;
+    }
+
+    if (endDay < 10) {
+        endDay = '0' + endDay;
+    }
+
+    var formattedEndDate = `${endYear}-${endMonth}-${endDay}`;
+    $('.coupleEndDate1').val(formattedEndDate);  // Use .val() to set the value
+
+    var formattedEndLabel = `${endDay}-${endMonth}-${endYear}`;
+    $('.endFormattedDateLabel1').text(`DD-MM-YYYY format: ${formattedEndLabel}`);  // Use .text() to set the text content
+}
+$('.CoupleStartDate1').change(couplePolicyUpdateEndDate1);
+couplePolicyUpdateEndDate1();
+function couplePolicyUpdateEndDate2() {
+    var startDateInput = $('.CoupleStartDate2').val();  // Use .val() to get the value
+    // alert(startDateInput);
+    var endDateInput = $('.coupleEndDate2').val();
+    var endFormattedDateLabel = $('.endFormattedDateLabel2').text();  // Use .text() to get the text content
+
+    var startDateValue = startDateInput;
+    var endDate = new Date(startDateValue);
+    endDate.setDate(endDate.getDate() + 365);  // Add 365 days
+
+    var endYear = endDate.getFullYear();
+    var endMonth = endDate.getMonth() + 1;
+    var endDay = endDate.getDate();
+
+    if (endMonth < 10) {
+        endMonth = '0' + endMonth;
+    }
+
+    if (endDay < 10) {
+        endDay = '0' + endDay;
+    }
+
+    var formattedEndDate = `${endYear}-${endMonth}-${endDay}`;
+    $('.coupleEndDate2').val(formattedEndDate);  // Use .val() to set the value
+
+    var formattedEndLabel = `${endDay}-${endMonth}-${endYear}`;
+    $('.endFormattedDateLabel2').text(`DD-MM-YYYY format: ${formattedEndLabel}`);  // Use .text() to set the text content
+}
+$('.CoupleStartDate2').change(couplePolicyUpdateEndDate2);
+couplePolicyUpdateEndDate2();
+$("#singledob").datepicker({ dateFormat:'dd/mm/yy'});
+>>>>>>> 2f557a750caa89ad73948fe1f094214e093a8aee
 </script>
 
 
