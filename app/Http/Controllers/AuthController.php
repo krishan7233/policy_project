@@ -85,4 +85,14 @@ class AuthController extends Controller
     {
         //
     }
+
+    public function quotation(){
+        return view('quotes');
+    }
+	
+	public function insuranceplan(){
+        return view('plan');
+    }
+
+    
 }
