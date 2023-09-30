@@ -19,3 +19,4 @@ Route::get('/', [AuthController::class, 'index']);
 Route::get('/super-visa', [AuthController::class, 'supervisa'])->name('super-visa');
 Route::get('/quotes', [AuthController::class, 'quotation'])->name('quotes');
 Route::get('/plan', [AuthController::class, 'insuranceplan'])->name('plan');
+Route::post('find-quotation', [AuthController::class, 'findQuotation'])->name('find-quotation');

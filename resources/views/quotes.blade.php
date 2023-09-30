@@ -57,15 +57,17 @@
         </div>
       </div>
       <div class="col-lg-8">
+      @foreach($company_detail as $companies)
         <div class="quote-right">
           <div class="quote-box">
-            <div class="logo-section"> <img src="assets/images/c-logo.png" /> </div>
+            <div class="logo-section"> <img src="{{$companies->company_photo}}" /> </div>
             <div class="price-section">
-              <h3><span>$</span>977<span>.62</span></h3>
-              <h3><span><strong>81.47</strong>/month</span></h3>
+              <h3>{{'$'.$companies->total_charge}}</h3>
+              <h3><span><strong>{{'$'.$companies->per_month}}</strong>/month</span></h3>
               <h3><span>Deductible <strong>0</strong> per claim</span></h3>
             </div>
-            <div class="btn-section"> <a href="#" class="buy-now">BUY NOW</a> <a href="#" class="plan-details" id="toggle">PLAN DETAILS</a>
+            <div class="btn-section"> <a href="#" class="buy-now">BUY NOW</a> 
+            <a href="#" class="plan-details toggle" id="toggle" onclick="togglePlanDetails({{$companies->company_id}})">PLAN DETAILS</a>
               <div class="compaire">
                 <div class="left">
                   <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -75,15 +77,15 @@
               </div>
             </div>
           </div>
-          <div id="text" class="hidden-plan-details">
+          <div id="text{{$companies->company_id}}" style="display:none;" class="hidden-plan-details">
             <div class="row">
               <div class="col-lg-4">
                 <div class="section1">
                   <h4>Summary</h4>
-                  <p>Coverage: $100000</p>
+                  <p>Coverage: {{$companies->aggregate_price}}</p>
                   <p> Deductible: 0</p>
-                  <p>Period: 365 days</p>
-                  <p> Pre-existing medical conditions: Not covered</p>
+                  <p>Period: {{$companies->no_of_days}} days</p>
+                  <p> Pre-existing medical conditions: <b>{{$companies->pre_exit}}</b> covered</p>
                 </div>
               </div>
               <div class="col-lg-4">
@@ -109,7 +111,16 @@
             </div>
           </div>
         </div>
+        <script>
+          function togglePlanDetails(id) {
+            // alert(id);
+            $('#text' + id).toggle();  // Assuming 'id' is a variable containing the desired ID
+
+          }
+        </script>
+      @endforeach
       </div>
+    
     </div>
   </div>
 </div>
