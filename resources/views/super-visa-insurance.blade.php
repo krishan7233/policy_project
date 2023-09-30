@@ -18,18 +18,19 @@
         </nav>
         <div class="tab-content" id="nav-tabContent">
           <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-            <form class="form-1">
+            <form class="form-1" action="{{url('find-quotation')}}" method="post">
+              @csrf
             <div class="form-field-row">
 
             <div class="field-dob">
                 <span>Date of Birth</span>
-                <input type="date" id="singledob" class="form-control" placeholder="Date of Birth" data-date="" data-date-format="DD MMMM YYYY" max="1983-09-19">
+                <input type="date" id="singledob" class="form-control" name="date_of_birth" placeholder="Date of Birth" data-date="" data-date-format="DD MMMM YYYY" max="1983-09-19">
                 <label>DD-MM-YYYY format</label>
             </div>
                 <div class="field-or">or</div>
                 <div class="field-tage">
                   <span>Age</span>
-                  <input type="number" class="form-control" id="ageInput" placeholder="60" oninput="singleCoverageValidateAge()">
+                  <input type="number" class="form-control" id="ageInput" name="age" placeholder="60" value="60" oninput="singleCoverageValidateAge()">
                   <label>years</label>
 
               </div>
@@ -38,7 +39,7 @@
             <div class="form-field-row">
             <div class="sdate">
                 <span>Start Date</span>
-                <input type="date" id="startDate" class="form-control startDate" placeholder="Start Date" value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}">
+                <input type="date" id="startDate" class="form-control startDate" name="start_date" placeholder="Start Date" value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}">
                 <label id="startFormattedDateLabel" class="startFormattedDateLabel">DD-MM-YYYY format</label>
             </div>
 
@@ -48,13 +49,13 @@
                     $formattedFutureDate = \Carbon\Carbon::parse($futureDate)->format('d-m-Y');
                 ?>
                 <span>End Date</span>
-                <input type="date" id="endDate" class="form-control endDate" placeholder="End Date" value="{{ $futureDate }}" readonly>
+                <input type="date" id="endDate" class="form-control endDate" name="end_date" placeholder="End Date" value="{{ $futureDate }}" readonly>
                 <label id="">DD-MM-YYYY format</label>
             </div>
                 <div class="field-or">or</div>
                 <div class="field-tdays">
                 	<span>Days</span>
-                	<input type="number" class="form-control" placeholder="365" disabled>
+                	<input type="number" class="form-control" placeholder="365" value="365" name="no_of_days" readonly>
                     <label></label>
                 </div>
             </div>
@@ -62,7 +63,7 @@
             <div class="form-field-row">
             	<div class="coverage">
                 	 <span>Coverage</span>
-                    <select class="form-control">
+                    <select class="form-control" name="covrage_amt">
                     	<option value="100000">100,000 (min. requirement)</option>
                         <option value="150000">150,000</option>
                         <option value="200000">200,000</option>
@@ -77,11 +78,11 @@
             
             
             <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input" checked>
+              <input type="radio" id="customRadioInline1" name="pre_exit" class="custom-control-input" value="0" checked>
               <label class="custom-control-label" for="customRadioInline1">No</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+              <input type="radio" id="customRadioInline2" name="pre_exit" class="custom-control-input" value="1">
               <label class="custom-control-label" for="customRadioInline2">Yes</label>
             </div>
             
