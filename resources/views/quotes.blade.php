@@ -17,11 +17,11 @@
     <div class="row">
       <div class="col-lg-4">
         <div class="quote-left">
-          <p>Super Visa Insurance for Single Person(age 60 years) for 365 days, excluding coverage for pre-existing medical conditions <a href="#"><span><i class="fa fa-pencil"></i></span></a></p>
+          <p>Super Visa Insurance for Single Person(age 60 years) for 365 days, excluding coverage for pre-existing medical conditions <a href="{{url('super-visa')}}"><span><i class="fa fa-pencil"></i></span></a></p>
           <div class="form-field-row">
             <div class="coverage"> <span>Deductible</span>
-              <select class="form-control">
-                <option value="0">0</option>
+              <select class="form-control deductible_amt">
+                <option value="0" selected>0</option>
                 <option value="100">100</option>
                 <option value="250">250</option>
                 <option value="500">500</option>
@@ -34,7 +34,7 @@
           </div>
           <div class="form-field-row">
             <div class="coverage"> <span>Coverage</span>
-              <select class="form-control">
+              <select class="form-control  coverage_amt">
                 <option value="100000">100,000</option>
                 <option value="150000">150,000</option>
                 <option value="200000">200,000</option>
@@ -47,27 +47,27 @@
           </div>
           <h6>Would you like to cover pre-existing medical conditions?</h6>
           <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input" checked="" wfd-id="id7">
+            <input type="radio" id="customRadioInline1" name="customRadioOptions" class="custom-control-input" value="0" checked>
             <label class="custom-control-label" for="customRadioInline1">No</label>
           </div>
           <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input" wfd-id="id8">
+            <input type="radio" id="customRadioInline2" name="customRadioOptions" class="custom-control-input" value="1">
             <label class="custom-control-label" for="customRadioInline2">Yes</label>
           </div>
         </div>
       </div>
-      <div class="col-lg-8">
+      <div class="col-lg-8 quotation_data">
       @foreach($company_detail as $companies)
         <div class="quote-right">
           <div class="quote-box">
             <div class="logo-section"> <img src="{{$companies->company_photo}}" /> </div>
             <div class="price-section">
-              <h3>{{'$'.$companies->total_charge}}</h3>
+              <h3>{{'$'.number_format($companies->total_charge - $companies->detect_amt, 2)}}</h3>
               <h3><span><strong>{{'$'.$companies->per_month}}</strong>/month</span></h3>
-              <h3><span>Deductible <strong>0</strong> per claim</span></h3>
+              <h3><span>Deductible <strong>{{$companies->deductible_amt}}</strong> per claim {{$companies->sur_charge}}</span></h3>
             </div>
             <div class="btn-section"> <a href="#" class="buy-now">BUY NOW</a> 
-            <a href="#" class="plan-details toggle" id="toggle" onclick="togglePlanDetails({{$companies->company_id}})">PLAN DETAILS</a>
+            <a href="#" class="plan-details toggle togglePlanDetails" id="toggle" onclick="togglePlanDetails_{{$companies->id}}({{$companies->id}})">PLAN DETAILS</a>
               <div class="compaire">
                 <div class="left">
                   <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -77,13 +77,13 @@
               </div>
             </div>
           </div>
-          <div id="text{{$companies->company_id}}" style="display:none;" class="hidden-plan-details">
+          <div id="text{{$companies->id}}" style="display:none;" class="hidden-plan-details">
             <div class="row">
               <div class="col-lg-4">
                 <div class="section1">
                   <h4>Summary</h4>
                   <p>Coverage: {{$companies->aggregate_price}}</p>
-                  <p> Deductible: 0</p>
+                  <p> Deductible: {{$companies->deductible_amt}}</p>
                   <p>Period: {{$companies->no_of_days}} days</p>
                   <p> Pre-existing medical conditions: <b>{{$companies->pre_exit}}</b> covered</p>
                 </div>
@@ -102,7 +102,7 @@
                     <li>Paramedical Services:-<strong>Covered</strong></li>
                     <li> Side Trips:-<strong>Only Within Canada</strong> </li>
                   </ul>
-                  <p><em>*Important notice: The above is only a Summary of Benefits; for complete details, refer to <a href="#">Policy Wording.</a></em></p>
+                  <p><em>*Important notice:   The above is only a Summary of Benefits; for complete details, refer to <a href="#">Policy Wording.</a></em></p>
                 </div>
               </div>
               <div class="col-lg-4">
@@ -112,17 +112,19 @@
           </div>
         </div>
         <script>
-          function togglePlanDetails(id) {
-            // alert(id);
+          function togglePlanDetails_{{$companies->id}}(id) {
             $('#text' + id).toggle();  // Assuming 'id' is a variable containing the desired ID
 
           }
         </script>
       @endforeach
       </div>
-    
+      <div class="col-lg-8 quotation_filter_data"></div>
     </div>
   </div>
 </div>
 <!-- Form section Ends here -->
+
+
+
 @endsection

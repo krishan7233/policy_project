@@ -20,3 +20,4 @@ Route::get('/super-visa', [AuthController::class, 'supervisa'])->name('super-vis
 Route::get('/quotes', [AuthController::class, 'quotation'])->name('quotes');
 Route::get('/plan', [AuthController::class, 'insuranceplan'])->name('plan');
 Route::post('find-quotation', [AuthController::class, 'findQuotation'])->name('find-quotation');
+Route::post('deductible_filter', [AuthController::class, 'deductibleFilter'])->name('deductible_filter');

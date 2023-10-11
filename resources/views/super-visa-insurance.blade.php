@@ -21,16 +21,18 @@
             <form class="form-1" action="{{url('find-quotation')}}" method="post">
               @csrf
             <div class="form-field-row">
-
+            @php
+                $currentDate = \Carbon\Carbon::now()->subYears(40);
+            @endphp
             <div class="field-dob">
                 <span>Date of Birth</span>
-                <input type="date" id="singledob" class="form-control" name="date_of_birth" placeholder="Date of Birth" data-date="" data-date-format="DD MMMM YYYY" max="1983-09-19">
+                <input type="date" id="singledob" class="form-control singledob" name="date_of_birth" placeholder="Date of Birth" data-date="" data-date-format="DD MMMM YYYY" max="{{$currentDate->format('Y-m-d')}}">
                 <label>DD-MM-YYYY format</label>
             </div>
                 <div class="field-or">or</div>
                 <div class="field-tage">
                   <span>Age</span>
-                  <input type="number" class="form-control" id="ageInput" name="age" placeholder="60" value="60" oninput="singleCoverageValidateAge()">
+                  <input type="number" class="form-control ageInput" id="ageInput" name="age" placeholder="60" value="60" oninput="singleCoverageValidateAge()">
                   <label>years</label>
 
               </div>
