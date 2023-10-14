@@ -173,7 +173,54 @@ $("#singledob").datepicker({ dateFormat:'dd/mm/yy'});
 
 </script>
 
+<script>
+  $(document).ready(function() {
+    $('.deductible_amt,.coverage_amt,input[name=customRadioOptions]').on('change', function() {
+        var deductible = $('.deductible_amt').val();
+        var coverage = $('.coverage_amt').val();
+        var check_exit = $('input[name=customRadioOptions]:checked').val();
 
+        // Get the CSRF token
+        var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+        // AJAX request with CSRF token
+        $.ajax({
+          type: 'POST',
+          url: 'deductible_filter',  // Replace with your controller URL
+          data: {
+            deductible: deductible,
+            coverage: coverage,
+            check_exit: check_exit
+          },
+          headers: {
+            'X-CSRF-TOKEN': csrfToken
+          },
+          success: function(response) {
+            $('.quotation_data').hide();
+            $('.quotation_filter_data').html(response);
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.error('AJAX request failed:', textStatus, errorThrown);
+          }
+        });
+      });
+      $('.singledob').change(function() {
+        var selectedDate = $(this).val();
+
+        // Parse the selected date to a JavaScript Date object
+        var dob = new Date(selectedDate);
+
+        // Get the current year
+        var currentYear = new Date().getFullYear();
+
+        // Calculate the difference in years
+        var ageDifference = currentYear - dob.getFullYear();
+        $('.ageInput').val(ageDifference);
+        // alert(ageDifference);
+
+      });
+    });
+</script>
 
 </body>
 </html>
