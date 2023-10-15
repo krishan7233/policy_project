@@ -206,8 +206,7 @@ $("#singledob").datepicker({ dateFormat:'dd/mm/yy'});
             'X-CSRF-TOKEN': csrfToken
           },
           success: function(response) {
-            $('.quotation_data').hide();
-            $('.quotation_filter_data').html(response);
+            window.location.href = 'single-detect-quotation';
           },
           error: function(jqXHR, textStatus, errorThrown) {
             console.error('AJAX request failed:', textStatus, errorThrown);
@@ -229,6 +228,184 @@ $("#singledob").datepicker({ dateFormat:'dd/mm/yy'});
         // alert(ageDifference);
 
       });
+      // visitor couple policy
+      $('.visitor-single-pilicy-start-date, .visitor-single-pilicy-end-date').change(function() {
+            var startDate = new Date($('.visitor-single-pilicy-start-date').val());
+            var endDate = new Date($('.visitor-single-pilicy-end-date').val());
+
+            if (!isNaN(startDate.getTime()) && !isNaN(endDate.getTime())) {
+                var differenceInMilliseconds = endDate - startDate;
+                var differenceInDays = differenceInMilliseconds / (1000 * 3600 * 24);
+                $('.visitor-couple-single-day').val(differenceInDays);
+            } 
+        });
+      $('.visitor-couple-start-date1, .visitor-couple-end-date1').change(function() {
+            var startDate = new Date($('.visitor-couple-start-date1').val());
+            var endDate = new Date($('.visitor-couple-end-date1').val());
+
+            if (!isNaN(startDate.getTime()) && !isNaN(endDate.getTime())) {
+                var differenceInMilliseconds = endDate - startDate;
+                var differenceInDays = differenceInMilliseconds / (1000 * 3600 * 24);
+                $('.visitor-couple-days1').val(differenceInDays);
+            } 
+        });
+      $('.visitor-couple-start-date2, .visitor-couple-end-date2').change(function() {
+            var startDate = new Date($('.visitor-couple-start-date2').val());
+            var endDate = new Date($('.visitor-couple-end-date2').val());
+
+            if (!isNaN(startDate.getTime()) && !isNaN(endDate.getTime())) {
+                var differenceInMilliseconds = endDate - startDate;
+                var differenceInDays = differenceInMilliseconds / (1000 * 3600 * 24);
+                $('.visitor-couple-days2').val(differenceInDays);
+            } 
+        });
+        $('.visitor').change(function() {
+            var selectedValue = $("input[name='visitor_policy']:checked").val();
+            if(selectedValue == 'visitor1'){
+              $('.visitor-form3').hide();
+              $('.visitor-form2').hide();
+              $('.visitor-form1').show();
+            }
+            if(selectedValue == 'visitor2'){
+              $('.visitor-form1').hide();
+              $('.visitor-form3').hide();
+              $('.visitor-form2').show();
+            }
+            if(selectedValue == 'visitor3'){
+              $('.visitor-form1').hide();
+              $('.visitor-form2').hide();
+              $('.visitor-form3').show();
+            }
+        });
+        $('.visitor-couple-policy-date1').change(function() {
+          var providedDate = new Date($('.visitor-couple-policy-date1').val());
+          if (!isNaN(providedDate.getTime())) {
+              // Calculate the difference in years
+              var currentDate = new Date();
+              var differenceInYears = currentDate.getFullYear() - providedDate.getFullYear();
+              $('.visitor-couple-policy-year1').val(differenceInYears);
+          }
+        });
+        $('.visitor-couple-policy-date2').change(function() {
+          var providedDate = new Date($('.visitor-couple-policy-date2').val());
+          if (!isNaN(providedDate.getTime())) {
+              // Calculate the difference in years
+              var currentDate = new Date();
+              var differenceInYears = currentDate.getFullYear() - providedDate.getFullYear();
+              $('.visitor-couple-policy-year2').val(differenceInYears);
+          }
+        });
+        $('.super-visa-couple-date1').change(function() {
+          var providedDate = new Date($('.super-visa-couple-date1').val());
+          if (!isNaN(providedDate.getTime())) {
+              // Calculate the difference in years
+              var currentDate = new Date();
+              var differenceInYears = currentDate.getFullYear() - providedDate.getFullYear();
+              $('.super-visa-couple-age1').val(differenceInYears);
+          }
+        });
+        $('.super-visa-couple-date2').change(function() {
+          var providedDate = new Date($('.super-visa-couple-date2').val());
+          if (!isNaN(providedDate.getTime())) {
+              // Calculate the difference in years
+              var currentDate = new Date();
+              var differenceInYears = currentDate.getFullYear() - providedDate.getFullYear();
+              $('.super-visa-couple-age2').val(differenceInYears);
+          }
+        });
+        // super visa couple
+        $('.super-couple-deductible-amt,.super-couple-coverage-amt1,.super-couple-coverage-amt2,input[name=super_couple_exit1],input[name=super_couple_exit2]').on('change', function() {
+          // alert('hello');
+        var deductible = $('.super-couple-deductible-amt').val();
+        var coverage1 = $('.super-couple-coverage-amt1').val();
+        var coverage2 = $('.super-couple-coverage-amt2').val();
+        var check_exit1 = $('input[name=super_couple_exit1]:checked').val();
+        var check_exit2 = $('input[name=super_couple_exit2]:checked').val();
+
+        // // Get the CSRF token
+        var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+        // AJAX request with CSRF token
+        $.ajax({
+          type: 'POST',
+          url: 'super-visa-deductible-couple',  // Replace with your controller URL
+          data: {
+            deductible: deductible,
+            coverage1: coverage1,
+            coverage2: coverage2,
+            check_exit1: check_exit1,
+            check_exit2: check_exit2,
+          },
+          headers: {
+            'X-CSRF-TOKEN': csrfToken
+          },
+          success: function(response) {
+            window.location.href = 'super-visa-deductable-quotation';
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.error('AJAX request failed:', textStatus, errorThrown);
+          }
+        });
+      });
+      // visitor 
+      $('.visitor-family-policy-date1').change(function() {
+          var providedDate = new Date($('.visitor-family-policy-date1').val());
+          if (!isNaN(providedDate.getTime())) {
+              // Calculate the difference in years
+              var currentDate = new Date();
+              var differenceInYears = currentDate.getFullYear() - providedDate.getFullYear();
+              $('.visitor-family-policy-year1').val(differenceInYears);
+          }
+        });
+        $('.visitor-family-policy-date2').change(function() {
+          var providedDate = new Date($('.visitor-family-policy-date2').val());
+          if (!isNaN(providedDate.getTime())) {
+              // Calculate the difference in years
+              var currentDate = new Date();
+              var differenceInYears = currentDate.getFullYear() - providedDate.getFullYear();
+              $('.visitor-family-policy-year2').val(differenceInYears);
+          }
+        });
+        $('.visitor-family-start-date, .visitor-family-end-date').change(function() {
+            var startDate = new Date($('.visitor-family-start-date').val());
+            var endDate = new Date($('.visitor-family-end-date').val());
+
+            if (!isNaN(startDate.getTime()) && !isNaN(endDate.getTime())) {
+                var differenceInMilliseconds = endDate - startDate;
+                var differenceInDays = differenceInMilliseconds / (1000 * 3600 * 24);
+                $('.visitor-family-days').val(differenceInDays);
+            } 
+        });
+        $('.visitor-single-deductible-amt,.visitor-single-coverage-amt,input[name=visitor_single_exit]').on('change', function() {
+        var deductible = $('.visitor-single-deductible-amt').val();
+        var coverage = $('.visitor-single-coverage-amt').val();
+        var check_exit = $('input[name=visitor_single_exit]:checked').val();
+
+        // Get the CSRF token
+        var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+        // AJAX request with CSRF token
+        $.ajax({
+          type: 'POST',
+          url: 'visitor-single-coverage-deductatble-get-quotation',  // Replace with your controller URL
+          data: {
+            deductible: deductible,
+            coverage: coverage,
+            check_exit: check_exit
+          },
+          headers: {
+            'X-CSRF-TOKEN': csrfToken
+          },
+          success: function(response) {
+            console.log(response);
+            window.location.href = 'visitor-single-deductable-quotation';
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.error('AJAX request failed:', textStatus, errorThrown);
+          }
+        });
+      });
+
     });
 </script>
 

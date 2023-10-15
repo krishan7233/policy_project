@@ -1,6 +1,7 @@
 <!-- Nav Bar Starts here -->
 
 <div class="main-header">
+
   <nav class="navbar fixed-top navbar-expand-lg">
     <div class="container">
       <div class="navbar-light bg-dark">
@@ -14,7 +15,7 @@
             <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Travel Insurance </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarDropdown"> 
 				  <a class="dropdown-item" href="{{ route('super-visa') }}">Super Visa Insurance</a> 
-				  <a class="dropdown-item" href="#">Visitor To Canada Insurance</a> 
+				  <a class="dropdown-item" href="{{ route('visitor-visa-insurance') }}">Visitor To Canada Insurance</a> 
 				  <a class="dropdown-item" href="#">Canadian Travelling Out of Country / Province</a> 
 			  </div>
             </li>
@@ -37,6 +38,7 @@
             <li class="nav-item"> <a class="nav-link" href="#">Contact</a> </li>
           </ul>
         </div>
+
       </div>
     </div>
   </nav>
