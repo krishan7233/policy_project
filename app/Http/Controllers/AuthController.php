@@ -98,8 +98,6 @@ class AuthController extends Controller
         return view('plan');
     }
     public function findQuotation(Request $req){
-        // Session::put('request_data', $req->all());
-
         $sessionData = [
             'date_of_birth'=>$req->date_of_birth,
             'age'=>$req->age,
@@ -108,7 +106,7 @@ class AuthController extends Controller
             'no_of_days'=>$req->no_of_days,
         ];
         $data = [
-            'covrage_amt'=>$req->covrage_amt,
+            'coverage_amt'=>$req->coverage_amt,
             'pre_exit'=>$req->pre_exit,
             'deductible'=>0,
         ];
@@ -125,7 +123,7 @@ class AuthController extends Controller
         $requestData = Session::get('request_data');
         $data = Session::get('single_deduct');
         $pre_exit =$data['pre_exit']; 
-        $covrage_amt =$data['covrage_amt']; 
+        $coverage_amt =$data['coverage_amt']; 
         $age =$requestData['age']; 
         $no_of_days =$requestData['no_of_days']; 
         $deductible =$data['deductible']; 
@@ -135,7 +133,7 @@ class AuthController extends Controller
         $exit_or_not="YES";
         }
             $CompanyDetail =[];
-            $price= $this->addDollarSign($covrage_amt);
+            $price= $this->addDollarSign($coverage_amt);
             $data['companies'] = DB::table('tbl_companies')
             ->join('tbl_aggregate_policy_limit', 'tbl_companies.id', '=', 'tbl_aggregate_policy_limit.c_id')
             ->join('tbl_age_group', 'tbl_companies.id', '=', 'tbl_age_group.c_id')
@@ -227,7 +225,7 @@ public function deductibleFilter(Request $req){
     $pre_exit = $req->check_exit;
     $data=[
         'deductible'=>$deductible,
-        'covrage_amt'=>$coverage,
+        'coverage_amt'=>$coverage,
         'pre_exit'=>$pre_exit,
     ];
     Session::put('single_deduct', $data);
@@ -336,7 +334,6 @@ public function superVisaCoupleMergeData(){
         $mergedData[] = (object)$arrayData;
     }
     return $mergedData;
-    // $data['company_detail'] = $mergedData;
 }
 
 public function superVisaCalculateCouple1(){
@@ -344,7 +341,7 @@ public function superVisaCalculateCouple1(){
     $requestData = Session::get('request_data');
     $data = Session::get('deductible');
     $pre_exit =$data['pre_exit1']; 
-    $covrage_amt =$data['coverage_amt1']; 
+    $coverage_amt =$data['coverage_amt1']; 
     $age =$requestData['age1']; 
     $no_of_days =$requestData['no_of_days1']; 
     $deductible =$data['deductible1']; 
@@ -356,7 +353,7 @@ public function superVisaCalculateCouple1(){
     $exit_or_not="YES";
     }
         $CompanyDetail =[];
-        $price= $this->addDollarSign($covrage_amt);
+        $price= $this->addDollarSign($coverage_amt);
         $data['companies'] = DB::table('tbl_companies')
         ->join('tbl_aggregate_policy_limit', 'tbl_companies.id', '=', 'tbl_aggregate_policy_limit.c_id')
         ->join('tbl_age_group', 'tbl_companies.id', '=', 'tbl_age_group.c_id')
@@ -439,7 +436,7 @@ public function superVisaCalculateCouple2(){
     $requestData = Session::get('request_data');
     $data = Session::get('deductible');
     $pre_exit =$data['pre_exit2']; 
-    $covrage_amt =$data['coverage_amt2']; 
+    $coverage_amt =$data['coverage_amt2']; 
     $age =$requestData['age2']; 
     $no_of_days =$requestData['no_of_days2']; 
     $deductible =$data['deductible2']; 
@@ -451,7 +448,7 @@ public function superVisaCalculateCouple2(){
     $exit_or_not="YES";
     }
         $CompanyDetail =[];
-        $price= $this->addDollarSign($covrage_amt);
+        $price= $this->addDollarSign($coverage_amt);
         $data['companies'] = DB::table('tbl_companies')
         ->join('tbl_aggregate_policy_limit', 'tbl_companies.id', '=', 'tbl_aggregate_policy_limit.c_id')
         ->join('tbl_age_group', 'tbl_companies.id', '=', 'tbl_age_group.c_id')
@@ -551,6 +548,41 @@ public function superVisaDeductibleQuotation(Request $request){
     $data['company_detail']=$this->superVisaCoupleMergeData(Session::get('deductible'));
     return view('super-visa-quotation', $data);
 }
+public function visitorSingleCoverageGetQuotation(Request $req){
+    $sessionData = [
+        'date_of_birth'=>$req->date_of_birth,
+        'age'=>$req->age,
+        'start_date'=>$req->start_date,
+        'end_date'=>$req->end_date,
+        'no_of_days'=>$req->no_of_days,
+    ];
+    $data = [
+        'coverage_amt'=>$req->coverage_amt,
+        'pre_exit'=>$req->pre_exit,
+        'deductible'=>0,
+    ];
+    Session::put('request_data', $sessionData);
+    Session::put('single_deduct', $data);
+    $data['company_detail']=$this->calculationFilter();
+    return view('visitor-single-quotation',$data);
+}
+public function visitorSingleCoverageDeductableGetQuotation(Request $req){
+    $deductible = $req->deductible;
+    $coverage = $req->coverage;
+    $pre_exit = $req->check_exit;
+    $data=[
+        'deductible'=>$deductible,
+        'coverage_amt'=>$coverage,
+        'pre_exit'=>$pre_exit,
+    ];
+    Session::put('single_deduct', $data);
+    return true;
+}
+public function visitorSingleDeductableQuotation(){
+    $data['company_detail']=$this->calculationFilter();
+    return view('visitor-single-quotation',$data);
+}
+
 
 public function addDollarSign($amount) {
     $addSymbol = '$' .$amount;
