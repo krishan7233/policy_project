@@ -1,8 +1,11 @@
 @extends('layout.commonlayout')
 @section('content')
+
 <!-- Form section start here -->
 <div class="section-larger">
-
+@php
+$deductible = Session::get('single_deduct');
+@endphp
 <div class="container">
 	<div class="row">
     	<div class="col-lg-12">
@@ -17,41 +20,41 @@
     <div class="row">
       <div class="col-lg-4">
         <div class="quote-left">
-          <p>Super Visa Insurance for Single Person(age 60 years) for 365 days, excluding coverage for pre-existing medical conditions <a href="{{url('super-visa')}}"><span><i class="fa fa-pencil"></i></span></a></p>
+          <p>Super Visa Insurance for Single Person(age 60 years) forddddddddddd 365 days, excluding coverage for pre-existing medical conditions <a href="{{url('super-visa')}}"><span><i class="fa fa-pencil"></i></span></a></p>
           <div class="form-field-row">
             <div class="coverage"> <span>Deductible</span>
               <select class="form-control deductible_amt">
-                <option value="0" selected>0</option>
-                <option value="100">100</option>
-                <option value="250">250</option>
-                <option value="500">500</option>
-                <option value="1000">1000</option>
-                <option value="2500">2500</option>
-                <option value="5000">5000</option>
-                <option value="10000">10000</option>
+                <option value="0" {{ $deductible['deductible'] == 0 ? 'selected' : '' }}>0</option>
+                <option value="100" {{ $deductible['deductible'] == 100 ? 'selected' : '' }}>100</option>
+                <option value="250" {{ $deductible['deductible'] == 250 ? 'selected' : '' }}>250</option>
+                <option value="500" {{ $deductible['deductible'] == 500 ? 'selected' : '' }}>500</option>
+                <option value="1000" {{ $deductible['deductible'] == 1000 ? 'selected' : '' }}>1000</option>
+                <option value="2500" {{ $deductible['deductible'] == 2500 ? 'selected' : '' }}>2500</option>
+                <option value="5000" {{ $deductible['deductible'] == 5000 ? 'selected' : '' }}>5000</option>
+                <option value="10000" {{ $deductible['deductible'] == 10000 ? 'selected' : '' }}>10000</option>
               </select>
             </div>
           </div>
           <div class="form-field-row">
             <div class="coverage"> <span>Coverage</span>
               <select class="form-control  coverage_amt">
-                <option value="100000">100,000</option>
-                <option value="150000">150,000</option>
-                <option value="200000">200,000</option>
-                <option value="250000">250,000</option>
-                <option value="300000">300,000</option>
-                <option value="500000">500,000</option>
-                <option value="1000000">1,000,000</option>
+                <option value="100000" {{ $deductible['covrage_amt'] == 100000 ? 'selected' : '' }}>100,000</option>
+                <option value="150000" {{ $deductible['covrage_amt'] == 150000 ? 'selected' : '' }}>150,000</option>
+                <option value="200000" {{ $deductible['covrage_amt'] == 200000 ? 'selected' : '' }}>200,000</option>
+                <option value="250000" {{ $deductible['covrage_amt'] == 250000 ? 'selected' : '' }}>250,000</option>
+                <option value="300000" {{ $deductible['covrage_amt'] == 300000 ? 'selected' : '' }}>300,000</option>
+                <option value="500000" {{ $deductible['covrage_amt'] == 500000 ? 'selected' : '' }}>500,000</option>
+                <option value="1000000" {{ $deductible['covrage_amt'] == 1000000 ? 'selected' : '' }}>1,000,000</option>
               </select>
             </div>
           </div>
           <h6>Would you like to cover pre-existing medical conditions?</h6>
           <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="customRadioInline1" name="customRadioOptions" class="custom-control-input" value="0" checked>
+            <input type="radio" id="customRadioInline1" name="customRadioOptions" class="custom-control-input" value="0" {{ $deductible['pre_exit'] == 0 ? 'checked' : '' }}>
             <label class="custom-control-label" for="customRadioInline1">No</label>
           </div>
           <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="customRadioInline2" name="customRadioOptions" class="custom-control-input" value="1">
+            <input type="radio" id="customRadioInline2" name="customRadioOptions" class="custom-control-input" value="1" {{ $deductible['pre_exit'] == 1 ? 'checked' : '' }}>
             <label class="custom-control-label" for="customRadioInline2">Yes</label>
           </div>
         </div>
