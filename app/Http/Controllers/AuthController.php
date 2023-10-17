@@ -152,6 +152,9 @@ class AuthController extends Controller
             'tbl_companies.created_at', 
             'tbl_companies.updated_at', 
             'tbl_companies.photo', 
+            'tbl_companies.basic', 
+            'tbl_companies.standard', 
+            'tbl_companies.enhanced', 
             'tbl_aggregate_policy_limit.price',
             'tbl_age_group.start_age',
             'tbl_age_group.end_age',
@@ -190,6 +193,9 @@ class AuthController extends Controller
                             $CompanyDetail[$uniqueKey] = (object)[
                                 'id' => $rates->id,
                                 'company_id' => $company->company_id,
+                                'basic' => $company->basic,
+                                'standard' => $company->standard,
+                                'enhanced' => $company->enhanced,
                                 'company_name' => $company->company_name,
                                 'company_status' => $company->status,
                                 'company_photo' => $company->photo,
@@ -297,6 +303,11 @@ public function superVisaCoupleMergeData(){
             'company_name1' => isset($company_detail1[$i]->company_name1)?$company_detail1[$i]->company_name1:"",
             'company_status1' => isset($company_detail1[$i]->company_status1)?$company_detail1[$i]->company_status1:"",
             'company_photo1' => isset($company_detail1[$i]->company_photo1)?$company_detail1[$i]->company_photo1:"",
+            'basic1' => isset($company_detail1[$i]->basic1)?$company_detail1[$i]->basic1:"",
+            'standard1' => isset($company_detail1[$i]->standard1)?$company_detail1[$i]->standard1:"",
+            'enhanced1' => isset($company_detail1[$i]->enhanced1)?$company_detail1[$i]->enhanced1:"",
+            'company_photo1' => isset($company_detail1[$i]->company_photo1)?$company_detail1[$i]->company_photo1:"",
+            'company_photo1' => isset($company_detail1[$i]->company_photo1)?$company_detail1[$i]->company_photo1:"",
             'aggregate_price1' => isset($company_detail1[$i]->aggregate_price1)?$company_detail1[$i]->aggregate_price1:"",
             'start_age1' => isset($company_detail1[$i]->start_age1)?$company_detail1[$i]->start_age1:"",
             'end_age1' => isset($company_detail1[$i]->end_age1)?$company_detail1[$i]->end_age1:"",
@@ -316,6 +327,9 @@ public function superVisaCoupleMergeData(){
             'company_name2' => isset($company_detail2[$i]->company_name2)?$company_detail2[$i]->company_name2:"",
             'company_status2' => isset($company_detail2[$i]->company_status2)?$company_detail2[$i]->company_status2:"",
             'company_photo2' => isset($company_detail2[$i]->company_photo2)?$company_detail2[$i]->company_photo2:"",
+            'basic2' => isset($company_detail1[$i]->basic2)?$company_detail1[$i]->basic2:"",
+            'standard2' => isset($company_detail1[$i]->standard2)?$company_detail1[$i]->standard2:"",
+            'enhanced2' => isset($company_detail1[$i]->enhanced2)?$company_detail1[$i]->enhanced2:"",
             'aggregate_price2' => isset($company_detail2[$i]->aggregate_price2)?$company_detail2[$i]->aggregate_price2:0,
             'start_age2' => isset($company_detail2[$i]->start_age2)?$company_detail2[$i]->start_age2:"",
             'end_age2' => isset($company_detail2[$i]->end_age2)?$company_detail2[$i]->end_age2:"",
@@ -371,7 +385,10 @@ public function superVisaCalculateCouple1(){
         'tbl_companies.status',
         'tbl_companies.created_at', 
         'tbl_companies.updated_at', 
-        'tbl_companies.photo', 
+        'tbl_companies.photo',
+        'tbl_companies.basic', 
+        'tbl_companies.standard', 
+        'tbl_companies.enhanced', 
         'tbl_aggregate_policy_limit.price',
         'tbl_age_group.start_age',
         'tbl_age_group.end_age',
@@ -408,6 +425,9 @@ public function superVisaCalculateCouple1(){
                             'company_name1' => $company->company_name,
                             'company_status1' => $company->status,
                             'company_photo1' => $company->photo,
+                            'basic1' => $company->basic,
+                            'standard1' => $company->standard,
+                            'enhanced1' => $company->enhanced,
                             'company_created_at1' => $company->created_at,
                             'company_updated_at1' => $company->updated_at,
                             'aggregate_price1' => $company->price,
@@ -466,7 +486,10 @@ public function superVisaCalculateCouple2(){
         'tbl_companies.status',
         'tbl_companies.created_at', 
         'tbl_companies.updated_at', 
-        'tbl_companies.photo', 
+        'tbl_companies.photo',
+        'tbl_companies.basic', 
+        'tbl_companies.standard', 
+        'tbl_companies.enhanced', 
         'tbl_aggregate_policy_limit.price',
         'tbl_age_group.start_age',
         'tbl_age_group.end_age',
@@ -508,6 +531,9 @@ public function superVisaCalculateCouple2(){
                             'company_name2' => $company->company_name,
                             'company_status2' => $company->status,
                             'company_photo2' => $company->photo,
+                            'basic2' => $company->basic,
+                            'standard2' => $company->standard,
+                            'enhanced2' => $company->enhanced,
                             'company_created_at2' => $company->created_at,
                             'company_updated_at2' => $company->updated_at,
                             'aggregate_price2' => $company->price,
@@ -582,8 +608,110 @@ public function visitorSingleDeductableQuotation(){
     $data['company_detail']=$this->calculationFilter();
     return view('visitor-single-quotation',$data);
 }
+public function visitorCoupleCoverageGetQuotation(Request $request){
+    $age1 = $request->visitor_visa_couple_age1;
+    $birth1 = $request->visitor_visa_couple_birth1;
+    $start_date1 = $request->visitor_visa_couple_start_date1;
+    $end_date1 = $request->visitor_visa_couple_end_date1;
+    $days1 = $request->visitor_visa_couple_days1;
+    $coverage_amt1 = $request->visitor_visa_couple_coverage1;
+    $exit1 = $request->visitor_visa_couple_exit1;
+    $age2 = $request->visitor_visa_couple_age2;
+    $birth2 = $request->visitor_visa_couple_birth2;
+    $start_date2 = $request->visitor_visa_couple_start_date2;
+    $end_date2 = $request->visitor_visa_couple_end_date2;
+    $days2 = $request->visitor_visa_couple_days2;
+    $coverage_amt2 = $request->visitor_visa_couple_coverage2;
+    $exit2 = $request->visitor_visa_couple_exit2;
+    $sessionData = [
+        'date_of_birth1'=>$birth1,
+        'age1'=>$age1,
+        'start_date1'=>$start_date1,
+        'end_date1'=>$end_date1,
+        'no_of_days1'=>$days1,
+        'date_of_birth2'=>$birth2,
+        'age2'=>$age2,
+        'start_date2'=>$start_date2,
+        'end_date2'=>$end_date2,
+        'no_of_days2'=>$days2,
+    ];
+    $data = [
+    'coverage_amt1'=>$coverage_amt1,
+    'pre_exit1'=>$exit1,
+    'deductible1'=>0,
+    'coverage_amt2'=>$coverage_amt2,
+    'pre_exit2'=>$exit2,
+    'deductible2'=>0,
+    ];
+    Session::put('request_data', $sessionData);
+    Session::put('deductible', $data);
+    $data['company_detail'] = $this->superVisaCoupleMergeData();
+    return view('visitor-visa-quotation',$data);
 
+}
+public function visitorVisaDeductibleCouple(Request $request){
+    $data = [
+        'coverage_amt1' => $request->coverage1,
+        'pre_exit1' => $request->check_exit1,
+        'deductible1' => $request->deductible,
+        'coverage_amt2' => $request->coverage2,
+        'pre_exit2' => $request->check_exit2,
+        'deductible2' => $request->deductible,
+    ];
+    Session::put('deductible', $data);
+    return true;
+}
+public function visitorVisaDeductibleQuotation(){
+    $data['company_detail']=$this->superVisaCoupleMergeData(Session::get('deductible'));
+    return view('visitor-visa-quotation', $data);
 
+}
+public function visitorFamilyCoverageGetQuotation(Request $request){
+
+    if($request->visitor_family_policy_year1>$request->visitor_family_policy_year2){
+        $age = $request->visitor_family_policy_year1;
+        $date_of_birth = $request->visitor_family_policy_date1;
+    }
+    if($request->visitor_family_policy_year2>$request->visitor_family_policy_year1){
+        $age = $request->visitor_family_policy_year2;
+        $date_of_birth = $request->visitor_family_policy_date2;
+    }
+
+    $sessionData = [
+        'date_of_birth'=>$date_of_birth,
+        'age'=>$age,
+        'start_date'=>$request->visitor_family_start_date,
+        'end_date'=>$request->visitor_family_end_date,
+        'no_of_days'=>$request->visitor_family_days,
+    ];
+    $data = [
+        'coverage_amt'=>$request->visitor_family_coverage_amt,
+        'pre_exit'=>$request->visitor_family_exit,
+        'deductible'=>0,
+    ];
+    Session::put('request_data', $sessionData);
+    Session::put('single_deduct', $data);
+    $data['company_detail']=$this->calculationFilter();
+    return view('visitor-family-quotation',$data);
+
+}
+public function visitorFamilyDeductible(Request $req){
+    $requestData = Session::get('request_data');
+    $deductible = $req->deductible;
+    $coverage = $req->coverage;
+    $pre_exit = $req->check_exit;
+    $data=[
+        'deductible'=>$deductible,
+        'coverage_amt'=>$coverage,
+        'pre_exit'=>$pre_exit,
+    ];
+    Session::put('single_deduct', $data);
+    return true;
+}
+public function visitorFamilyDeductibleQuotation(){
+    $data['company_detail']=$this->calculationFilter();
+    return view('visitor-family-quotation',$data);
+}
 public function addDollarSign($amount) {
     $addSymbol = '$' .$amount;
     return $addSymbol;

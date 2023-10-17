@@ -22,10 +22,10 @@ $deductible = Session::get('deductible');
       
 
 
-          <p>Super Visa Insurance for Single Person(age 60 years) for 365 days, excluding coverage for pre-existing medical conditions <a href="{{url('super-visa')}}"><span><i class="fa fa-pencil"></i></span></a></p>
+          <p>Super Visa Insurance for Single Person(age 60 years) for 365 days, excluding coverage for pre-existing medical conditions <a href="{{url('visitor-visa-insurance')}}"><span><i class="fa fa-pencil"></i></span></a></p>
           <div class="form-field-row">
             <div class="coverage"> <span>Deductible  </span>
-              <select class="form-control super-couple-deductible-amt" name="deductible_amt">
+              <select class="form-control visitor-couple-deductible-amt" name="deductible_amt">
               <option value="0" {{ $deductible['deductible1'] == 0 ? 'selected' : '' }}>0</option>
               <option value="100" {{ $deductible['deductible1'] == 100 ? 'selected' : '' }}>100</option>
               <option value="250" {{ $deductible['deductible1'] == 250 ? 'selected' : '' }}>250</option>
@@ -39,7 +39,7 @@ $deductible = Session::get('deductible');
           </div>
           <div class="form-field-row">
             <div class="coverage"> <span>Coverage List 1</span>
-              <select class="form-control  super-couple-coverage-amt1" name="coverage_amt1">
+              <select class="form-control  visitor-couple-coverage-amt1" name="coverage_amt1">
                 <option value="100000" {{$deductible['coverage_amt1']==100000 ? 'selected' : ''}}>100,000</option>
                 <option value="150000" {{$deductible['coverage_amt1']==150000 ? 'selected' : ''}}>150,000</option>
                 <option value="200000" {{$deductible['coverage_amt1']==200000 ? 'selected' : ''}}>200,000</option>
@@ -52,7 +52,7 @@ $deductible = Session::get('deductible');
           </div>
           <div class="form-field-row">
             <div class="coverage"> <span>Coverage List 2</span>
-              <select class="form-control  super-couple-coverage-amt2" name="coverage_amt2">
+              <select class="form-control  visitor-couple-coverage-amt2" name="coverage_amt2">
                 <option value="100000" {{$deductible['coverage_amt2']==100000 ? 'selected' : ''}}>100,000</option>
                 <option value="150000" {{$deductible['coverage_amt2']==150000 ? 'selected' : ''}}>150,000</option>
                 <option value="200000" {{$deductible['coverage_amt2']==200000 ? 'selected' : ''}}>200,000</option>
@@ -65,19 +65,19 @@ $deductible = Session::get('deductible');
           </div>
           <h6>Would you like to cover pre-existing medical conditions?</h6>
           <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="not_exit1" name="super_couple_exit1" class="custom-control-input " value="0" {{$deductible['pre_exit1']==0 ? 'checked' : ''}}>
+            <input type="radio" id="not_exit1" name="visitor_couple_exit1" class="custom-control-input " value="0" {{$deductible['pre_exit1']==0 ? 'checked' : ''}}>
             <label class="custom-control-label" for="not_exit1">No</label>
           </div>
           <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="exit1" name="super_couple_exit1" class="custom-control-input" value="1" {{$deductible['pre_exit1']==1 ? 'checked' : ''}}>
+            <input type="radio" id="exit1" name="visitor_couple_exit1" class="custom-control-input" value="1" {{$deductible['pre_exit1']==1 ? 'checked' : ''}}>
             <label class="custom-control-label" for="exit1">Yes</label>
           </div></br>
           <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="not_exit2" name="super_couple_exit2" class="custom-control-input" value="0" {{$deductible['pre_exit2']==0 ? 'checked' : ''}}>
+            <input type="radio" id="not_exit2" name="visitor_couple_exit2" class="custom-control-input" value="0" {{$deductible['pre_exit2']==0 ? 'checked' : ''}}>
             <label class="custom-control-label" for="not_exit2">No</label>
           </div>
           <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="exit2" name="super_couple_exit2" class="custom-control-input" value="1" {{$deductible['pre_exit2']==1 ? 'checked' : ''}}>
+            <input type="radio" id="exit2" name="visitor_couple_exit2" class="custom-control-input" value="1" {{$deductible['pre_exit2']==1 ? 'checked' : ''}}>
             <label class="custom-control-label" for="exit2">Yes</label>
           </div>
         </div>

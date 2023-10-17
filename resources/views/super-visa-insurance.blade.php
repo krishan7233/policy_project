@@ -65,7 +65,7 @@
             <div class="form-field-row">
             	<div class="coverage">
                 	 <span>Coverage</span>
-                    <select class="form-control" name="covrage_amt">
+                    <select class="form-control" name="coverage_amt">
                     	<option value="100000">100,000 (min. requirement)</option>
                         <option value="150000">150,000</option>
                         <option value="200000">200,000</option>
