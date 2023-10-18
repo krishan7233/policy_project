@@ -405,7 +405,71 @@ $("#singledob").datepicker({ dateFormat:'dd/mm/yy'});
           }
         });
       });
+      $('.visitor-couple-deductible-amt,.visitor-couple-coverage-amt1,.visitor-couple-coverage-amt2,input[name=visitor_couple_exit1],input[name=visitor_couple_exit2]').on('change', function() {
+          // alert('hello');
+        var deductible = $('.visitor-couple-deductible-amt').val();
+        var coverage1 = $('.visitor-couple-coverage-amt1').val();
+        var coverage2 = $('.visitor-couple-coverage-amt2').val();
+        var check_exit1 = $('input[name=visitor_couple_exit1]:checked').val();
+        var check_exit2 = $('input[name=visitor_couple_exit2]:checked').val();
 
+        // // Get the CSRF token
+        var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+        // AJAX request with CSRF token
+        $.ajax({
+          type: 'POST',
+          url: 'visitor-visa-deductible-couple',  // Replace with your controller URL
+          data: {
+            deductible: deductible,
+            coverage1: coverage1,
+            coverage2: coverage2,
+            check_exit1: check_exit1,
+            check_exit2: check_exit2,
+          },
+          headers: {
+            'X-CSRF-TOKEN': csrfToken
+          },
+          success: function(response) {
+            // console.log(response);
+            window.location.href = 'visitor-visa-deductable-quotation';
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.error('AJAX request failed:', textStatus, errorThrown);
+          }
+        });
+      });
+// visitor family 
+    $('.visitor_deductible_amt,.visitor_coverage_amt,input[name=visitor_family_exit_deductible]').on('change', function() {
+      // alert("gg")
+        var deductible = $('.visitor_deductible_amt').val();
+        var coverage = $('.visitor_coverage_amt').val();
+        var check_exit = $('input[name=visitor_family_exit_deductible]:checked').val();
+
+        // Get the CSRF token
+        var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+        // AJAX request with CSRF token
+        $.ajax({
+          type: 'POST',
+          url: 'visitor-family-deductible',  // Replace with your controller URL
+          data: {
+            deductible: deductible,
+            coverage: coverage,
+            check_exit: check_exit
+          },
+          headers: {
+            'X-CSRF-TOKEN': csrfToken
+          },
+          success: function(response) {
+            // console.log(response);
+            window.location.href = 'visitor-family-deductable-quotation';
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.error('AJAX request failed:', textStatus, errorThrown);
+          }
+        });
+      });
     });
 </script>
 

@@ -35,3 +35,12 @@ Route::get('visitor-visa-insurance', [AuthController::class, 'visitorVisa'])->na
 Route::post('visitor-single-coverage-get-quotation', [AuthController::class, 'visitorSingleCoverageGetQuotation'])->name('visitor-single-coverage-get-quotationt');
 Route::post('visitor-single-coverage-deductatble-get-quotation', [AuthController::class, 'visitorSingleCoverageDeductableGetQuotation'])->name('visitor-single-coverage-deductatble-get-quotation');
 Route::get('visitor-single-deductable-quotation', [AuthController::class, 'visitorSingleDeductableQuotation'])->name('visitor-single-deductable-quotation');
+// visitor couple
+Route::post('visitor-couple-coverage-get-quotation', [AuthController::class, 'visitorCoupleCoverageGetQuotation'])->name('visitor-couple-coverage-get-quotationt');
+Route::post('visitor-visa-deductible-couple', [AuthController::class, 'visitorVisaDeductibleCouple'])->name('visitor-visa-deductible-couple');
+Route::get('visitor-visa-deductable-quotation', [AuthController::class, 'visitorVisaDeductibleQuotation'])->name('visitor-visa-deductable-quotation');
+
+// visitor family
+Route::post('visitor-family-coverage-get-quotation', [AuthController::class, 'visitorFamilyCoverageGetQuotation'])->name('visitor-family-coverage-get-quotation');
+Route::post('visitor-family-deductible', [AuthController::class, 'visitorFamilyDeductible'])->name('visitor-family-deductible');
+Route::get('visitor-family-deductable-quotation', [AuthController::class, 'visitorFamilyDeductibleQuotation'])->name('visitor-family-deductable-quotation');

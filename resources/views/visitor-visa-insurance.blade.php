@@ -114,13 +114,14 @@
             </form>
           </div>
           <div class="tab-pane show fade visitor-form2" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-          	<form class="form-1">
+          	<form class="form-1" action="{{url('visitor-couple-coverage-get-quotation')}}" method="post">
+            @csrf
             <div class="form-field-row">
             <div class="number">1</div>
             	<div class="field-dob">
                 	 <span>Date of Birth</span>
 
-                	<input type="date" class="form-control visitor-couple-policy-date1" placeholder="Date of Birth" max="{{ \Carbon\Carbon::now()->format('Y-m-d') }}">
+                	<input type="date" class="form-control visitor-couple-policy-date1" name="visitor_visa_couple_birth1" placeholder="Date of Birth" max="{{ \Carbon\Carbon::now()->format('Y-m-d') }}">
 
                     <label>DD-MM-YYYY format</label>
                 </div>
@@ -128,7 +129,7 @@
                 <div class="field-tage">
                 	<span>Age</span>
 
-                	<input type="number" class="form-control visitor-couple-policy-year1" value="22">
+                	<input type="number" class="form-control visitor-couple-policy-year1" name="visitor_visa_couple_age1" value="22">
                     <label>years</label>
                     
                 </div>
@@ -140,7 +141,7 @@
             	<div class="field-dob">
                 	 <span>Date of Birth</span>
 
-                	<input type="date" class="form-control visitor-couple-policy-date2" placeholder="Date of Birth" max="{{ \Carbon\Carbon::now()->format('Y-m-d') }}">
+                	<input type="date" class="form-control visitor-couple-policy-date2" name="visitor_visa_couple_birth2" placeholder="Date of Birth" max="{{ \Carbon\Carbon::now()->format('Y-m-d') }}">
 
                     <label>DD-MM-YYYY format</label>
                 </div>
@@ -148,7 +149,7 @@
                 <div class="field-tage">
                 	<span>Age</span>
 
-                	<input type="number" class="form-control visitor-couple-policy-year2" value="30" oninput="couplePolicyValidateAge2()">
+                	<input type="number" class="form-control visitor-couple-policy-year2" name="visitor_visa_couple_age2" value="30" oninput="couplePolicyValidateAge2()">
                     <label>years</label>
 
                 </div>
@@ -158,7 +159,7 @@
             <div class="form-field-row">
             <div class="sdate">
                 <span>Start Date</span>
-                <input type="date" class="form-control visitor-couple-start-date1" placeholder="Start Date" value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}">
+                <input type="date" class="form-control visitor-couple-start-date1" name="visitor_visa_couple_start_date1" placeholder="Start Date" value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}">
                 <label id="startFormattedDateLabel" >DD-MM-YYYY format</label>
             </div>
 
@@ -168,14 +169,14 @@
                     $formattedFutureDate = \Carbon\Carbon::parse($futureDate)->format('d-m-Y');
                 ?>
                 <span>End Date</span>
-                <input type="date" class="form-control visitor-couple-end-date1" placeholder="End Date" value="{{ $futureDate }}">
+                <input type="date" class="form-control visitor-couple-end-date1" name="visitor_visa_couple_end_date1" placeholder="End Date" value="{{ $futureDate }}">
                 <label id="">DD-MM-YYYY format</label>
             </div>
 
                 <div class="field-or">or</div>
                 <div class="field-tdays">
                 	<span>Days</span>
-                	<input type="number" class="form-control visitor-couple-days1" value="90">
+                	<input type="number" class="form-control visitor-couple-days1" name="visitor_visa_couple_days1" value="90">
                     <label></label>
                 </div>
             </div>
@@ -186,7 +187,7 @@
             	<div class="sdate">
                 	 <span>Start Date</span>
 
-                	<input type="date" class="form-control visitor-couple-start-date2" placeholder="Date of Birth" value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}">
+                	<input type="date" class="form-control visitor-couple-start-date2" name="visitor_visa_couple_start_date2" placeholder="Date of Birth" value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}">
                     <label>DD-MM-YYYY format</label>
                 </div>
                 <div class="edate">
@@ -195,7 +196,7 @@
                     $formattedFutureDate = \Carbon\Carbon::parse($futureDate)->format('d-m-Y');
                 ?>
                 	 <span>End Date</span>
-                	<input type="date"  class="form-control visitor-couple-end-date2" placeholder="Date of Birth" value="{{ $futureDate }}">
+                	<input type="date"  class="form-control visitor-couple-end-date2" name="visitor_visa_couple_end_date2" placeholder="Date of Birth" value="{{ $futureDate }}">
 
                     <label>DD-MM-YYYY format</label>
                 </div>
@@ -203,7 +204,7 @@
                 <div class="field-tdays">
                 	<span>Days</span>
 
-                	<input type="number" class="form-control visitor-couple-days2" value="90">
+                	<input type="number" class="form-control visitor-couple-days2" name="visitor_visa_couple_days2" value="90">
                     <label>Days</label>
                 </div>
             </div>
@@ -215,7 +216,7 @@
             <div class="form-field-row">
             	<div class="coverage">
                 	 <span>Coverage</span>
-                    <select class="form-control">
+                    <select class="form-control" name="visitor_visa_couple_coverage1">
                     	<option value="100000">100,000 (min. requirement)</option>
                         <option value="150000">150,000</option>
                         <option value="200000">200,000</option>
@@ -231,7 +232,7 @@
             	<div class="form-field-row">
             	<div class="coverage">
                 	 <span>Coverage</span>
-                    <select class="form-control">
+                    <select class="form-control" name="visitor_visa_couple_coverage2">
                     	<option value="100000">100,000 (min. requirement)</option>
                         <option value="150000">150,000</option>
                         <option value="200000">200,000</option>
@@ -253,11 +254,11 @@
             <div class="m1">
             <div class="number">1</div>
             <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" id="visitor-couple-exit1" name="customRadioInline1" class="custom-control-input" checked>
+              <input type="radio" id="visitor-couple-exit1" name="visitor_visa_couple_exit1" class="custom-control-input" value="0" checked>
               <label class="custom-control-label" for="visitor-couple-exit1">No</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" id="visitor-couple-exit2" name="customRadioInline1" class="custom-control-input" >
+              <input type="radio" id="visitor-couple-exit2" name="visitor_visa_couple_exit1" class="custom-control-input" value="1">
               <label class="custom-control-label" for="visitor-couple-exit2">Yes</label>
             </div>
             </div>
@@ -271,11 +272,11 @@
              <div class="m1">
             <div class="number2">2</div>
             <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" id="visitor-couple-exit3" name="customRadioInline2" class="custom-control-input" checked>
+              <input type="radio" id="visitor-couple-exit3" name="visitor_visa_couple_exit2" class="custom-control-input" value="0" checked>
               <label class="custom-control-label" for="visitor-couple-exit3">No</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" id="visitor-couple-exit4" name="customRadioInline2" class="custom-control-input">
+              <input type="radio" id="visitor-couple-exit4" name="visitor_visa_couple_exit2" class="custom-control-input" value="1">
               <label class="custom-control-label" for="visitor-couple-exit4">Yes</label>
             </div>
             </div>
@@ -289,13 +290,14 @@
             	
           </div>
           <div class="tab-pane show fade visitor-form3" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-          	<form class="form-1">
+          	<form class="form-1" action="{{url('visitor-family-coverage-get-quotation')}}" method="post">
+                @csrf
             <div class="form-field-row">
             <div class="number">1</div>
             	<div class="field-dob">
                 	 <span>Date of Birth</span>
 
-                	<input type="date" class="form-control visitor-family-policy-date1" placeholder="Date of Birth" max="{{ \Carbon\Carbon::now()->format('Y-m-d') }}">
+                	<input type="date" class="form-control visitor-family-policy-date1" name="visitor_family_policy_date1" placeholder="Date of Birth" max="{{ \Carbon\Carbon::now()->format('Y-m-d') }}">
 
                     <label>DD-MM-YYYY format</label>
                 </div>
@@ -303,7 +305,7 @@
                 <div class="field-tage">
                 	<span>Age</span>
 
-                	<input type="number" class="form-control visitor-family-policy-year1" value="35">
+                	<input type="number" class="form-control visitor-family-policy-year1" name="visitor_family_policy_year1" value="35">
                     <label>years</label>
                     
                 </div>
@@ -315,7 +317,7 @@
             	<div class="field-dob">
                 	 <span>Date of Birth</span>
 
-                	<input type="date" class="form-control visitor-family-policy-date2" placeholder="Date of Birth" max="{{ \Carbon\Carbon::now()->format('Y-m-d') }}">
+                	<input type="date" class="form-control visitor-family-policy-date2" name="visitor_family_policy_date2" placeholder="Date of Birth" max="{{ \Carbon\Carbon::now()->format('Y-m-d') }}">
 
                     <label>DD-MM-YYYY format</label>
                 </div>
@@ -323,7 +325,7 @@
                 <div class="field-tage">
                 	<span>Age</span>
 
-                	<input type="number" class="form-control visitor-family-policy-year2" value="30">
+                	<input type="number" class="form-control visitor-family-policy-year2" name="visitor_family_policy_year2" value="30">
                     <label>years</label>
 
                 </div>
@@ -351,7 +353,7 @@
             <div class="form-field-row">
             <div class="sdate">
                 <span>Start Date</span>
-                <input type="date" class="form-control visitor-family-start-date" placeholder="Start Date" value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}">
+                <input type="date" class="form-control visitor-family-start-date" name="visitor_family_start_date" placeholder="Start Date" value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}">
                 <label id="startFormattedDateLabel" >DD-MM-YYYY format</label>
             </div>
 
@@ -361,14 +363,14 @@
                     $formattedFutureDate = \Carbon\Carbon::parse($futureDate)->format('d-m-Y');
                 ?>
                 <span>End Date</span>
-                <input type="date" class="form-control visitor-family-end-date" placeholder="End Date" value="{{ $futureDate }}">
+                <input type="date" class="form-control visitor-family-end-date" name="visitor_family_end_date" placeholder="End Date" value="{{ $futureDate }}">
                 <label id="">DD-MM-YYYY format</label>
             </div>
 
                 <div class="field-or">or</div>
                 <div class="field-tdays">
                 	<span>Days</span>
-                	<input type="number" class="form-control visitor-family-days" value="90">
+                	<input type="number" class="form-control visitor-family-days" name="visitor_family_days" value="90">
                     <label></label>
                 </div>
             </div>
@@ -376,7 +378,7 @@
             <div class="form-field-row">
             	<div class="coverage">
                 	 <span>Coverage</span>
-                    <select class="form-control">
+                    <select class="form-control" name="visitor_family_coverage_amt">
                     	<option value="100000">100,000 (min. requirement)</option>
                         <option value="150000">150,000</option>
                         <option value="200000">200,000</option>
@@ -395,12 +397,12 @@
             <div class="m1">
             <div class="number">1</div>
             <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" id="visitor-couple-exit1" name="customRadioInline1" class="custom-control-input" checked>
-              <label class="custom-control-label" for="visitor-couple-exit1">No</label>
+              <input type="radio" id="visitor-family1" name="visitor_family_exit" class="custom-control-input" value="0" checked>
+              <label class="custom-control-label" for="visitor-family1">No</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" id="visitor-couple-exit2" name="customRadioInline1" class="custom-control-input" >
-              <label class="custom-control-label" for="visitor-couple-exit2">Yes</label>
+              <input type="radio" id="visitor-family2" name="visitor_family_exit" class="custom-control-input" value="1">
+              <label class="custom-control-label" for="visitor-family2">Yes</label>
             </div>
             </div>
             </div>

@@ -64,9 +64,20 @@ $deductible = Session::get('single_deduct');
       </div>
       <div class="col-lg-8 quotation_data">
       @foreach($company_detail as $companies)
+      @php
+        if($companies->plan_type==1){
+          $photo = $companies->basic;
+        }
+        if($companies->plan_type==2){
+          $photo = $companies->standard;
+        }
+        if($companies->plan_type==3){
+          $photo = $companies->enhanced;
+        }
+        @endphp
         <div class="quote-right">
           <div class="quote-box">
-            <div class="logo-section"> <img src="{{$companies->company_photo}}" /> </div>
+            <div class="logo-section"> <img src="{{$photo}}" /> </div>
             <div class="price-section">
               <h3>{{'$'.number_format($companies->total_charge - $companies->detect_amt, 2)}}</h3>
               <h3><span><strong>{{'$'.$companies->per_month}}</strong>/month</span></h3>
