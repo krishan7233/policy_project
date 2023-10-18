@@ -1,3 +1,64 @@
+<footer>
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-3 col-md-3 col-sm-6 footer-sec">
+                  <h5>Company</h5>
+                  <ul>
+                     <li><a href="#">Home</a></li>
+                     <li><a href="#">About Us</a></li>
+                     <li><a href="#">FAQs</a></li>
+                     <li><a href="#">Blog</a></li>
+                     <li><a href="#">Contact Us</a></li>
+                  </ul>
+               </div>
+               <div class="col-lg-3 col-md-3 col-sm-6 footer-sec">
+                  <h5>Travel Insurance </h5>
+                  <ul>
+                     <li><a href="#">Super Visa Insurance</a></li>
+                     <li><a href="#">Visitor To Canada Insurance</a></li>
+                     <li><a href="#">Canadian Travelling Out of Country / Province</a></li>
+                  </ul>
+               </div>
+               <div class="col-lg-3 col-md-3 col-sm-6 footer-sec">
+                  <h5> Investments </h5>
+                  <ul>
+                     <li><a href="#">RESP</a></li>
+                     <li><a href="#">RRSP</a></li>
+                     <li><a href="#">TFSA</a></li>
+                  </ul>
+               </div>
+               <div class="col-lg-3 col-md-3 col-sm-6 footer-sec">
+                  <h5>Contact </h5>
+                  <p class="adres">52680 Matheson Blvd E, Suite # 102, Mississauga, ON, L4W 0A5</p>
+                  <p><strong>Phone :</strong><a href="tel:+19058777777"> 905-877-7777</a></p>
+				   <p><strong>Email :</strong><a href="mailto:info@policymarket.ca"> info@policymarket.ca</a></p>
+               </div>
+            </div>
+         </div>
+         <div class="container-fluid copyright">
+            <div class="container">
+               <div class="row">
+                  <div class="col-xl-9 col-lg-9 col-md-6">
+                     <p>Copyright © 2023. All rights reserved by PolicyMarket.</p>
+                  </div>
+                  
+                  <div class="col-xl-3 col-lg-3 col-md-6">
+                     <div class="copyright-social">
+                        <ul>
+                           <li><a href="#"><img src="images/icon_fb.png" class="img-fluid" alt=""></a></li>
+                           <li><a href="#"><img src="images/icon_tw.png" class="img-fluid" alt=""></a></li>
+                           <li><a href="#"><img src="images/icon_li.png" class="img-fluid" alt=""></a></li>
+                           <li><a href="#"><img src="images/icon_yt.png" class="img-fluid" alt=""></a></li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </footer>
+
+
+
 
 <!-- Bootstrap JavaScript -->
 <!-- jQuery library -->

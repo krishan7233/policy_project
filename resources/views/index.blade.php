@@ -2,23 +2,52 @@
 
 @section('content')
 <!-- Form section start here -->
-<div class="hero-image">
+<div class="hero-image main-slider">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-6 col-md-6 col-sm-12">
+  <!--<div class="row">
+  	<div class="col-lg-6 col-md-6 col-sm-12">
         <div class="hero-text">
           <h1 class="text-pink">Compare in Seconds, Save for a Lifetime,<span>Buy with Confidence</span></h1>
         </div>
       </div>
-      <div class="col-lg-6 col-md-6 col-sm-12"> <!--<img src="assets/images/slider-2.png">-->
+      <div class="col-lg-6 col-md-6 col-sm-12"> <img src="assets/images/slider-2.png">
+        
+      </div>
+  </div>-->
+  
+    <div class="row">
+	  <div class="col-lg-12 col-md-12 col-sm-12">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
-            <div class="carousel-item active"> <img src="assets/images/slider.png" class="w-100" alt="..."> </div>
-            <div class="carousel-item"> <img src="assets/images/slider-2.png" class="w-100" alt="..."> </div>
-			<div class="carousel-item"> <img src="assets/images/slider-3.png" class="w-100" alt="..."> </div>
+            <div class="carousel-item active"> 
+			<img src="assets/images/banner-1.png" class="w-100" alt="..."> 
+			<div class="carousel-caption">
+				<div class="hero-text">
+				  <h1 class="text-pink">Compare in Seconds, Save for a Lifetime,<span>Buy with Confidence</span></h1>
+				</div>
+		  </div>
+			</div>
+            <div class="carousel-item"> 
+			<img src="assets/images/banner-2.png" alt="..."> 
+			<div class="carousel-caption">
+				<div class="hero-text">
+				  <h1 class="text-pink">Insure Your Peace of Mind  <span>with PolicyMarket</span></h1>
+				</div>
+		  </div>
+			</div>
+			<div class="carousel-item"> 
+			<img src="assets/images/banner-3.png" alt="...">
+			<div class="carousel-caption">
+				<div class="hero-text">
+				  <h1 class="text-pink">Your Insurance Journey Begins  <span>at PolicyMarket.ca</span></h1>
+				</div>
+		  </div>
+			</div>
           </div>
-          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="sr-only">Next</span> </a> </div>
+          <!--<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="sr-only">Next</span> </a>--> </div>
       </div>
+	  
+	  
     </div>
     <div class="poins">
       <h4>Select a product to see your quotes</h4>
@@ -135,67 +164,199 @@
           <div class="card">
             <div class="card-header" id="headingOne">
               <h2>
-                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseTwo"> How do I raise a car insurance claim? </button>
+                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseTwo"> Question? </button>
               </h2>
             </div>
             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
               <div class="card-body">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Delectus reiciendis ab, magnam esse quae eum tempora natus? Nihil, accusantium Voluptatem sit amet consectetur adipisicing elit.</p>
-                <a href="#" class="btn-link">Read more</a> </div>
+                <p>Answer.</p></div>
             </div>
           </div>
           <div class="card">
             <div class="card-header" id="headingTwo">
               <h2>
-                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"> What is cashless and reimbursement claim? </button>
+                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"> 							Question? </button>
               </h2>
             </div>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
               <div class="card-body">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Delectus reiciendis ab, magnam esse quae eum tempora natus? Nihil, accusantium? Voluptatem.</p>
+                <p>Answer</p>
               </div>
             </div>
           </div>
           <div class="card">
             <div class="card-header" id="headingThree">
               <h2>
-                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"> What does the surveyor check during the claim process? </button>
+                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"> Question?</button>
               </h2>
             </div>
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
               <div class="card-body">
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa doloribus voluptatibus consequatur, alias dolorum nobis blanditiis! Rem repudiandae recusandae, dolorem doloribus reprehenderit sed sint nemo itaque rerum. Molestiae, illum ratione!</p>
+                <p>Answer</p>
               </div>
             </div>
           </div>
           <div class="card">
             <div class="card-header" id="headingFour">
               <h2>
-                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour"> Can I raise a claim if my two-wheeler is involved in a mishap during the grace period? </button>
+                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour"> Question?</button>
               </h2>
             </div>
             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
               <div class="card-body">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Delectus reiciendis ab, magnam esse quae eum tempora natus? Nihil, accusantium? Voluptatem.</p>
+                <p>Answer</p>
               </div>
             </div>
           </div>
-          <div class="card">
-            <div class="card-header" id="headingFive">
-              <h2>
-                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive"> What does the surveyor check during the claim process? </button>
-              </h2>
-            </div>
-            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
-              <div class="card-body">
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa doloribus voluptatibus consequatur, alias dolorum nobis blanditiis! Rem repudiandae recusandae, dolorem doloribus reprehenderit sed sint nemo itaque rerum. Molestiae, illum ratione!</p>
-              </div>
-            </div>
-          </div>
+          
         </div>
       </div>
     </div>
   </div>
 </section>
+
+
+
+
+<div class="section testimonials">
+	<div class="container">
+	<div class="row">
+      <div class="col-lg-12">
+        <div class="title-center">
+          <h2>Customer's  <span>Feedback</span></h2>
+        </div>
+      </div>
+    </div>
+	  
+         <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-12 vertical-cntr">
+               <div class="feedback">
+                  <img src="assets/images/feedback_bg.png" class="img-fluid" alt="">
+                  <h2>Words of Appreciation</h2>
+                  
+               <div class="img-container">
+                  <img src="assets/images/feedback.png" class="img-fluid" alt="">
+               </div>
+                  </div>
+            </div>
+            
+			
+			<div class="col-lg-6 col-md-6 col-sm-12 offset-lg-1 offset-md-1">
+               <div class="feedback-list">
+                  <div class="client-feedback-left owl-carousel owl-theme">
+                     <div class="item-1">
+                        <div class="row">
+                           <div class="col-lg-12">
+                              <div class="feedback-content-left">  
+                                    <div class="feedback-text-left">
+                                       <h6><!--BMW Owner, NYC-->
+                                          <span>Sonia Khanna</span>
+                                       </h6>
+                                       <p>Got good deal without agent calling or speaking to anyone!!</p>
+                                    </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     
+                     <div class="item-1">
+                        <div class="row">
+                           <div class="col-lg-12">
+                              <div class="feedback-content-left">
+                                    <div class="feedback-text-left">
+                                       <h6><!--BMW Owner, NYC-->
+                                          <span>Sonia Khanna</span>
+                                       </h6>
+                                       <p>Got good deal without agent calling or speaking to anyone!!</p>
+                                    </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     
+                     <div class="item-1">
+                        <div class="row">
+                           <div class="col-lg-12">
+                              <div class="feedback-content-left"> 
+                                    <div class="feedback-text-left">
+                                       <h6><!--BMW Owner, NYC-->
+                                          <span>Sonia Khanna</span>
+                                       </h6>
+                                       <p>Got good deal without agent calling or speaking to anyone!!</p>
+                                    </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     
+                     
+                  </div>
+               </div>
+            </div>
+			
+         </div>
+      </div>
+   </div>
+
+
+
+<div class="section-large blog-section">
+   <div class="container-fluid">
+   <div class="row">
+      <div class="col-lg-12">
+        <div class="title-center">
+          <h2>Latest  <span>Blog</span></h2>
+        </div>
+      </div>
+    </div>
+      <div class="row ">
+         <div class="col-lg-12">
+            <div class="text-center">
+               <div class="container"> 
+                  <div class="row">
+                     <div class="col-lg-4 col-md-6 col-sm-6 team-list">
+                        <div class="team" data-aos="flip-left">
+                           <img src="assets/images/3-effective-ways-to-pay-off-your-student-loan.jpg" class="img-fluid" alt="">
+                           <div class="blog-info">
+                              <h5><a href="#">3 effective ways to pay off your student loan </a></h5>
+                              <p>Finished school? Now, it's time to pay off your student loan quickly to get on with your new life as soon as possible. </p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="team" data-aos="flip-left">
+                           <img src="assets/images/5-essential-financial-products-you-must-consider.jpg" class="img-fluid" alt="">
+                           <div class="blog-info">
+                              <h5><a href="#">5 essential financial products you must consider </a></h5>
+                              <p>In order to build a significant amount of wealth, one needs to invest in the market. However, it is not easy to ...</p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="team" data-aos="flip-left">
+                           <img src="assets/images/4-signs-it-is-time-to-buy-life-insurance.jpg" class="img-fluid" alt="">
+                           <div class="blog-info">
+                              <h5><a href="#">4 signs it's time to buy life insurance  </a></h5>
+                              <p>If you haven't taken life insurance into consideration yet then, look for these signs that say you should. </p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col text-center">
+                        <button type="button" class="btn btn-prim-round mt-4" onclick="window.location.href='team.html';">Read more</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+
+
+
 <!-- Form section Ends here -->
 @endsection 
