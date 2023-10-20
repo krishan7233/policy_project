@@ -338,6 +338,17 @@ $("#singledob").datepicker({ dateFormat:'dd/mm/yy'});
               $('.visitor-form3').show();
             }
         });
+        $('.super-visa').change(function() {
+          var selectedValue = $("input[name='super_visa']:checked").val();
+          if(selectedValue == 'option1'){
+              $('.super_visa_form2').hide();
+              $('.super_visa_form1').show();
+          }
+          if(selectedValue == 'option2'){
+              $('.super_visa_form1').hide();
+              $('.super_visa_form2').show();
+          }
+        });
         $('.visitor-couple-policy-date1').change(function() {
           var providedDate = new Date($('.visitor-couple-policy-date1').val());
           if (!isNaN(providedDate.getTime())) {

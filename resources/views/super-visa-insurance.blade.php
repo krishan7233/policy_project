@@ -1,23 +1,42 @@
 @extends('layout.commonlayout')
 @section('content')
 <!-- Form section start here -->
+<style>
+        /* Add margin to the labels */
+        .form-check-label {
+            margin-right: 20px; /* Adjust the margin as needed */
+        }
+
+        /* Make labels bold */
+        .form-check-label {
+            font-weight: bold;
+        }
+    </style>
 <div class="section-larger">
   <div class="container">
     <div class="row">
       <div class="col-lg-6">
         <nav class="policy-form">
           <h6>What type of policy do you want?</h6>
-          <div class="nav nav-tabs" id="nav-tab" role="tablist"> <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">
+          <div class="form-check">
+        <input type="radio" class="form-check-input super-visa" id="super-visa1" name="super_visa" value="option1" checked>
+        <label class="form-check-label" for="super-visa1">SINGLE COVERAGE</label>
+
+        <input type="radio" class="form-check-input super-visa ml-2" id="super-visa2" name="super_visa" value="option2" >
+        <label class="form-check-label ml-4" for="super-visa2">COUPLE POLICY</label>
+
+    </div>
+          <!-- <div class="nav nav-tabs" id="nav-tab" role="tablist"> <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">
             <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
             <label class="form-check-label" for="exampleRadios1"> SINGLE COVERAGE </label>
             </a> <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">
             <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
             <label class="form-check-label" for="exampleRadios2"> COUPLE POLICY </label>
             </a> 
-          </div>
+          </div> -->
         </nav>
         <div class="tab-content" id="nav-tabContent">
-          <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+          <div class="tab-pane fade super_visa_form1 show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
             <form class="form-1" action="{{url('find-quotation')}}" method="post">
               @csrf
             <div class="form-field-row">
@@ -93,7 +112,7 @@
               
             </form>
           </div>
-          <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+          <div class="tab-pane fade show super_visa_form2" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
           	<form class="form-1" action="{{url('super-visa-post')}}" method="post">
               @csrf
             <div class="form-field-row">
