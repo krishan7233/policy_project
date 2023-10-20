@@ -16,6 +16,11 @@ use App\Http\Controllers\AuthController;
 
 
 Route::get('/', [AuthController::class, 'index']);
+
+Route::get('/about-us', [AuthController::class, 'aboutus'])->name('about-us');
+Route::get('/quote-compare', [AuthController::class, 'quotecompare'])->name('quote-compare');
+
+
 // super visa post
 Route::get('/super-visa', [AuthController::class, 'supervisa'])->name('super-visa');
 Route::post('super-visa-post', [AuthController::class, 'supervisaPost'])->name('super-visa-post');

@@ -10,7 +10,7 @@ $deductible = Session::get('single_deduct');
 	<div class="row">
     	<div class="col-lg-12">
         	<div class="get-email">
-            	<a href="#">Email/Text Details</a>
+            	<a href="#" data-toggle="modal" data-target=".bd-example-modal-xl">Email/Text Details</a>
             </div>
         </div>
     </div>
