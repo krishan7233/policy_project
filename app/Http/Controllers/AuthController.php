@@ -19,6 +19,15 @@ class AuthController extends Controller
     
         return view('index');
     }
+	
+	public function aboutus(){
+        return view('about-us');
+    }
+	
+	public function quotecompare(){
+        return view('quote-compare');
+    }
+	
 
     public function supervisa(){
         return view('super-visa-insurance');
@@ -668,11 +677,11 @@ public function visitorVisaDeductibleQuotation(){
 }
 public function visitorFamilyCoverageGetQuotation(Request $request){
 
-    if($request->visitor_family_policy_year1>$request->visitor_family_policy_year2){
+    if($request->visitor_family_policy_year1>=$request->visitor_family_policy_year2){
         $age = $request->visitor_family_policy_year1;
         $date_of_birth = $request->visitor_family_policy_date1;
     }
-    if($request->visitor_family_policy_year2>$request->visitor_family_policy_year1){
+    if($request->visitor_family_policy_year2>=$request->visitor_family_policy_year1){
         $age = $request->visitor_family_policy_year2;
         $date_of_birth = $request->visitor_family_policy_date2;
     }

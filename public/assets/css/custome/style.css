@@ -133,6 +133,17 @@
     padding: 6px 0 6px 0;
 }
 
+
+
+.fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; 
+	    z-index: 11;
+}
+
+
 .get-email {
 	text-align:center;
 }
@@ -1484,6 +1495,56 @@ span.text-black{
 }
 
 
+ 
+.about-founder .title-center h2 {
+    padding-bottom: 20px;
+    font-size: 33px;
+    font-weight: 700;
+}
+
+.about-founder .title-center h2 span {
+    color: #d91203;
+    display: block;
+    font-size: 40px;
+    font-weight: 400;
+}
+
+.about-founder .title-center {
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.founder-pic{
+	border-radius:10px;
+	border: #e9e9e9 solid 1px;
+}
+
+.about-founder p{
+	text-align:left;
+}
+
+.founder-corner .row {
+    align-items: center;
+    margin-bottom: 40px;
+    background: #f7f8fb;
+    /* box-shadow: #ededed 0px 0px 9px; */
+    padding: 15px 0 15px 0;
+    border: #ebebeb solid 1px;
+}
+
+.about-founder strong {
+    color: #d91203;
+}
+
+.about-founder .vertical-cntr {
+    /*padding: 0 50px 0 50px;*/
+}
+
+.about-founder #text {
+    display: none;
+}
+
+
 
 
 
@@ -1645,6 +1706,9 @@ span.text-black{
 	box-shadow: 0px 10px 30px rgba(0, 0, 0, .1);
 }
 
+
+
+
 .make-us-section .box h3{
 	color:#181313;
 	font-size:19px;
@@ -1661,6 +1725,89 @@ span.text-black{
 	margin:0px;
 	text-align:center;
 }
+
+
+.inner-page {
+	background: #f7f8fb;
+}
+
+.inner-page .box {
+    border: #efefef solid 1px;
+    border-radius: 10px;
+    background: #ffffff;
+    padding: 30px 17px 30px 17px;
+    min-height: 360px;
+    transition: all .4s ease-in-out;
+	margin-bottom: 30px;
+}
+
+
+
+
+
+
+
+.compare-table {
+	padding:60px 0 60px 0;
+}
+
+.compare-table .price-section h3 {
+    font-size: 29px;
+    color: #263238;
+    font-weight: 500;
+    margin: 0px;
+    padding: 0px;
+    line-height: 18px;
+    text-align: center;
+}
+
+.compare-table table tr th{
+	text-align:center;
+	padding:15px 10px;
+	vertical-align: middle;
+}
+
+.compare-table table tr td {
+    text-align: center;
+    padding: 11px 10px;
+    vertical-align: middle;
+    font-size: 15px;
+}
+
+.compare-table table tr td a{
+	text-decoration:underline;
+}
+
+.compare-table .buy-now {
+    background: #0773bf;
+    color: #fff;
+    font-size: 16px;
+    padding: 8px 16px;
+    border-radius: 5px;
+    margin: auto;
+	text-decoration: none;
+
+}
+
+.backhome a {
+    background: #0773bf;
+    color: #fff;
+    font-size: 16px;
+    padding: 8px 16px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.backhome a i{
+	margin:0 5px 0 0px;
+}
+
+
+
+
+
+
 
 
 
@@ -1688,6 +1835,34 @@ span.text-black{
     text-align: center;
     padding-bottom: 20px;
 }
+
+
+
+
+
+.inner-bridecrumb .hero-text-inner {
+    width: 100%;
+    padding: 0px;
+    margin-top:0px;
+} 
+
+
+.inner-bridecrumb .hero-text-inner .sub-heading-1 {
+    font-size: 27px;
+    font-weight: 700;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2453,15 +2628,16 @@ div .col-icon-bg-cntr:not(.no-margin) {
 /* ====== 3 - CAR PAGE STARTS ====== */
 .hero-image-small {
     width: 100%;
-	height: 400px;
+	
 	overflow: hidden;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
-	padding: 0px 0px;
+	padding: 60px 0px;
 	position: relative;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	background: rgba(255,238,224,1);
 }
 
 .hero-text-inner {
