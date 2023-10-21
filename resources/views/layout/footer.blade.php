@@ -576,6 +576,84 @@ $("#singledob").datepicker({ dateFormat:'dd/mm/yy'});
 
 <!--Our Partners End-->
 
+<script>
+	$(window).scroll(function(){
+    if ($(window).scrollTop() >= 300) {
+        $('.navbar').addClass('fixed-header');
+    }
+    else {
+        $('.navbar').removeClass('fixed-header');
+    }
+});
+</script>
+
+<!--Read More Start-->
+
+<script>
+	$(document).ready(function() {
+  $("#toggle").click(function() {
+    var elem = $("#toggle").text();
+    if (elem == "Read More") {
+      //Stuff to do when btn is in the read more state
+      $("#toggle").text("Read Less");
+      $("#text").slideDown();
+    } else {
+      //Stuff to do when btn is in the read less state
+      $("#toggle").text("Read More");
+      $("#text").slideUp();
+    }
+  });
+});
+</script>
+
+<!--Read More End-->
+
+<div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Get an Email/Text</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+	  <div class="modal-body">
+	  <form>
+        <div class="row">
+			<div class="col-lg-4">
+				<div class="form-group">
+				<input type="text" class="form-control"  placeholder="Your Name">
+			  </div>
+			</div>
+			
+			<div class="col-lg-4">
+				<div class="form-group">
+				<input type="email" class="form-control"  placeholder="Email">
+			  </div>
+			</div>
+			
+			<div class="col-lg-4">
+				<div class="form-group">
+				<input type="text" class="form-control"  placeholder="Canadian Phone">
+			  </div>
+			</div>
+		</div>
+		
+		<div class="col-lg-12">
+				<div class="form-group">
+				<input type="submit" class="form-control"  value="EMAIL/TEXT">
+			  </div>
+			</div>
+		
+		</form>
+      </div>
+	  
+    </div>
+  </div>
+</div>
+
+
+
 
 </body>
 </html>

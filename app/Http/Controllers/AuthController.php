@@ -19,6 +19,15 @@ class AuthController extends Controller
     
         return view('index');
     }
+	
+	public function aboutus(){
+        return view('about-us');
+    }
+	
+	public function quotecompare(){
+        return view('quote-compare');
+    }
+	
 
     public function supervisa(){
         return view('super-visa-insurance');
