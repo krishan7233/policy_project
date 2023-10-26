@@ -10,13 +10,47 @@ $deductible = Session::get('single_deduct');
 	<div class="row">
     	<div class="col-lg-12">
         	<div class="get-email">
-            	<a href="#" data-toggle="modal" data-target=".bd-example-modal-xl">Email/Text Details</a>
+            	<a href="#" id="EmailBtn">Email/Text these rates</a>
             </div>
+			
+			<div class="emailData" id="HiddnData">
+				<a href="#" class="CloseBtn" id="DismissBtn"> <i class="fa fa-close"></i> </a>
+			<h3>Get an Email/Text</h3>
+				<form>
+        <div class="row">
+			<div class="col-lg-4">
+				<div class="form-group">
+				<input type="text" class="form-control"  placeholder="Your Name">
+			  </div>
+			</div>
+			
+			<div class="col-lg-4">
+				<div class="form-group">
+				<input type="email" class="form-control"  placeholder="Email">
+			  </div>
+			</div>
+			
+			<div class="col-lg-4">
+				<div class="form-group">
+				<input type="text" class="form-control" id="myInput" placeholder="Canadian Phone">
+				<span>Canadian Phone number only.</span>
+			  </div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12 text-center">
+				<a href="#" class="SendBtn">EMAIL/TEXT</a>
+				<a href="#" class="SendBtn" id="WhtsBtn" style="display: none">WHATSAPP</a>
+			</div>
+		</div>
+		</form>
+			</div>
+			
         </div>
     </div>
 </div>
 
-  <div class="container mt-60">
+  <div class="container mt-30">
     <div class="row">
       <div class="col-lg-4">
         <div class="quote-left">

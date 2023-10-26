@@ -18,7 +18,24 @@ use App\Http\Controllers\AuthController;
 Route::get('/', [AuthController::class, 'index']);
 
 Route::get('/about-us', [AuthController::class, 'aboutus'])->name('about-us');
+Route::get('/contact-us', [AuthController::class, 'contactus'])->name('contact-us');
+
+Route::get('/blog', [AuthController::class, 'Blog'])->name('blog');
+
+Route::get('/privacy-policy', [AuthController::class, 'privacypolicy'])->name('privacy-policy');
+Route::get('/terms-and-conditions', [AuthController::class, 'termsconditions'])->name('terms-and-conditions');
+
+
 Route::get('/quote-compare', [AuthController::class, 'quotecompare'])->name('quote-compare');
+Route::get('/order', [AuthController::class, 'Order'])->name('order');
+Route::get('/order-confirmation', [AuthController::class, 'OrderConfirmation'])->name('order-confirmation');
+
+//Blog Page start
+Route::get('/3-effective-ways-to-pay-off-your-student-loan', [AuthController::class, 'EffectiveWays'])->name('3-effective-ways-to-pay-off-your-student-loan');
+
+
+
+//Blog Page End
 
 
 // super visa post
