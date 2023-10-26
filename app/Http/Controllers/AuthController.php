@@ -24,6 +24,42 @@ class AuthController extends Controller
         return view('about-us');
     }
 	
+	public function contactus(){
+        return view('contact-us');
+    }
+	
+	public function Blog(){
+        return view('blog');
+    }
+	
+	// Blog Details Start
+	
+	public function EffectiveWays(){
+        return view('3-effective-ways-to-pay-off-your-student-loan');
+    }
+	
+	// Blog Details End
+	
+	
+	
+	public function privacypolicy(){
+        return view('privacy-policy');
+    }
+	
+	public function termsconditions(){
+        return view('terms-and-conditions');
+    }
+	
+	public function Order(){
+        return view('order');
+    }
+	
+	public function OrderConfirmation(){
+        return view('order-confirmation');
+    }
+	
+	
+	
 	public function quotecompare(){
         return view('quote-compare');
     }
