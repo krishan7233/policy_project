@@ -733,5 +733,22 @@ public function removeDollarSign($amount)
     $numericValue = (float) $cleanedAmount;
 
     return $numericValue;
-}    
+}  
+public function comparePost(Request $req){
+    $compare = [
+        'compare_data'=>$req->compare_data
+    ];
+    Session::put('compare', $compare);
+}  
+
+public function compareQuote(){
+    $compareData = Session::get('compare');
+    $compareArray = explode(',',$compareData['compare_data']);
+
+    $data['compare_quote'] =DB::table('tbl_rates')
+    ->whereIn('id', $compareArray)
+    ->get();
+
+    return view('quote-compare',$data);
+}
 }

@@ -61,8 +61,7 @@
 
 
 <!-- Bootstrap JavaScript -->
-<!-- jQuery library -->
-<script src="{{ asset('assets/js/bootstrap/jquery.min.js') }}"></script>
+
 <!-- Popper JS -->
 <script src="{{ asset('assets/js/bootstrap/popper.min.js') }}"></script>
 <!-- Latest compiled JavaScript -->

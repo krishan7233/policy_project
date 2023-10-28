@@ -18,7 +18,8 @@ use App\Http\Controllers\AuthController;
 Route::get('/', [AuthController::class, 'index']);
 
 Route::get('/about-us', [AuthController::class, 'aboutus'])->name('about-us');
-Route::get('/quote-compare', [AuthController::class, 'quotecompare'])->name('quote-compare');
+Route::get('quote-compare', [AuthController::class, 'quotecompare'])->name('quote-compare');
+
 
 
 // super visa post
@@ -49,3 +50,8 @@ Route::get('visitor-visa-deductable-quotation', [AuthController::class, 'visitor
 Route::post('visitor-family-coverage-get-quotation', [AuthController::class, 'visitorFamilyCoverageGetQuotation'])->name('visitor-family-coverage-get-quotation');
 Route::post('visitor-family-deductible', [AuthController::class, 'visitorFamilyDeductible'])->name('visitor-family-deductible');
 Route::get('visitor-family-deductable-quotation', [AuthController::class, 'visitorFamilyDeductibleQuotation'])->name('visitor-family-deductable-quotation');
+
+
+// compare quotation
+Route::post('compare-post', [AuthController::class, 'comparePost'])->name('compare-post');
+Route::get('compare-quote', [AuthController::class, 'compareQuote'])->name('compare-quote');
