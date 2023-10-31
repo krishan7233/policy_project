@@ -50,9 +50,7 @@ class AuthController extends Controller
         return view('terms-and-conditions');
     }
 	
-	public function Order(){
-        return view('order');
-    }
+	
 	
 	public function OrderConfirmation(){
         return view('order-confirmation');
@@ -721,7 +719,6 @@ public function visitorFamilyCoverageGetQuotation(Request $request){
         $age = $request->visitor_family_policy_year2;
         $date_of_birth = $request->visitor_family_policy_date2;
     }
-
     $sessionData = [
         'date_of_birth'=>$date_of_birth,
         'age'=>$age,
@@ -770,5 +767,179 @@ public function removeDollarSign($amount)
     $numericValue = (float) $cleanedAmount;
 
     return $numericValue;
-}    
+}  
+public function comparePost(Request $req){
+
+    $compare = [
+        'compare_data'=>$req->compare_data
+    ];
+    Session::put('compare', $compare);
+}  
+
+public function compareQuote(){
+    $compareData = Session::get('compare');
+    $compareArray = explode(',',$compareData['compare_data']);
+    $data['array_check'] = $compareArray;
+    $objectsArray=$this->calculationFilter();
+    $outputArray = [];
+    foreach ($compareArray as $idToFind) {
+        foreach ($objectsArray as $object) {
+            if ($object->id == $idToFind) {
+                $outputArray[] = $object;
+                break; // Stop searching for the current id
+            }
+        }
+    }
+    $outputObject = (object)$outputArray;
+    $data['compare_quote'] = $outputObject;
+    return view('quote-compare',$data);
+}
+
+public function superVisaCoupleComparePost(Request $req){
+    $compare = [
+        'compare_data'=>$req->compare_data
+    ];
+    Session::put('compare', $compare);
+}
+public function superVisaCoupleCompare(){
+    $compareData = Session::get('compare');
+    $compareArray = explode(',',$compareData['compare_data']);
+    $data['array_check'] = $compareArray;
+    $objectsArray=$this->superVisaCoupleMergeData(Session::get('deductible'));
+    // $objectsArray=$this->calculationFilter();
+    $outputArray = [];
+    foreach ($compareArray as $idToFind) {
+        foreach ($objectsArray as $object) {
+            if(!empty($object->id1) && !empty($object->id1)){
+                if ($object->id1 == $idToFind) {
+                    $outputArray[] = $object;
+                    break; // Stop searching for the current id
+                }
+            }
+        }
+    }
+    $outputObject = $outputArray;
+    $data['compare_quote'] = $outputObject; 
+    return view('super-visa-couple-compare',$data);   
+}
+public function visitorSingleComparePost(Request $req){
+    $compare = [
+        'compare_data'=>$req->compare_data
+    ];
+    Session::put('compare', $compare);
+    
+}
+public function visitorSingleCompare(){
+    $compareData = Session::get('compare');
+    $compareArray = explode(',',$compareData['compare_data']);
+    $data['array_check'] = $compareArray;
+    $objectsArray=$this->calculationFilter();
+    $outputArray = [];
+    foreach ($compareArray as $idToFind) {
+        foreach ($objectsArray as $object) {
+            if ($object->id == $idToFind) {
+                $outputArray[] = $object;
+                break; // Stop searching for the current id
+            }
+        }
+    }
+    $outputObject = (object)$outputArray;
+    $data['compare_quote'] = $outputObject;
+    return view('visitor-single-quotation-compare',$data);
+}
+public function visitorCoupleComparePost(Request $req){
+    $compare = [
+        'compare_data'=>$req->compare_data
+    ];
+    Session::put('compare', $compare);
+}
+public function visitorCoupleCompare(){
+    $compareData = Session::get('compare');
+    $compareArray = explode(',',$compareData['compare_data']);
+    $data['array_check'] = $compareArray;
+    $objectsArray=$this->superVisaCoupleMergeData(Session::get('deductible'));
+    $outputArray = [];
+    foreach ($compareArray as $idToFind) {
+        foreach ($objectsArray as $object) {
+            if(!empty($object->id1) && !empty($object->id2)){
+                if ($object->id1 == $idToFind) {
+                    $outputArray[] = $object;
+                    break; // Stop searching for the current id
+                }
+            }
+        }
+    }
+    $outputObject = $outputArray;
+    $data['compare_quote'] = $outputObject; 
+    return view('visitor-couple-compare',$data);  
+}
+public function visitorFamilyComparePost(Request $req){
+    $compare = [
+        'compare_data'=>$req->compare_data
+    ];
+    Session::put('compare', $compare); 
+}
+public function visitorFamilyCompare(){
+    $compareData = Session::get('compare');
+    $compareArray = explode(',',$compareData['compare_data']);
+    $data['array_check'] = $compareArray;
+    $objectsArray=$this->calculationFilter();
+    $outputArray = [];
+    foreach ($compareArray as $idToFind) {
+        foreach ($objectsArray as $object) {
+            if ($object->id == $idToFind) {
+                $outputArray[] = $object;
+                break; // Stop searching for the current id
+            }
+        }
+    }
+    $outputObject = (object)$outputArray;
+    $data['compare_quote'] = $outputObject;
+    return view('visitor-family-quotation-compare',$data);
+}
+public function Order($id){
+    $objectsArray = $this->calculationFilter();
+    
+    $outputArray = [];
+    foreach ($objectsArray as $object) {
+            if ($object->id == $id) {
+                $outputArray[] = $object;
+                break; // Stop searching for the current id
+            }
+    }
+    $outputObject = (object)$outputArray;
+    $data['compare_quote'] = $outputObject;
+    return view('order',$data);
+}
+public function coupleOrder($id){
+    $objectsArray = $this->superVisaCoupleMergeData(Session::get('deductible'));
+    $outputArray = [];
+        foreach ($objectsArray as $object) {
+            if(!empty($object->id1) && !empty($object->id2)){
+                if ($object->id1 == $id) {
+                    $outputArray[] = $object;
+                    break; // Stop searching for the current id
+                }
+            }
+        }
+    $outputObject = $outputArray;
+    $data['compare_quote'] = $outputObject; 
+    return view('order',$data);
+
+}
+
+public function visitorFamilyOrder($id){
+    $objectsArray = $this->calculationFilter();
+    
+    $outputArray = [];
+    foreach ($objectsArray as $object) {
+            if ($object->id == $id) {
+                $outputArray[] = $object;
+                break; // Stop searching for the current id
+            }
+    }
+    $outputObject = (object)$outputArray;
+    $data['compare_quote'] = $outputObject;
+    return view('order',$data);
+}
 }

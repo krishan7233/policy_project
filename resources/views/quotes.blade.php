@@ -10,47 +10,13 @@ $deductible = Session::get('single_deduct');
 	<div class="row">
     	<div class="col-lg-12">
         	<div class="get-email">
-            	<a href="#" id="EmailBtn">Email/Text these rates</a>
+            	<a href="#" data-toggle="modal" data-target=".bd-example-modal-xl">Email/Text Details</a>
             </div>
-			
-			<div class="emailData" id="HiddnData">
-				<a href="#" class="CloseBtn" id="DismissBtn"> <i class="fa fa-close"></i> </a>
-			<h3>Get an Email/Text</h3>
-				<form>
-        <div class="row">
-			<div class="col-lg-4">
-				<div class="form-group">
-				<input type="text" class="form-control"  placeholder="Your Name">
-			  </div>
-			</div>
-			
-			<div class="col-lg-4">
-				<div class="form-group">
-				<input type="email" class="form-control"  placeholder="Email">
-			  </div>
-			</div>
-			
-			<div class="col-lg-4">
-				<div class="form-group">
-				<input type="text" class="form-control" id="myInput" placeholder="Canadian Phone">
-				<span>Canadian Phone number only.</span>
-			  </div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-12 text-center">
-				<a href="#" class="SendBtn">EMAIL/TEXT</a>
-				<a href="#" class="SendBtn" id="WhtsBtn" style="display: none">WHATSAPP</a>
-			</div>
-		</div>
-		</form>
-			</div>
-			
         </div>
     </div>
 </div>
 
-  <div class="container mt-30">
+  <div class="container mt-60">
     <div class="row">
       <div class="col-lg-4">
         <div class="quote-left">
@@ -114,11 +80,13 @@ $deductible = Session::get('single_deduct');
               <h3><span><strong>{{'$'.$companies->per_month}}</strong>/month</span></h3>
               <h3><span>Deductible <strong>{{$companies->deductible_amt}}</strong> per claim {{$companies->sur_charge}}</span></h3>
             </div>
-            <div class="btn-section"> <a href="#" class="buy-now">BUY NOW</a> 
+            <div class="btn-section"> <a href="{{url('order',$companies->id)}}" class="buy-now">BUY NOW</a> 
             <a href="#" class="plan-details toggle togglePlanDetails" id="toggle" onclick="togglePlanDetails_{{$companies->id}}({{$companies->id}})">PLAN DETAILS</a>
+            <!-- <a href="#" class="plan-details toggle compareData" id="compare_btn_{{$companies->id}}" style="display:none;">COMPARE</a> -->
+            <button class="btn btn-primary compareData" id="compare_btn_{{$companies->id}}" style="display:none;">COMPARE</button>
               <div class="compaire">
                 <div class="left">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <input type="checkbox" class="form-check-input compare" id="exampleCheck1" value="{{$companies->id}}">
                   <label class="form-check-label" for="exampleCheck1">Compare</label>
                 </div>
                 <div class="right"> <a href="#">Benefit Summary</a> </div>
@@ -162,7 +130,6 @@ $deductible = Session::get('single_deduct');
         <script>
           function togglePlanDetails_{{$companies->id}}(id) {
             $('#text' + id).toggle();  // Assuming 'id' is a variable containing the desired ID
-
           }
         </script>
       @endforeach
@@ -173,6 +140,62 @@ $deductible = Session::get('single_deduct');
 </div>
 <!-- Form section Ends here -->
 
+<script>
+  $(document).ready(function() {
+    var values = [];
 
+    $(".compare").change(function() {
+        var checkedCheckboxes = $(".compare:checked");
+        var count = checkedCheckboxes.length;
+
+        values = [];
+
+        if (count >= 2) {
+            checkedCheckboxes.each(function() {
+                var value = $(this).val();
+                if (!values.includes(value)) {
+                    values.push(value);
+                }
+                $('#compare_btn_' + value).show();
+            });
+
+            // Hide any comparison buttons that are not associated with checked checkboxes
+            $('[id^="compare_btn_"]').each(function() {
+                if (!values.includes($(this).attr("id").replace("compare_btn_", ""))) {
+                    $(this).hide();
+                }
+            });
+        }
+        else {
+            // If there are fewer than two checkboxes checked, hide all comparison buttons.
+            $('[id^="compare_btn_"]').hide();
+        }
+    });
+
+    $('.compareData').click(function() {
+      var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+        var commaSeparatedValues = values.join(', ');
+        $.ajax({
+          type: 'POST',
+          url: 'compare-post',  // Replace with your controller URL
+          data: {
+            compare_data: commaSeparatedValues,
+          },
+          headers: {
+            'X-CSRF-TOKEN': csrfToken
+          },
+          success: function(response) {
+            // console.log(response);
+            window.location.href = 'compare-quote';
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.error('AJAX request failed:', textStatus, errorThrown);
+          }
+        });
+    });
+});
+
+</script>
 
 @endsection

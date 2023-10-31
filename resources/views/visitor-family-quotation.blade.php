@@ -80,12 +80,14 @@ $deductible = Session::get('single_deduct');
               <h3><span><strong>{{'$'.$companies->per_month}}</strong>/month</span></h3>
               <h3><span>Deductible <strong>{{$companies->deductible_amt}}</strong> per claim {{$companies->sur_charge}}</span></h3>
             </div>
-            <div class="btn-section"> <a href="#" class="buy-now">BUY NOW</a> 
+            <div class="btn-section"> <a href="{{url('visitor-family-order',$companies->id)}}" class="buy-now">BUY NOW</a> 
             <a href="#" class="plan-details toggle togglePlanDetails" id="toggle" onclick="togglePlanDetails_{{$companies->id}}({{$companies->id}})">PLAN DETAILS</a>
-              <div class="compaire">
+            <button class="btn btn-primary visitor_family_compareData" id="visitor_family_compare_btn_{{$companies->id}}" style="display:none;">COMPARE</button>
+            
+            <div class="compaire">
                 <div class="left">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                  <label class="form-check-label" for="exampleCheck1">Compare</label>
+                <input type="checkbox" class="form-check-input visitor_family_compare" id="visitor_family_compare" value="{{$companies->id}}">
+                  <label class="form-check-label" for="visitor_family_compare">Compare</label>
                 </div>
                 <div class="right"> <a href="#">Benefit Summary</a> </div>
               </div>
@@ -139,6 +141,64 @@ $deductible = Session::get('single_deduct');
 </div>
 <!-- Form section Ends here -->
 
+<script>
+  $(document).ready(function() {
+    var values = [];
 
+    $(".visitor_family_compare").change(function() {
+      // alert("gg");
+        var checkedCheckboxes = $(".visitor_family_compare:checked");
+        var count = checkedCheckboxes.length;
+
+        values = [];
+
+        if (count >= 2) {
+            checkedCheckboxes.each(function() {
+                var value = $(this).val();
+                if (!values.includes(value)) {
+                    values.push(value);
+                }
+                $('#visitor_family_compare_btn_' + value).show();
+            });
+
+            // Hide any comparison buttons that are not associated with checked checkboxes
+            $('[id^="visitor_family_compare_btn_"]').each(function() {
+                if (!values.includes($(this).attr("id").replace("visitor_family_compare_btn_", ""))) {
+                    $(this).hide();
+                }
+            });
+        }
+        else {
+            // If there are fewer than two checkboxes checked, hide all comparison buttons.
+            $('[id^="visitor_family_compare_btn_"]').hide();
+        }
+    });
+
+    $('.visitor_family_compareData').click(function() {
+      var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+        var commaSeparatedValues = values.join(', ');
+        // alert(commaSeparatedValues)
+        $.ajax({
+          type: 'POST',
+          url: 'visitor-family-compare-post',  // Replace with your controller URL
+          data: {
+            compare_data: commaSeparatedValues,
+          },
+          headers: {
+            'X-CSRF-TOKEN': csrfToken
+          },
+          success: function(response) {
+            // console.log(response);
+            window.location.href = 'visitor-family-compare';
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.error('AJAX request failed:', textStatus, errorThrown);
+          }
+        });
+    });
+});
+
+</script>
 
 @endsection
