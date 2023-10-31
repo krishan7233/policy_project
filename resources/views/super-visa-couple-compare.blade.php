@@ -12,7 +12,7 @@
             border-width: 0px 1px 1px 1px;
             border-style: solid;
             border-color: #000;
-            padding: 24px;
+            padding: 47px;
   }
   .border_div3{
             border-width: 0px 1px 1px 1px;
@@ -44,6 +44,11 @@
     text-align:center;
     padding:5px;
   }
+  .border_div8{
+            border-width: 0px 2px 1px 0px;
+            border-style: solid;
+            border-color: #000;
+  }
 </style>
 <div class="compare-table">
 	<div class="container">
@@ -53,13 +58,6 @@
 				<a href="#"><i class="fa fa-arrow-left"></i> BACK TO HOME</a>
 			</div>
       <div class="row">
-        <!-- @php
-
-  echo"<pre>";
-    print_r($array_check);
-        print_r($compare_quote);
-        echo"</pre>";
-        @endphp -->
             <div class="col-sm-6">
               <div class="row">
                 <div class="col-sm-12 border_div1"  ></div>
@@ -116,15 +114,29 @@
             </div>
             @foreach($compare_quote as $compare)
             @php
-            if($compare->plan_type==1){
-              $photo = $compare->basic;
+            if(!empty($compare->id1)){
+                if($compare->plan_type1==1){
+                $photo = $compare->basic1;
+                }
+                if($compare->plan_type1==2){
+                $photo = $compare->standard1;
+                }
+                if($compare->plan_type1==3){
+                $photo = $compare->enhanced1;
+                }
+                $tamt1 = number_format($compare->total_charge1 - $compare->detect_amt1, 2);
+
+            }else{
+                $photo= $tamt1=0;
             }
-            if($compare->plan_type==2){
-              $photo = $compare->standard;
+            if(!empty($compare->id2)){
+                $tamt2 = number_format($compare->total_charge2 - $compare->detect_amt2, 2);
+
+            }else{
+                $tamt2=0;
             }
-            if($compare->plan_type==3){
-              $photo = $compare->enhanced;
-            }
+            $sum_total_amt = number_format(($compare->total_charge1 - $compare->detect_amt1)+($compare->total_charge2 - $compare->detect_amt2),2);
+
             
             @endphp
             <div class="col-sm-3">
@@ -133,16 +145,18 @@
                   <img src="{{$photo}}" class="img-fluid" alt="">
                 </div>
                 <div class="col-sm-12 border_div6">
-                  <h4>{{'$'.number_format($compare->total_charge - $compare->detect_amt, 2)}}</h4>
+                  <h6>{{'$'. $tamt1}}</h6>
+                  <h6>{{'$'. $tamt2}}</h6>
+                  <p>Total: {{$sum_total_amt}}</p>
                 </div>
                 <div class="col-sm-12 border_div6"  style="padding:9px;margin-top:1px">
-                  <a href="{{url('order',$compare->id)}}" class="buy-now">BUY NOW</a>
+                  <a href="{{url('couple-order',$compare->id1)}}" class="buy-now">BUY NOW</a>
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
                   <b>Hospitalization Covered</b>
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                  Max <b>{{$compare->aggregate_price}}	</b>
+                  Max <b>{{$compare->aggregate_price1}}	</b>
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
                   Up to Coverage Amount	

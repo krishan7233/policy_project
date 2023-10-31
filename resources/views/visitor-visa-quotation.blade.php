@@ -93,7 +93,7 @@ $deductible = Session::get('deductible');
         }
         if(!empty($companies->id1)){
         $id1 = $companies->id1;
-        $tamt1 = number_format($companies->total_charge1 - $companies->detect_amt1, 2);
+        $tamt1 = $companies->total_charge1 - $companies->detect_amt1;
         $company_name1 = $companies->company_name1;
         $company_status1 = $companies->company_status1;
         $company_photo1 = $companies->company_photo1;
@@ -126,7 +126,7 @@ $deductible = Session::get('deductible');
         }
         if(!empty($companies->id2)){
         $id2 = $companies->id2;
-        $tamt2 = number_format($companies->total_charge2 - $companies->detect_amt2, 2);
+        $tamt2 = $companies->total_charge2 - $companies->detect_amt2;
         $company_name2 = $companies->company_name2;
         $company_status2 = $companies->company_status2;
         $company_photo2 = $companies->company_photo2;
@@ -156,18 +156,23 @@ $deductible = Session::get('deductible');
             <div class="logo-section"> <img src="{{$photo}}" /> </div>
             <div class="price-section">
                
-              <h3>{{'$'.$tamt1}}</h3></br>
+              <!-- <h3>{{'$'.$tamt1}}</h3></br>
               <h3>{{'$'.$tamt2}}</h3>
               <p>Total : <strong>{{$sum_total_amt}}</strong></p>
-              <h3><span><strong>{{'$'.$per_month1}}</strong>/month</span></h3>
+              <h3><span><strong>{{'$'.$per_month1}}</strong>/month</span></h3> -->
+              <h3>{{'$'.number_format($tamt1,2)}}</h3></br>
+              <h3>{{'$'.number_format($tamt2,2)}}</h3>
+              <p>Total : <strong>{{$sum_total_amt}}</strong></p>
+              <h3><span><strong>{{'$'.number_format(($tamt1+$tamt2)/12,2)}}</strong>/month</span></h3>
               <h3><span>Deductible <strong>{{$deductible_amt1}}</strong> per claim {{$sur_charge1}}</span></h3>
             </div>
-            <div class="btn-section"> <a href="#" class="buy-now">BUY NOW</a> 
+            <div class="btn-section"> <a href="{{url('couple-order',$companies->id1)}}" class="buy-now">BUY NOW</a> 
             <a href="#" class="plan-details toggle togglePlanDetails" id="toggle" onclick="togglePlanDetails_{{$id1}}({{$id1}})">PLAN DETAILS</a>
               <div class="compaire">
                 <div class="left">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                  <label class="form-check-label" for="exampleCheck1">Compare</label>
+                <input type="checkbox" class="form-check-input visitor_couple_compare" id="visitor_couple_compare" value="{{$companies->id1}}">
+                  <label class="form-check-label" for="visitor_couple_compare">Compare</label>
+                  <button class="btn btn-primary visitor_couple_compare_data" id="visitor_couple_compare_btn_{{$companies->id1}}" style="display:none;">COMPARE</button>
                 </div>
                 <div class="right"> <a href="#">Benefit Summary</a> </div>
               </div>
@@ -224,5 +229,61 @@ $deductible = Session::get('deductible');
 <!-- Form section Ends here -->
 
 
+<script>
+  $(document).ready(function() {
+    var values = [];
 
+    $(".visitor_couple_compare").change(function() {
+        var checkedCheckboxes = $(".visitor_couple_compare:checked");
+        var count = checkedCheckboxes.length;
+        values = [];
+
+        if (count >= 2) {
+            checkedCheckboxes.each(function() {
+                var value = $(this).val();
+                if (!values.includes(value)) {
+                    values.push(value);
+                }
+                $('#visitor_couple_compare_btn_' + value).show();
+            });
+
+            // Hide any comparison buttons that are not associated with checked checkboxes
+            $('[id^="visitor_couple_compare_btn_"]').each(function() {
+                if (!values.includes($(this).attr("id").replace("visitor_couple_compare_btn_", ""))) {
+                    $(this).hide();
+                }
+            });
+        }
+        else {
+            // If there are fewer than two checkboxes checked, hide all comparison buttons.
+            $('[id^="visitor_couple_compare_btn_"]').hide();
+        }
+    });
+
+    $('.visitor_couple_compare_data').click(function() {
+      var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+        var commaSeparatedValues = values.join(', ');
+        // alert(commaSeparatedValues);
+        $.ajax({
+          type: 'POST',
+          url: 'visitor-couple-compare-post',  // Replace with your controller URL
+          data: {
+            compare_data: commaSeparatedValues,
+          },
+          headers: {
+            'X-CSRF-TOKEN': csrfToken
+          },
+          success: function(response) {
+            // console.log(response);
+            window.location.href = 'visitor-couple-compare';
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.error('AJAX request failed:', textStatus, errorThrown);
+          }
+        });
+    });
+});
+
+</script>
 @endsection 

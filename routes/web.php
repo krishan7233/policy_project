@@ -20,6 +20,30 @@ Route::get('/', [AuthController::class, 'index']);
 Route::get('/about-us', [AuthController::class, 'aboutus'])->name('about-us');
 Route::get('quote-compare', [AuthController::class, 'quotecompare'])->name('quote-compare');
 
+Route::get('/contact-us', [AuthController::class, 'contactus'])->name('contact-us');
+
+Route::get('/blog', [AuthController::class, 'Blog'])->name('blog');
+
+Route::get('/privacy-policy', [AuthController::class, 'privacypolicy'])->name('privacy-policy');
+Route::get('/terms-and-conditions', [AuthController::class, 'termsconditions'])->name('terms-and-conditions');
+
+
+// Route::get('/quote-compare', [AuthController::class, 'quotecompare'])->name('quote-compare');
+Route::get('order/{id}', [AuthController::class, 'Order'])->name('order');
+Route::get('/order-confirmation', [AuthController::class, 'OrderConfirmation'])->name('order-confirmation');
+
+//Blog Page start
+Route::get('/3-effective-ways-to-pay-off-your-student-loan', [AuthController::class, 'EffectiveWays'])->name('3-effective-ways-to-pay-off-your-student-loan');
+
+
+
+//Blog Page End
+
+// order
+Route::get('couple-order/{id}', [AuthController::class, 'coupleOrder']);
+Route::get('visitor-family-order/{id}', [AuthController::class, 'visitorFamilyOrder']);
+
+
 
 
 // super visa post
@@ -55,3 +79,14 @@ Route::get('visitor-family-deductable-quotation', [AuthController::class, 'visit
 // compare quotation
 Route::post('compare-post', [AuthController::class, 'comparePost'])->name('compare-post');
 Route::get('compare-quote', [AuthController::class, 'compareQuote'])->name('compare-quote');
+
+Route::post('super-visa-couple-compare-post', [AuthController::class, 'superVisaCoupleComparePost'])->name('super-visa-couple-compare-post');
+Route::get('super-visa-couple-compare', [AuthController::class, 'superVisaCoupleCompare'])->name('super-visa-couple-compare');
+// visitor
+Route::post('visitor-single-compare-post', [AuthController::class, 'visitorSingleComparePost'])->name('visitor-single-compare-post');
+Route::get('visitor-single-compare', [AuthController::class, 'visitorSingleCompare'])->name('visitor-single-compare');
+Route::post('visitor-couple-compare-post', [AuthController::class, 'visitorCoupleComparePost'])->name('visitor-couple-compare-post');
+Route::get('visitor-couple-compare', [AuthController::class, 'visitorCoupleCompare'])->name('visitor-couple-compare');
+Route::post('visitor-family-compare-post', [AuthController::class, 'visitorFamilyComparePost'])->name('visitor-family-compare-post');
+Route::get('visitor-family-compare', [AuthController::class, 'visitorFamilyCompare'])->name('visitor-family-compare');
+

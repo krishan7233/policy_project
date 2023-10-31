@@ -80,7 +80,7 @@ $deductible = Session::get('single_deduct');
               <h3><span><strong>{{'$'.$companies->per_month}}</strong>/month</span></h3>
               <h3><span>Deductible <strong>{{$companies->deductible_amt}}</strong> per claim {{$companies->sur_charge}}</span></h3>
             </div>
-            <div class="btn-section"> <a href="#" class="buy-now">BUY NOW</a> 
+            <div class="btn-section"> <a href="{{url('order',$companies->id)}}" class="buy-now">BUY NOW</a> 
             <a href="#" class="plan-details toggle togglePlanDetails" id="toggle" onclick="togglePlanDetails_{{$companies->id}}({{$companies->id}})">PLAN DETAILS</a>
             <!-- <a href="#" class="plan-details toggle compareData" id="compare_btn_{{$companies->id}}" style="display:none;">COMPARE</a> -->
             <button class="btn btn-primary compareData" id="compare_btn_{{$companies->id}}" style="display:none;">COMPARE</button>

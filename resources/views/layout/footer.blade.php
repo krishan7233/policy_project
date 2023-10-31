@@ -5,10 +5,10 @@
                   <h5>Company</h5>
                   <ul>
                      <li><a href="#">Home</a></li>
-                     <li><a href="#">About Us</a></li>
+                     <li><a href="{{ route('about-us') }}">About Us</a></li>
                      <li><a href="#">FAQs</a></li>
                      <li><a href="#">Blog</a></li>
-                     <li><a href="#">Contact Us</a></li>
+                     <li><a href="{{ route('contact-us') }}">Contact Us</a></li>
                   </ul>
                </div>
                <div class="col-lg-3 col-md-3 col-sm-6 footer-sec">
@@ -19,7 +19,7 @@
                      <li><a href="#">Canadian Travelling Out of Country / Province</a></li>
                   </ul>
                </div>
-               <div class="col-lg-3 col-md-3 col-sm-6 footer-sec">
+               <div class="col-lg-2 col-md-2 col-sm-6 footer-sec">
                   <h5> Investments </h5>
                   <ul>
                      <li><a href="#">RESP</a></li>
@@ -27,7 +27,7 @@
                      <li><a href="#">TFSA</a></li>
                   </ul>
                </div>
-               <div class="col-lg-3 col-md-3 col-sm-6 footer-sec">
+               <div class="col-lg-4 col-md-4 col-sm-6 footer-sec">
                   <h5>Contact </h5>
                   <p class="adres">52680 Matheson Blvd E, Suite # 102, Mississauga, ON, L4W 0A5</p>
                   <p><strong>Phone :</strong><a href="tel:+19058777777"> 905-877-7777</a></p>
@@ -39,16 +39,16 @@
             <div class="container">
                <div class="row">
                   <div class="col-xl-9 col-lg-9 col-md-6">
-                     <p>Copyright © 2023. All rights reserved by PolicyMarket.</p>
+                 <p>Copyright © 2023. All rights reserved by PolicyMarket. | <a href="{{ route('privacy-policy') }}">Privacy Policy</a> | <a href="{{ route('terms-and-conditions') }}">Terms and Conditions</a></p>
                   </div>
                   
                   <div class="col-xl-3 col-lg-3 col-md-6">
                      <div class="copyright-social">
                         <ul>
-                           <li><a href="#"><img src="images/icon_fb.png" class="img-fluid" alt=""></a></li>
-                           <li><a href="#"><img src="images/icon_tw.png" class="img-fluid" alt=""></a></li>
-                           <li><a href="#"><img src="images/icon_li.png" class="img-fluid" alt=""></a></li>
-                           <li><a href="#"><img src="images/icon_yt.png" class="img-fluid" alt=""></a></li>
+                           <li><a href="#"><img src="assets/images/icon_fb.png" class="img-fluid" alt=""></a></li>
+                           <li><a href="#"><img src="assets/images/icon_tw.png" class="img-fluid" alt=""></a></li>
+                           <li><a href="#"><img src="assets/images/icon_li.png" class="img-fluid" alt=""></a></li>
+                           <li><a href="#"><img src="assets/images/icon_yt.png" class="img-fluid" alt=""></a></li>
                         </ul>
                      </div>
                   </div>
@@ -58,6 +58,24 @@
       </footer>
 
 
+
+<div id="cookies-popup" class="cookies-popup">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-10">
+						<div class="popup-content">
+							<p>We use cookies on our website to give you the most relevant experience by remembering your preferences and repeat visits. By clicking “Accept”, you consent to the use of ALL the cookies.</p>
+						</div>
+				  </div>
+					<div class="col-lg-2 text-right">
+					<a href="#" data-toggle="modal" data-target="#cookieModalCenter">Cookie Settings</a>
+						<button id="accept-cookies">Accept</button>
+						
+						
+					</div>
+				</div>
+			</div>
+    </div>
 
 
 <!-- Bootstrap JavaScript -->
@@ -607,52 +625,154 @@ $("#singledob").datepicker({ dateFormat:'dd/mm/yy'});
 
 <!--Read More End-->
 
-<div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
+
+<!--Text Email Start-->
+<script>
+$(document).ready(function () {
+    $("#EmailBtn").click(function () {
+        $("#HiddnData").show();
+		$("#EmailBtn").hide();
+    });	
+	$("#DismissBtn").click(function () {
+        $("#HiddnData").hide();
+		$("#EmailBtn").show();
+    });
+
+});
+</script>
+<!--Text Email Start End-->
+
+<script>
+	$(document).ready(function() {
+  $("#myInput").on('input', function() {
+    // Check if the input value is a digit
+    if (/^\d+$/.test($(this).val())) {
+      $("#WhtsBtn").show();
+    } else {
+      $("#WhtsBtn").hide();
+    }
+  });
+});
+</script>
+
+
+<!--Cookies Js Start-->
+
+
+<script>
+    $(document).ready(function () {
+        if (localStorage.getItem('cookies-accepted') !== 'true') {
+            $('#cookies-popup').show();
+        }
+
+        $('#accept-cookies').click(function () {
+            localStorage.setItem('cookies-accepted', 'true');
+            $('#cookies-popup').hide();
+        });
+    });
+</script>
+
+<!--Cookies Js End-->
+
+
+<!--Form Field Hidden Data Start-->
+
+<script>
+$(document).ready(function () {
+    $("#Address").click(function () {
+        $("#AddressDetail").toggle();
+		
+		
+		var icon = $(this).find('i');
+
+        if (icon.hasClass('fa-question-circle-o')) {
+		
+            icon.removeClass('fa-question-circle-o').addClass('fa-close');
+        } else {
+            
+            icon.removeClass('fa-close').addClass('fa-question-circle-o');
+        }
+		
+		
+    });	
+	
+	$("#ArrDate").click(function () {
+        $("#ArrDateDetail").toggle();
+		
+		var icon = $(this).find('i');
+
+        if (icon.hasClass('fa-question-circle-o')) {
+            
+            icon.removeClass('fa-question-circle-o').addClass('fa-close');
+        } else {
+            
+            icon.removeClass('fa-close').addClass('fa-question-circle-o');
+        }
+		
+    });
+	
+	$("#CntryName").click(function () {
+        $("#CountryDetail").toggle();
+		
+		var icon = $(this).find('i');
+
+        if (icon.hasClass('fa-question-circle-o')) {
+            
+            icon.removeClass('fa-question-circle-o').addClass('fa-close');
+        } else {
+            
+            icon.removeClass('fa-close').addClass('fa-question-circle-o');
+        }
+		
+    });
+	
+	$("#BenName").click(function () {
+        $("#BenNameDetail").toggle();
+		
+		var icon = $(this).find('i');
+
+        if (icon.hasClass('fa-question-circle-o')) {
+           
+            icon.removeClass('fa-question-circle-o').addClass('fa-close');
+        } else {
+            
+            icon.removeClass('fa-close').addClass('fa-question-circle-o');
+        }
+		
+    });
+	
+	
+	
+});
+</script>
+
+<!--Form Field Hidden Data End-->
+
+
+<!--Cookie Popup Start-->
+
+<div class="modal fade" id="cookieModalCenter" tabindex="-1" role="dialog" aria-labelledby="cookieModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Get an Email/Text</h5>
+        <h5 class="modal-title" id="cookieModalCenterTitle">Modal title</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-	  <div class="modal-body">
-	  <form>
-        <div class="row">
-			<div class="col-lg-4">
-				<div class="form-group">
-				<input type="text" class="form-control"  placeholder="Your Name">
-			  </div>
-			</div>
-			
-			<div class="col-lg-4">
-				<div class="form-group">
-				<input type="email" class="form-control"  placeholder="Email">
-			  </div>
-			</div>
-			
-			<div class="col-lg-4">
-				<div class="form-group">
-				<input type="text" class="form-control"  placeholder="Canadian Phone">
-			  </div>
-			</div>
-		</div>
-		
-		<div class="col-lg-12">
-				<div class="form-group">
-				<input type="submit" class="form-control"  value="EMAIL/TEXT">
-			  </div>
-			</div>
-		
-		</form>
+      <div class="modal-body">
+       dd
       </div>
-	  
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="accept-cookies">Save & Accept</button>
+      </div>
     </div>
   </div>
 </div>
 
 
 
+<!--Cookie Popup End-->
 
 </body>
 </html>

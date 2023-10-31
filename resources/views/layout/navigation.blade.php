@@ -30,12 +30,12 @@
 			
 			<li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Resource </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarDropdown"> 
-				  <a class="dropdown-item" href="#">Blog</a> 
+				  <a class="dropdown-item" href="{{ route('blog') }}">Blog</a> 
 			  </div>
             </li>
 			<li class="nav-item"> <a class="nav-link" href="#">FAQs</a> </li>
 			<li class="nav-item"> <a class="nav-link" href="{{ route('about-us') }}">About</a> </li>
-            <li class="nav-item"> <a class="nav-link" href="#">Contact</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('contact-us') }}">Contact</a> </li>
           </ul>
         </div>
 
