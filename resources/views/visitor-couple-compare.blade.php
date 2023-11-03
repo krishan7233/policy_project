@@ -60,56 +60,50 @@
       <div class="row">
             <div class="col-sm-6">
               <div class="row">
-                <div class="col-sm-12 border_div1"  ></div>
+              <div class="col-sm-12 border_div1"  ></div>
                 <div class="col-sm-12 border_div2" ></div>
                 <div class="col-sm-12 border_div3"></div>
-                <div class="col-sm-12 border_div4 text_position" >COVID 19 COVERAGE	</div>
-                <div class="col-sm-12 border_div4 text_position" >AMBULANCE SERVICES / TRANSPORTATION	</div>
-                <div class="col-sm-12 border_div4 text_position" >EMERGENCY HOSPITALIZATION	</div>
-                <div class="col-sm-12 border_div4 text_position" >SERVICES OF A PHYSICIAN, SURGEON, ETC.	</div>
-                <div class="col-sm-12 border_div4 text_position" >EMERGENCY MEDICAL CARE	</div>
-                <div class="col-sm-12 border_div4 text_position" >WALK-IN CLINIC VISITS	</div>
-                <div class="col-sm-12 border_div4 text_position" >FOLLOW UP TREATMENT	</div>
-                <div class="col-sm-12 border_div4 text_position" >LABORATORY DIAGNOSTICS / X-RAY	</div>
-                <div class="col-sm-12 border_div4 text_position" >PRESCRIPTION MEDICATIONS	</div>
-                <div class="col-sm-12 border_div4 text_position" >DENTAL PAIN RELIEF	</div>
-                <div class="col-sm-12 border_div4 text_position" >EMERGENCY DENTAL REPAIR	</div>
-                <div class="col-sm-12 border_div4 text_position" >EMERGENCY HOME RETURN / EVACUATION	</div>
-                <div class="col-sm-12 border_div4 text_position" >REPATRIATION OF REMAINS	</div>
-                <div class="col-sm-12 border_div4 text_position" >CREMATION / BURIAL	</div>
-                <div class="col-sm-12 border_div4 text_position" >STABLE PRE-EXISTING MEDICAL CONDITIONS COVERAGE	</div>
-                <div class="col-sm-12 border_div4 text_position" >STABILITY PERIOD	</div>
-                <div class="col-sm-12 border_div4 text_position" >PRIVATE DUTY NURSE / MEDICAL ATTENDANT	</div>
-                <div class="col-sm-12 border_div4 text_position" >RENTAL / PURCHASE OF MEDICAL APPLIANCES	</div>
-                <div class="col-sm-12 border_div4 text_position" >SIDE-TRIPS BENEFIT (WITH IN CANADA AND OUTSIDE OF CANADA)	</div>
-                <div class="col-sm-12 border_div4 text_position" >WAIT PERIOD (IF GAP)	</div>
-                <div class="col-sm-12 border_div4 text_position" >WAIT PERIOD (IF LANDED)	</div>
-                <div class="col-sm-12 border_div4 text_position" >ENHANCED SERVICES	</div>
-                <div class="col-sm-12 border_div4 text_position" >EMERGENCY SERVICES OF CHIROPRACTOR, CHIROPODIST, PHYSIOTHERAPIST, OSTEOPATH, OR PODIATRIST	</div>
-                <div class="col-sm-12 border_div4 text_position" >ACUPUNCTURE	</div>
-                <div class="col-sm-12 border_div4 text_position" >ACCIDENTAL DEATH	</div>
-                <div class="col-sm-12 border_div4 text_position" >DOUBLE DISMEMBERNENT	</div>
-                <div class="col-sm-12 border_div4 text_position" >SINGLE DISMEMBERNENT	</div>
-                <div class="col-sm-12 border_div4 text_position" >BEDSIDE COMPANION ACCOMMODATION / TRANSPORTATION	</div>
-                <div class="col-sm-12 border_div4 text_position" >MEALS AND ACCOMMODATION / HOSPITAL ALLOWANCE / OUT-OF-POCKET EXPENSES	</div>
-                <div class="col-sm-12 border_div4 text_position" >MATERNITY BENEFITS / DELIVERY COVERAGE	</div>
-                <div class="col-sm-12 border_div4 text_position" >PHYSICAL EXAMINATION (NON-EMERGENCY)	</div>
-                <div class="col-sm-12 border_div4 text_position" >EYE EXAMINATION (NON-EMERGENCY)	</div>
-                <div class="col-sm-12 border_div4 text_position" >VACCINES (NON-EMERGENCY)	</div>
-                <div class="col-sm-12 border_div4 text_position" >CHILD CARE / ESCORT EXPENSES	</div>
-                <div class="col-sm-12 border_div4 text_position" >PSYCHIATRIC / PSYCHOLOGICAL	</div>
-                <div class="col-sm-12 border_div4 text_position" >RETURN OF A VEHICLE	</div>
-                <div class="col-sm-12 border_div4 text_position" >SPORTS INJURIES COVERAGE	</div>
-                <div class="col-sm-12 border_div4 text_position" >FLIGHT / TRAVEL ACCIDENT	</div>
-                <div class="col-sm-12 border_div4 text_position" >TRIP-BREAK BENEFIT	</div>
-                <div class="col-sm-12 border_div4 text_position" >COVERAGE DURING TRANSIT	</div>
-                <div class="col-sm-12 border_div4 text_position" >CLAIM MNGT. COMP.	</div>
-                <div class="col-sm-12 border_div4 text_position" >24-HOUR EMERGENCY ASSISTANCE CENTER	</div>
-                <div class="col-sm-12 border_div4 text_position" >CLAIM PHONE#	</div>
-                <div class="col-sm-12 border_div4 text_position" >ONLINE CLAIM PORTAL	</div>
-                <div class="col-sm-12 border_div4 text_position" >POLICY WORDING	</div>
-                <div class="col-sm-12 border_div4 text_position" >CLAIM FORM	</div>
-                <div class="col-sm-12 border_div4 text_position" >UNDERWRITTEN BY	</div>
+                <div class="col-sm-12 border_div4 text_position" >Covid-19	</div>
+                <div class="col-sm-12 border_div4 text_position" >Ambulance	</div>
+                <div class="col-sm-12 border_div4 text_position" >Deductible (Per Claim or Per Policy)	</div>
+                <div class="col-sm-12 border_div4 text_position" >$2500 Disappearing Deductible</div>
+                <div class="col-sm-12 border_div4 text_position" >Hospitalization(Related to Emergency)	</div>
+                <div class="col-sm-12 border_div4 text_position" >Services of aA Physician A Surgeon</div>
+                <div class="col-sm-12 border_div4 text_position" >Medical Care(Related to Emergencies)</div>
+                <div class="col-sm-12 border_div4 text_position" >Walk-in Clinic Visits</div>
+                <div class="col-sm-12 border_div4 text_position" >Follow Up Treatment</div>
+                <div class="col-sm-12 border_div4 text_position" >Coverage ForLab Diagnostics X-Ray</div>
+                <div class="col-sm-12 border_div4 text_position" >Prescriptions(Related to Emergencies)</div>
+                <div class="col-sm-12 border_div4 text_position" >Dental Pain Relief</div>
+                <div class="col-sm-12 border_div4 text_position" >Dental Repair(Related to Emergencies)	</div>
+                <div class="col-sm-12 border_div4 text_position" >Assistance Center(24-hour)</div>
+                <div class="col-sm-12 border_div4 text_position" >Ambulance Transportation</div>
+                <div class="col-sm-12 border_div4 text_position" >Home Return(Related to Medical Emergencies)</div>
+                <div class="col-sm-12 border_div4 text_position" >Repatriation of Remains</div>
+                <div class="col-sm-12 border_div4 text_position" >Expenses forCremation Burial	</div>
+                <div class="col-sm-12 border_div4 text_position" >Pre-existing Medical Conditions(Stability required)	</div>
+                <div class="col-sm-12 border_div4 text_position" >Expenses forPrivate Duty Nurse Medical Attendant</div>
+                <div class="col-sm-12 border_div4 text_position" >Medical AppliancesRental Purchase	</div>
+                <div class="col-sm-12 border_div4 text_position" >Side-Trips Benefit(with in Canada and outside of Canada)	</div>
+                <div class="col-sm-12 border_div4 text_position" >Enhanced Benefits</div>
+                <div class="col-sm-12 border_div4 text_position" >"Emergency ServicesChiropractor Chiropodist Physiotherapist Osteopath Podiatrist"</div>
+                <div class="col-sm-12 border_div4 text_position" >Accidental Death</div>
+                <div class="col-sm-12 border_div4 text_position" >Double Dismemberment</div>
+                <div class="col-sm-12 border_div4 text_position" >Single Dismemberment	</div>
+                <div class="col-sm-12 border_div4 text_position" >"Bedside CompanionAccommodation Transportation"	</div>
+                <div class="col-sm-12 border_div4 text_position" >"Hospital ExpensesMeals Accommodation Out-of-pocket"</div>
+                <div class="col-sm-12 border_div4 text_position" >"Maternity Benefits Delivery Coverage"</div>
+                <div class="col-sm-12 border_div4 text_position" >Pregnancy Coverage(Related to Complications)</div>
+                <div class="col-sm-12 border_div4 text_position" >Physical Examination(Non-emergency)</div>
+                <div class="col-sm-12 border_div4 text_position" >Eye Examination(Non-emergency)</div>
+                <div class="col-sm-12 border_div4 text_position" >Vaccines(Non-emergency)</div>
+                <div class="col-sm-12 border_div4 text_position" >"Coverage forChild Care Exp Escort Expenses"</div>
+                <div class="col-sm-12 border_div4 text_position" >"Coverage forPsychiatric Psychological"</div>
+                <div class="col-sm-12 border_div4 text_position" >Return of a Vehicle</div>
+                <div class="col-sm-12 border_div4 text_position" >Sports Injuries</div>
+                <div class="col-sm-12 border_div4 text_position" >"AccidentsFlight Travel"	</div>
+                <div class="col-sm-12 border_div4 text_position" >Trip-Break Benefit</div>
+                <div class="col-sm-12 border_div4 text_position" >Underwritten By</div>
               </div>
             </div>
             @foreach($compare_quote as $compare)
@@ -117,12 +111,17 @@
             if(!empty($compare->id1)){
                 if($compare->plan_type1==1){
                 $photo = $compare->basic1;
+                $compare_data = json_decode($compare->compare_basic1,true);
                 }
                 if($compare->plan_type1==2){
                 $photo = $compare->standard1;
+                $compare_data = json_decode($compare->compare_standard1,true);
+
                 }
                 if($compare->plan_type1==3){
+
                 $photo = $compare->enhanced1;
+                $compare_data = json_decode($compare->compare_enhanced,true);
                 }
                 $tamt1 = number_format($compare->total_charge1 - $compare->detect_amt1, 2);
 
@@ -153,146 +152,127 @@
                   <a href="{{url('couple-order',$compare->id1)}}" class="buy-now">BUY NOW</a>
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                  <b>Hospitalization Covered</b>
+                {{$compare_data['covid_19']}}
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                  Max <b>{{$compare->aggregate_price1}}	</b>
+                {{$compare_data['ambulance']}}
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                  Up to Coverage Amount	
+                {{$compare_data['deductible_per_claim_or_per_policy']}}	
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                  Up to Coverage Amount		
+                {{$compare_data['2500_disappearing_deductible']}}	
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                  Up to Coverage Amount		
+                {{$compare_data['hospitalization_related_to_emergency']}}	
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                  <b>Covered</b>	
+                {{$compare_data['services_of_a_physician_a_surgeon']}}	
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                  <b>Covered</b>		
+                {{$compare_data['medical_care_related_to_emergencies']}}	
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                  <b>Covered</b>			
+                {{$compare_data['walk_in_clinic_visits']}}		
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                  A 30 day Supply
+                {{$compare_data['follow_up_treatment']}}
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                  <b>Not Covered</b>		
+                {{$compare_data['coverage_forlab_diagnostics_x_ray']}}                
+              </div>
+                <div class="col-sm-12 border_div7 text_position">
+                {{$compare_data['prescriptions_related_to_emergencies']}}
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                Max <b>5,000</b>	
+                {{$compare_data['dental_pain_relief']}}
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                Included		
+                {{$compare_data['dental_repair_related_to_emergencies']}}
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                Max <b>$10,000</b>
+                {{$compare_data['assistance_center24_hour']}}	
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                Max <b>$10,000</b>		
+                {{$compare_data['ambulance_transportation']}}
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                Included, if Selected		
+                {{$compare_data['home_return_related_to_medical_emergencies']}}
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                  <b>365 Days</b>	
+                {{$compare_data['repatriation_of_remains']}}         
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                Max <b>10,000</b>			
-                </div>
-                <div class="col-sm-12 border_div7 text_position">
-                Max <b>5,000</b>			
-                </div>
-                <div class="col-sm-12 border_div7 text_position" style="padding:17.5px;">
-                  <b>Only Within Canada</b>		
-                </div>
-                <div class="col-sm-12 border_div7 text_position">
-                  <b>5 Days</b>	
-                </div>
-                <div class="col-sm-12 border_div7 text_position">
-                <b>5 Days</b>
+                {{$compare_data['expenses_forcremation_burial']}}			
                 </div>
                 <div class="col-sm-12 border_div7 text_position" >
-                 --	
+                {{$compare_data['pre_existing_medical_conditions_stability_required']}}	
                 </div>
-                <div class="col-sm-12 border_div7 text_position" style="padding:29px;">
-                Max $500/Category		
+                <div class="col-sm-12 border_div7 text_position">
+                {{$compare_data['expenses_forprivate_duty_nurse_medical_attendant']}}
+                </div>
+                <div class="col-sm-12 border_div7 text_position">
+                {{$compare_data['medical_appliancesrental_purchase']}}
                 </div>
                 <div class="col-sm-12 border_div7 text_position" >
-                <b>N/A</b>		
+                	{{$compare_data['side_trips_benefit_with_in_canada_and_outside_of_canada']}}
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                <b>Not Covered</b>
+                {{$compare_data['enhanced_benefits']}}
+                </div>
+                <div class="col-sm-12 border_div7 text_position" >
+                {{$compare_data['emergency_serviceschiropractor_chiropodist_physiotherapist_osteo']}}	
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                <b>Not Covered</b>
+                {{$compare_data['accidental_death']}}
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                <b>Not Covered</b>	
-                </div>
-                <div class="col-sm-12 border_div7 text_position"style="padding:17px;">
-                <b>N/A</b>	
-                </div>
-                <div class="col-sm-12 border_div7 text_position" style="padding:17px;">
-                <b>N/A</b>			
+                {{$compare_data['double_dismemberment']}}
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                <b>N/A</b>			
+                {{$compare_data['single_dismemberment']}}
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                <b>N/A</b>		
+                {{$compare_data['bedside_companionaccommodation_transportation']}}
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                <b>N/A</b>		
+                {{$compare_data['hospital_expensesmeals_accommodation_accommodation_out_of_pocket']}}			
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                <b>N/A</b>		
+                {{$compare_data['maternity_benefits_delivery_coverage']}}		
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                <b>N/A</b>			
+                {{$compare_data['pregnancy_coverage_related_to_complications']}}		
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                <b>N/A</b>			
+                {{$compare_data['physical_examination_non_emergency']}}		
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                <b>N/A</b>			
+                {{$compare_data['eye_examination_non_emergency']}}		
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                Not for Hazardous Sports		
+                {{$compare_data['vaccines_non_emergency']}}			
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                Up to the Coverage Amount		
+                {{$compare_data['coverage_forchild_care_exp_escort_expenses']}}			
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                  <b>Only Layover</b>
+                {{$compare_data['coverage_forpsychiatric_psychological']}}			
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                 <b>Only To Canada</b>	
+                {{$compare_data['return_of_a_vehicle']}}	
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                  <b>CCMP</b>
+                {{$compare_data['sports_injuries']}}		
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                Included		
+                {{$compare_data['accidentsflight_travel']}}
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                  <b>1-866-209-4203</b>	
+                {{$compare_data['trip_break_benefit']}}
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
-                  <b>Claims@ccmp.ca</b>	
-                </div>
-                <div class="col-sm-12 border_div7 text_position">
-                 <a href="#">Policy Wording</a>		
-                </div>
-                <div class="col-sm-12 border_div7 text_position">
-                  <a href="#">Claim Form</a>	
-                </div>
-               
-                <div class="col-sm-12 border_div7 text_position">
-                  <b>Industrial Alliance</b>
+                {{$compare_data['underwritten_by']}}
                 </div>
  
               </div>
