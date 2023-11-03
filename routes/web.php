@@ -30,7 +30,11 @@ Route::get('/terms-and-conditions', [AuthController::class, 'termsconditions'])-
 
 // Route::get('/quote-compare', [AuthController::class, 'quotecompare'])->name('quote-compare');
 Route::get('order/{id}', [AuthController::class, 'Order'])->name('order');
+Route::post('order-post', [AuthController::class, 'orderPost'])->name('order-post');
 Route::get('/order-confirmation', [AuthController::class, 'OrderConfirmation'])->name('order-confirmation');
+Route::get('thank-you', [AuthController::class, 'thankYou'])->name('thank-you');
+Route::post('visitor-couple-order-post', [AuthController::class, 'visitorOrderCouplePost'])->name('visitor-couple-order-post');
+
 
 //Blog Page start
 Route::get('/3-effective-ways-to-pay-off-your-student-loan', [AuthController::class, 'EffectiveWays'])->name('3-effective-ways-to-pay-off-your-student-loan');

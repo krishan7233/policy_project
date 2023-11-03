@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use App\Models\Buyer;
+
 
 class AuthController extends Controller
 {
@@ -198,6 +200,9 @@ class AuthController extends Controller
             'tbl_companies.basic', 
             'tbl_companies.standard', 
             'tbl_companies.enhanced', 
+            'tbl_companies.compare_basic', 
+            'tbl_companies.compare_standard', 
+            'tbl_companies.compare_enhanced', 
             'tbl_aggregate_policy_limit.price',
             'tbl_age_group.start_age',
             'tbl_age_group.end_age',
@@ -239,6 +244,9 @@ class AuthController extends Controller
                                 'basic' => $company->basic,
                                 'standard' => $company->standard,
                                 'enhanced' => $company->enhanced,
+                                'compare_basic' => $company->compare_basic,
+                                'compare_standard' => $company->compare_standard,
+                                'compare_enhanced' => $company->compare_enhanced,
                                 'company_name' => $company->company_name,
                                 'company_status' => $company->status,
                                 'company_photo' => $company->photo,
@@ -349,7 +357,9 @@ public function superVisaCoupleMergeData(){
             'basic1' => isset($company_detail1[$i]->basic1)?$company_detail1[$i]->basic1:"",
             'standard1' => isset($company_detail1[$i]->standard1)?$company_detail1[$i]->standard1:"",
             'enhanced1' => isset($company_detail1[$i]->enhanced1)?$company_detail1[$i]->enhanced1:"",
-            'company_photo1' => isset($company_detail1[$i]->company_photo1)?$company_detail1[$i]->company_photo1:"",
+            'compare_basic1' => isset($company_detail1[$i]->compare_basic1)?$company_detail1[$i]->compare_basic1:"",
+            'compare_standard1' => isset($company_detail1[$i]->compare_standard1)?$company_detail1[$i]->compare_standard1:"",
+            'compare_enhanced1' => isset($company_detail1[$i]->compare_enhanced1)?$company_detail1[$i]->compare_enhanced1:"",
             'company_photo1' => isset($company_detail1[$i]->company_photo1)?$company_detail1[$i]->company_photo1:"",
             'aggregate_price1' => isset($company_detail1[$i]->aggregate_price1)?$company_detail1[$i]->aggregate_price1:"",
             'start_age1' => isset($company_detail1[$i]->start_age1)?$company_detail1[$i]->start_age1:"",
@@ -373,6 +383,9 @@ public function superVisaCoupleMergeData(){
             'basic2' => isset($company_detail1[$i]->basic2)?$company_detail1[$i]->basic2:"",
             'standard2' => isset($company_detail1[$i]->standard2)?$company_detail1[$i]->standard2:"",
             'enhanced2' => isset($company_detail1[$i]->enhanced2)?$company_detail1[$i]->enhanced2:"",
+            'compare_basic2' => isset($company_detail1[$i]->compare_basic2)?$company_detail1[$i]->compare_basic2:"",
+            'compare_standard2' => isset($company_detail1[$i]->compare_standard2)?$company_detail1[$i]->compare_standard2:"",
+            'compare_enhanced2' => isset($company_detail1[$i]->compare_enhanced2)?$company_detail1[$i]->compare_enhanced2:"",
             'aggregate_price2' => isset($company_detail2[$i]->aggregate_price2)?$company_detail2[$i]->aggregate_price2:0,
             'start_age2' => isset($company_detail2[$i]->start_age2)?$company_detail2[$i]->start_age2:"",
             'end_age2' => isset($company_detail2[$i]->end_age2)?$company_detail2[$i]->end_age2:"",
@@ -432,6 +445,9 @@ public function superVisaCalculateCouple1(){
         'tbl_companies.basic', 
         'tbl_companies.standard', 
         'tbl_companies.enhanced', 
+        'tbl_companies.compare_basic', 
+        'tbl_companies.compare_standard', 
+        'tbl_companies.compare_enhanced', 
         'tbl_aggregate_policy_limit.price',
         'tbl_age_group.start_age',
         'tbl_age_group.end_age',
@@ -471,6 +487,9 @@ public function superVisaCalculateCouple1(){
                             'basic1' => $company->basic,
                             'standard1' => $company->standard,
                             'enhanced1' => $company->enhanced,
+                            'compare_basic1' => $company->compare_basic,
+                            'compare_standard1' => $company->compare_standard,
+                            'compare_enhanced1' => $company->compare_enhanced,
                             'company_created_at1' => $company->created_at,
                             'company_updated_at1' => $company->updated_at,
                             'aggregate_price1' => $company->price,
@@ -533,6 +552,9 @@ public function superVisaCalculateCouple2(){
         'tbl_companies.basic', 
         'tbl_companies.standard', 
         'tbl_companies.enhanced', 
+        'tbl_companies.compare_basic', 
+        'tbl_companies.compare_standard', 
+        'tbl_companies.compare_enhanced', 
         'tbl_aggregate_policy_limit.price',
         'tbl_age_group.start_age',
         'tbl_age_group.end_age',
@@ -577,6 +599,9 @@ public function superVisaCalculateCouple2(){
                             'basic2' => $company->basic,
                             'standard2' => $company->standard,
                             'enhanced2' => $company->enhanced,
+                            'compare_basic2' => $company->compare_basic,
+                            'compare_standard2' => $company->compare_standard,
+                            'compare_enhanced2' => $company->compare_enhanced,
                             'company_created_at2' => $company->created_at,
                             'company_updated_at2' => $company->updated_at,
                             'aggregate_price2' => $company->price,
@@ -898,20 +923,16 @@ public function visitorFamilyCompare(){
     return view('visitor-family-quotation-compare',$data);
 }
 public function Order($id){
-    $objectsArray = $this->calculationFilter();
-    
-    $outputArray = [];
-    foreach ($objectsArray as $object) {
-            if ($object->id == $id) {
-                $outputArray[] = $object;
-                break; // Stop searching for the current id
-            }
-    }
-    $outputObject = (object)$outputArray;
-    $data['compare_quote'] = $outputObject;
+    $data['buy_id'] = $id;
     return view('order',$data);
 }
 public function coupleOrder($id){
+    $data['buy_id'] = $id;
+    // $companyData = $this->coupleOrderCompanyData($id);
+    return view('visitor-couple-order',$data);
+
+}
+public function coupleOrderCompanyData($id){
     $objectsArray = $this->superVisaCoupleMergeData(Session::get('deductible'));
     $outputArray = [];
         foreach ($objectsArray as $object) {
@@ -922,14 +943,46 @@ public function coupleOrder($id){
                 }
             }
         }
-    $outputObject = $outputArray;
-    $data['compare_quote'] = $outputObject; 
-    return view('order',$data);
+    return $outputArray;
+    // $outputObject = $outputArray;
 
 }
 
 public function visitorFamilyOrder($id){
-    $objectsArray = $this->calculationFilter();
+    $data['buy_id'] = $id;
+
+    return view('visitor-family-order',$data);
+}
+public function orderPost(Request $req){
+
+    $req->validate([
+        'buy_id' => 'required',
+        'date_of_birth' => 'required',
+        'mobile_number' => 'required',
+        'destination' => 'required',
+        'condidate_address' => 'required',
+        'arrival_expected_date' => 'required',
+        'country' => 'required',
+        'baneficiary_name' => 'required',
+    ]);
+
+    $companyData = json_encode($this->buyersIdDetail($req->buy_id));
+    $buyer = new Buyer();
+    $buyer->date_of_birth = $req->date_of_birth;
+    $buyer->mobile_number = $req->mobile_number;
+    $buyer->destination = $req->destination;
+    $buyer->condidate_address = $req->condidate_address;
+    $buyer->arrival_expected_date = $req->arrival_expected_date;
+    $buyer->country = $req->country;
+    $buyer->baneficiary_name = $req->baneficiary_name;
+    $buyer->company_detail =$companyData;
+    $buyer->save();
+    return redirect('thank-you');
+
+
+}
+public function buyersIdDetail($id){
+        $objectsArray = $this->calculationFilter();
     
     $outputArray = [];
     foreach ($objectsArray as $object) {
@@ -939,7 +992,35 @@ public function visitorFamilyOrder($id){
             }
     }
     $outputObject = (object)$outputArray;
-    $data['compare_quote'] = $outputObject;
-    return view('order',$data);
+    // $data['compare_quote'] = $outputObject;
+    return $outputObject;
+}
+public function thankYou(){
+    return view('order-confirmation');
+}
+public function visitorOrderCouplePost(Request $req){
+    $req->validate([
+        'buy_id' => 'required',
+        'date_of_birth' => 'required',
+        'mobile_number' => 'required',
+        'destination' => 'required',
+        'condidate_address' => 'required',
+        'arrival_expected_date' => 'required',
+        'country' => 'required',
+        'baneficiary_name' => 'required',
+    ]);
+
+    $companyData = json_encode($this->coupleOrderCompanyData($req->buy_id));
+    $buyer = new Buyer();
+    $buyer->date_of_birth = $req->date_of_birth;
+    $buyer->mobile_number = $req->mobile_number;
+    $buyer->destination = $req->destination;
+    $buyer->condidate_address = $req->condidate_address;
+    $buyer->arrival_expected_date = $req->arrival_expected_date;
+    $buyer->country = $req->country;
+    $buyer->baneficiary_name = $req->baneficiary_name;
+    $buyer->company_detail =$companyData;
+    $buyer->save();
+    return redirect('thank-you');    
 }
 }

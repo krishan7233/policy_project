@@ -4,16 +4,28 @@
 <div class="section-larger">
   <div class="order-details">
     <div class="container">
-		  	<form>
+
+		  <form action="{{route('order-post')}}" method="POST">
+        @csrf
       <div class="row">
         <div class="col-lg-12">
           <div class="form-wrapper mt-30">
             <h3>Applicant Details</h3>
+            @if ($errors->any())
+              <div class="alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+              </div>
+            @endif
             <div class="form-field-row mb-20">
-              <input type="text" name="name" class="form-control" placeholder="Date of Birth" required>
+              <input type="hidden" name="buy_id" class="form-control" value="{{$buy_id}}"  required>
+              <input type="text" name="date_of_birth" class="form-control" placeholder="Date of Birth" required>
             </div>
             <div class="form-field-row">
-              <input type="text" name="phone" class="form-control" placeholder="Applicant's Name" required>
+              <input type="text" name="mobile_number" class="form-control" placeholder="Applicant's Name" required>
             </div>
           </div>
         </div>
@@ -21,15 +33,15 @@
           <div class="form-wrapper mt-30">
             <h3>Destination Details</h3>
             <div class="form-field-row mb-20">
-              <input type="text" name="name" class="form-control" placeholder="Unit#" required>
+              <input type="text" name="destination" class="form-control" placeholder="Unit#" required>
             </div>
             <div class="form-field-row AddRow">
-              <input type="text" name="phone" class="form-control" placeholder="Canadian Address" required>
+              <input type="text" name="condidate_address" class="form-control" placeholder="Canadian Address" required>
 			  <a href="javascript:void(0);" class="AddInfo" id="Address"> <i class="fa fa-question-circle-o"></i> </a>
             </div>
 			<p class="bg-info" id="AddressDetail">Enter the primary Canadian address where the applicants will be staying during their stay.</p>
             <div class="form-field-row mt-20">
-              <input type="text" name="phone" class="form-control" placeholder="Arrival/Expected Date" required>
+              <input type="text" name="arrival_expected_date" class="form-control" placeholder="Arrival/Expected Date" required>
 			  <a href="javascript:void(0);" class="ArriveDateInfo" id="ArrDate"> <i class="fa fa-question-circle-o"></i> </a>
             </div>
 			<p class="bg-info" id="ArrDateDetail">If the applicant is yet not landed in Canada, please enter an expected future date.</p>
@@ -39,10 +51,10 @@
           <div class="form-wrapper mt-30">
             <h3>Misc. Information</h3>
             <div class="form-field-row mb-20">
-              <select name="country" class="form-control">
-                <option value="Select">Select</option>
+              <select name="country" class="form-control" required>
+                <option value="Select" name="misc">Select</option>
                 <option value="Afghanistan">Afghanistan</option>
-                <option value="Aland Islands">Åland Islands</option>
+                <option value="Aland Islands">ï¿½land Islands</option>
                 <option value="Albania">Albania</option>
                 <option value="Algeria">Algeria</option>
                 <option value="American Samoa">American Samoa</option>
@@ -293,7 +305,7 @@
 			
 			
             <div class="form-field-row">
-              <input type="text" name="phone" class="form-control" placeholder="Beneficiary Name" required>
+              <input type="text" name="baneficiary_name" class="form-control" placeholder="Beneficiary Name" required>
 			  <a href="javascript:void(0);" class="BenifiNameInfo" id="BenName"> <i class="fa fa-question-circle-o"></i> </a>
             </div>
 			<p class="bg-info" id="BenNameDetail">Enter the name of the person who will be taking care of the applicants in case of a medical emergency.</p>
