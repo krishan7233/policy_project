@@ -21,7 +21,7 @@
               </div>
             @endif
             <div class="form-field-row mb-20">
-              <input type="hidden" name="buy_id" class="form-control" value="{{$buy_id}}"  required>
+              <input type="hidden" name="user_id" class="form-control" value="{{$user_id}}"  required>
               <input type="text" name="date_of_birth" class="form-control" placeholder="Date of Birth" required>
             </div>
             <div class="form-field-row">

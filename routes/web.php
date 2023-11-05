@@ -45,6 +45,7 @@ Route::get('/3-effective-ways-to-pay-off-your-student-loan', [AuthController::cl
 
 // order
 Route::get('couple-order/{id}', [AuthController::class, 'coupleOrder']);
+Route::get('couple-plan/{id}', [AuthController::class, 'couplePlan']);
 Route::get('visitor-family-order/{id}', [AuthController::class, 'visitorFamilyOrder']);
 
 
@@ -93,4 +94,11 @@ Route::post('visitor-couple-compare-post', [AuthController::class, 'visitorCoupl
 Route::get('visitor-couple-compare', [AuthController::class, 'visitorCoupleCompare'])->name('visitor-couple-compare');
 Route::post('visitor-family-compare-post', [AuthController::class, 'visitorFamilyComparePost'])->name('visitor-family-compare-post');
 Route::get('visitor-family-compare', [AuthController::class, 'visitorFamilyCompare'])->name('visitor-family-compare');
+
+// plan
+
+Route::get('single-plan/{id}', [AuthController::class, 'singlePlan'])->name('single-plan');
+Route::post('single-plan-post', [AuthController::class, 'singlePlanPost'])->name('single-plan-post');
+Route::post('couple-plan-post', [AuthController::class, 'couplePlanPost'])->name('couple-plan-post');
+
 

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use App\Models\Buyer;
+use App\Models\User;
 
 
 class AuthController extends Controller
@@ -923,15 +924,18 @@ public function visitorFamilyCompare(){
     return view('visitor-family-quotation-compare',$data);
 }
 public function Order($id){
-    $data['buy_id'] = $id;
+    
+    $data['user_id'] = $id;
+    // $data['company']=$this->buyersIdDetail($id);
     return view('order',$data);
 }
 public function coupleOrder($id){
-    $data['buy_id'] = $id;
-    // $companyData = $this->coupleOrderCompanyData($id);
+    $data['user_id'] = $id;
+    $companyData = $this->coupleOrderCompanyData($id);
     return view('visitor-couple-order',$data);
 
 }
+
 public function coupleOrderCompanyData($id){
     $objectsArray = $this->superVisaCoupleMergeData(Session::get('deductible'));
     $outputArray = [];
@@ -956,7 +960,7 @@ public function visitorFamilyOrder($id){
 public function orderPost(Request $req){
 
     $req->validate([
-        'buy_id' => 'required',
+        'user_id' => 'required',
         'date_of_birth' => 'required',
         'mobile_number' => 'required',
         'destination' => 'required',
@@ -966,8 +970,9 @@ public function orderPost(Request $req){
         'baneficiary_name' => 'required',
     ]);
 
-    $companyData = json_encode($this->buyersIdDetail($req->buy_id));
+    // $companyData = json_encode($this->buyersIdDetail($req->buy_id));
     $buyer = new Buyer();
+    $buyer->user_id = $req->user_id;
     $buyer->date_of_birth = $req->date_of_birth;
     $buyer->mobile_number = $req->mobile_number;
     $buyer->destination = $req->destination;
@@ -975,7 +980,6 @@ public function orderPost(Request $req){
     $buyer->arrival_expected_date = $req->arrival_expected_date;
     $buyer->country = $req->country;
     $buyer->baneficiary_name = $req->baneficiary_name;
-    $buyer->company_detail =$companyData;
     $buyer->save();
     return redirect('thank-you');
 
@@ -991,7 +995,7 @@ public function buyersIdDetail($id){
                 break; // Stop searching for the current id
             }
     }
-    $outputObject = (object)$outputArray;
+    $outputObject = $outputArray;
     // $data['compare_quote'] = $outputObject;
     return $outputObject;
 }
@@ -1000,7 +1004,7 @@ public function thankYou(){
 }
 public function visitorOrderCouplePost(Request $req){
     $req->validate([
-        'buy_id' => 'required',
+        'user_id' => 'required',
         'date_of_birth' => 'required',
         'mobile_number' => 'required',
         'destination' => 'required',
@@ -1010,8 +1014,9 @@ public function visitorOrderCouplePost(Request $req){
         'baneficiary_name' => 'required',
     ]);
 
-    $companyData = json_encode($this->coupleOrderCompanyData($req->buy_id));
+    // $companyData = json_encode($this->coupleOrderCompanyData($req->buy_id));
     $buyer = new Buyer();
+    $buyer->user_id = $req->user_id;
     $buyer->date_of_birth = $req->date_of_birth;
     $buyer->mobile_number = $req->mobile_number;
     $buyer->destination = $req->destination;
@@ -1019,8 +1024,49 @@ public function visitorOrderCouplePost(Request $req){
     $buyer->arrival_expected_date = $req->arrival_expected_date;
     $buyer->country = $req->country;
     $buyer->baneficiary_name = $req->baneficiary_name;
-    $buyer->company_detail =$companyData;
+   
     $buyer->save();
     return redirect('thank-you');    
+}
+public function singlePlan($id){
+    $data['buy_id'] = $id;
+    $data['company']=$this->buyersIdDetail($id);
+    return view('single-plan',$data);
+ 
+}
+public function singlePlanPost(Request $req){
+    $company_data = json_encode($this->buyersIdDetail($req->buy_id));
+    $last_id = $this->userData($req,$company_data);
+    return redirect('order/'.$last_id);
+}
+public function userData($userData,$company_data){
+    $user = new User;
+    $userData->validate([
+        'buy_id' => 'required',
+        'name' => 'required',
+        'phone' => 'required',
+        'email' => 'required',
+    ]);
+    $user->buy_id = $userData->buy_id;
+    $user->name = $userData->name;
+    $user->phone = $userData->phone;
+    $user->password = $userData->phone;
+    $user->email = $userData->email;
+    $user->company_detail = $company_data;
+    if($user->save()){
+        return $user->id;    
+    }
+    
+}
+public function couplePlan($id){
+    $data['buy_id'] = $id;
+    $data['company'] = $this->coupleOrderCompanyData($id);
+    return view('couple-plan',$data);
+
+}
+public function couplePlanPost(Request $req){
+    $company_data = json_encode($this->coupleOrderCompanyData($req->buy_id));
+    $last_id = $this->userData($req,$company_data);
+    return redirect('couple-order/'.$last_id);
 }
 }
