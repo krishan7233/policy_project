@@ -112,14 +112,20 @@ $deductible = Session::get('deductible');
         $detect_amt1 = $companies->detect_amt1;
         if($companies->plan_type1==1){
           $photo = $companies->basic1;
+          $compare_data = json_decode($companies->compare_basic1,true);
+
         }
         if($companies->plan_type1==2){
           $photo = $companies->standard1;
+          $compare_data = json_decode($companies->compare_standard1,true);
         }
         if($companies->plan_type1==3){
           $photo = $companies->enhanced1;
+          $compare_data = json_decode($companies->compare_enhanced1,true);
+
         }
 
+        
         }else{
         $id1=$tamt1=$company_name1=$company_status1=$company_photo1=$aggregate_price1=$start_age1=$end_age1=$aggregate_id1=$age_id1=$pre_exit1=
         $plan_type1=$no_of_days1=$total_charge1=$per_month1=$total_charge1=$deductible_amt1=$sur_charge1=$detect_amt1=$photo=0;
@@ -162,18 +168,16 @@ $deductible = Session::get('deductible');
               <h3><span><strong>{{'$'.number_format(($tamt1+$tamt2)/12,2)}}</strong>/month</span></h3>
               <h3><span>Deductible <strong>{{$deductible_amt1}}</strong> per claim {{$sur_charge1}}</span></h3>
             </div>
-            <div class="btn-section"> <a href="{{url('couple-order',$companies->id1)}}" class="buy-now">BUY NOW</a> 
+            <div class="btn-section"> <a target="_blank" href="{{url('couple-plan',$companies->id1)}}" class="buy-now">BUY NOW</a> 
             <a href="#" class="plan-details toggle togglePlanDetails" id="toggle" onclick="togglePlanDetails_{{$id1}}({{$id1}})">PLAN DETAILS</a>
               <div class="compaire">
                 <div class="left">
-                  <!-- <input type="checkbox" class="form-check-input" id="exampleCheck1"> -->
-                  <!-- <label class="form-check-label" for="exampleCheck1">Compare</label> -->
                   <input type="checkbox" class="form-check-input super_visa_couple_compare" id="super_visa_couple_compare" value="{{$companies->id1}}">
                   <label class="form-check-label" for="super_visa_couple_compare">Compare</label>
                   <button class="btn btn-primary super_visa_couple_compare_data" id="super_visa_couple_compare_btn_{{$companies->id1}}" style="display:none;">COMPARE</button>
 
                 </div>
-                <div class="right"> <a href="#">Benefit Summary</a> </div>
+                <div class="right"> <a target="_blank" href="{{url('couple-plan',$companies->id1)}}">Benefit Summary</a> </div>
               </div>
             </div>
           </div>
@@ -192,23 +196,20 @@ $deductible = Session::get('deductible');
               </div>
               <div class="col-lg-4">
                 <div class="section2">
-                  <ul>
-                    <li>Hospitalization:-<strong>Covered</strong></li>
-                    <li> Covid 19 Coverage:-<strong>Covered</strong></li>
-                    <li> Ambulance Fee:-<strong>Covered</strong></li>
-                    <li> Walk-in Clinic Visit:-<strong>Covered</strong></li>
-                    <li> Prescriptions Drugs:-<strong>Covered</strong></li>
-                    <li>Dental Pain Relief:- <strong>Not Covered</strong></li>
-                    <li> Accidental Death:-Not <strong>Covered</strong></li>
-                    <li> Cremation/Burial:-<strong>Covered</strong></li>
-                    <li>Paramedical Services:-<strong>Covered</strong></li>
-                    <li> Side Trips:-<strong>Only Within Canada</strong> </li>
+                <ul>
+                    <li>Hospitalization(Related to Emergency):-<strong>{{$compare_data['hospitalization_related_to_emergency']}}</strong></li>
+                    <li> Covid-19:-<strong>{{$compare_data['covid_19']}}</strong></li>
+                    <li> Ambulance:-<strong>{{$compare_data['ambulance']}}</strong></li>
+                    <li> Walk-in Clinic Visit:-<strong>{{$compare_data['walk_in_clinic_visits']}}</strong></li>
+                    <li> Prescriptions(Related to Emergencies):-<strong>{{$compare_data['prescriptions_related_to_emergencies']}}</strong></li>
+                    <li>Dental Pain Relief:- <strong>{{$compare_data['dental_pain_relief']}}</strong></li>
+                    <li> Side Trips:-<strong>{{$compare_data['trip_break_benefit']}}</strong> </li>
                   </ul>
                   <p><em>*Important notice:   The above is only a Summary of Benefits; for complete details, refer to <a href="#">Policy Wording.</a></em></p>
                 </div>
               </div>
               <div class="col-lg-4">
-                <div class="section3"> <a href="tel:6475709070" class="call-btn"><i class="fa fa-mobile"></i> (647) 570-9070</a> <a href="#" class="benifit-sumry">Benefit Summary</a> <a href="#" class="srt-app">Start Application</a> </div>
+                <div class="section3"> <a href="tel:6475709070" class="call-btn"><i class="fa fa-mobile"></i> (647) 570-9070</a> <a href="{{url('couple-plan',$companies->id1)}}" class="benifit-sumry" target="_blank">Benefit Summary</a> <a href="{{url('couple-plan',$companies->id1)}}" target="_blank" class="srt-app">Start Application</a> </div>
               </div>
             </div>
           </div>

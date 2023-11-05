@@ -149,7 +149,7 @@
                   <p>Total: {{$sum_total_amt}}</p>
                 </div>
                 <div class="col-sm-12 border_div6"  style="padding:9px;margin-top:1px">
-                  <a href="{{url('couple-order',$compare->id1)}}" class="buy-now">BUY NOW</a>
+                  <a href="{{url('couple-plan',$compare->id1)}}" target="_blank" class="buy-now">BUY NOW</a>
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
                 {{$compare_data['covid_19']}}
