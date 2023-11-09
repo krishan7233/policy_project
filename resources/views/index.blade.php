@@ -20,10 +20,11 @@
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active"> 
-			<img src="assets/images/banner-1.png" class="w-100" alt="..."> 
+			<img src="assets/images/banner-1.png" alt="..."> 
 			<div class="carousel-caption">
 				<div class="hero-text">
 				  <h1 class="text-pink">Compare in Seconds, Save for a Lifetime,<span>Buy with Confidence</span></h1>
+				  <button type="Submit" class="btn btn-prim-round">Get a Quote</button>
 				</div>
 		  </div>
 			</div>
@@ -32,6 +33,7 @@
 			<div class="carousel-caption">
 				<div class="hero-text">
 				  <h1 class="text-pink">Insure Your Peace of Mind  <span>with PolicyMarket</span></h1>
+				  <button type="Submit" class="btn btn-prim-round">Get a Quote</button>
 				</div>
 		  </div>
 			</div>
@@ -40,6 +42,7 @@
 			<div class="carousel-caption">
 				<div class="hero-text">
 				  <h1 class="text-pink">Your Insurance Journey Begins  <span>at PolicyMarket.ca</span></h1>
+				  <button type="Submit" class="btn btn-prim-round">Get a Quote</button>
 				</div>
 		  </div>
 			</div>
@@ -53,19 +56,19 @@
       <h4>Select a product to see your quotes</h4>
       <div class="row">
         <div class="col-lg-4"> <a href="#">
-          <div class="numbers"> <img src="assets/images/number_icon_3.png" class="img-fluid" alt="">
+          <div class="numbers"> <img src="assets/images/super-visa-insurence.png" class="img-fluid" alt="">
             <h2>Super Visa <br />
               Insurance</h2>
           </div>
           </a> </div>
         <div class="col-lg-4"> <a href="#">
-          <div class="numbers"> <img src="assets/images/number_icon_3.png" class="img-fluid" alt="">
+          <div class="numbers"> <img src="assets/images/visitor-to-canada.png" class="img-fluid" alt="">
             <h2>Visitor To Canada<br />
               Insurance</h2>
           </div>
           </a> </div>
         <div class="col-lg-4">
-          <div class="numbers"> <img src="assets/images/number_icon_3.png" class="img-fluid" alt="">
+          <div class="numbers"> <img src="assets/images/canadian-travelling.png" class="img-fluid" alt="">
             <h2>Canadian Travelling Out of Country / Province</h2>
           </div>
         </div>
@@ -120,6 +123,63 @@
     </div>
   </div>
 </section>
+
+
+<section class="CounterSection">
+	<div class="container">
+		<h4>Why Choose PolicyMarket ?</h4>
+		<div class="row">
+			<div class="col-lg-3">
+				<div class="conterBox GrayBg">
+					<div class="ImgBox">
+						<img src="assets/images/user.png">
+					</div>
+					<div class="ContentBox">
+						<h3>5M+</h3>
+						<p>shoppers served</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-lg-3">
+				<div class="conterBox WhiteBg">
+					<div class="ImgBox">
+						<img src="assets/images/cashless.png">
+					</div>
+					<div class="ContentBox">
+						<h3>2000+</h3>
+						<p>Cashless Healthcare Providers</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-lg-3">
+				<div class="conterBox GrayBg">
+					<div class="ImgBox">
+						<img src="assets/images/healthcare.png">
+					</div>
+					<div class="ContentBox">
+						<h3>3 Lakh+</h3>
+						<p>Lives Covered Since Inception</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-lg-3">
+				<div class="conterBox WhiteBg">
+					<div class="ImgBox">
+						<img src="assets/images/24x7-support.png">
+					</div>
+					<div class="ContentBox">
+						<h3>24x7</h3>
+						<p>Claim and Customer Support</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
 <section class="make-us-section">
   <div class="container">
     <div class="row">
@@ -132,12 +192,14 @@
     <div class="row">
       <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="box">
+			<span><img src="assets/images/comparison.png" class="img-fluid" alt=""></span>
           <h3>Simplified Comparison Shopping</h3>
           <p>Bid farewell to the hassle of filling out forms across multiple websites. With PolicyMarket's modern tools, you can effortlessly compare quotes from leading insurance companies side by side within 30 seconds. Already insured? We're here to help you explore better options, including potential lower rates.</p>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="box">
+		<span><img src="assets/images/advice.png" class="img-fluid" alt=""></span>
           <h3>Client-Centric <br />
             Advice</h3>
           <p>Your interests always take precedence at PolicyMarket. Our licensed insurance agents and well-researched articles are at your service whether you want to engage in live conversations or conduct independent research. We're committed to not only selling products but also ensuring that you're equipped with the knowledge to make </p>
@@ -145,6 +207,7 @@
       </div>
       <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="box">
+		<span><img src="assets/images/support.png" class="img-fluid" alt=""></span>
           <h3>Unwavering<br />
             Support</h3>
           <p>Our commitment doesn't end after the sale. We're available to answer your queries at any time, without the need for appointments. Your needs are our priority, and we're here to assist you through every step of the way, including the often complex and stressful claims process. </p>

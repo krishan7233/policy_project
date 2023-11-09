@@ -6,13 +6,13 @@
     <div class="container">
       <div class="navbar-light bg-dark">
         <!-- Logo -->
-        <a class="navbar-brand" href="#"> <img src="assets/images/logo.png" alt=""> </a>
+        <a class="navbar-brand" href="https://visa-insurance.greenberrysignature.co.in/"> <img src="assets/images/logo.png" alt=""> </a>
         <!-- Logo -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-            <li class="nav-item active"> <a class="nav-link" href="#">Home</a> </li>
-            <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Travel Insurance </a>
+            <li class="nav-item"> <a class="nav-link" href="https://visa-insurance.greenberrysignature.co.in/">Home</a> </li>
+            <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Insurance </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarDropdown"> 
 				  <a class="dropdown-item" href="{{ route('super-visa') }}">Super Visa Insurance</a> 
 				  <a class="dropdown-item" href="{{ route('visitor-visa-insurance') }}">Visitor To Canada Insurance</a> 
