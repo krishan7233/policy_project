@@ -17,7 +17,7 @@
    </div>
 
 
-<div class="section-larger about-section">
+<div class="section-larger about-section aboutPage">
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
@@ -27,15 +27,15 @@
       </div>
     </div>
     <div class="row vertical-cntr">
-      <div class="col-lg-12">
+      <div class="col-lg-7 col-md-5 col-sm-12">
         <p>At PolicyMarket, we're all about simplifying your insurance journey. We understand that finding the right insurance coverage can be a daunting task, and that's why we're here to transform the experience into something seamless, easy, and tailored to your unique needs. Our one-stop platform empowers you to compare options, receive expert advice, purchase policies, and manage your insurance portfolio effortlessly.</p>
         <p>Since 2008, we've been navigating the world of financial services, dedicating ourselves to crafting personalized solutions that cater to your specific requirements. From safeguarding your health to ensuring your family's financial security, we've got you covered. Planning a global adventure or welcoming visitors to Canada? Explore our competitive travel health and medical insurance options. Whether it's Personal, Business, Life, Investments, retirement planning, or employee benefits, our experienced brokers are here to guide you towards the ideal plan.</p>
       </div>
-      <!--<div class="col-lg-6 col-md-12 col-sm-12">
+      <div class="col-lg-5 col-md-5 col-sm-12">
 			 <div class="img-container">
-				 <img src="assets/images/home_img_1.png" class="img-fluid mt" alt="">
+				 <img src="assets/images/about-us-page.jpg" class="img-fluid mt" alt="">
 			 </div>              
-     </div>-->
+     </div>
     </div>
   </div>
 </div>
@@ -52,12 +52,14 @@
     <div class="row">
       <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="box">
+		<span><img src="assets/images/comparison.png" class="img-fluid" alt=""></span>
           <h3>Simplified Comparison Shopping</h3>
           <p>Bid farewell to the hassle of filling out forms across multiple websites. With PolicyMarket's modern tools, you can effortlessly compare quotes from leading insurance companies side by side within 30 seconds. Already insured? We're here to help you explore better options, including potential lower rates.</p>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="box">
+		<span><img src="assets/images/advice.png" class="img-fluid" alt=""></span>
           <h3>Client-Centric <br />
             Advice</h3>
           <p>Your interests always take precedence at PolicyMarket. Our licensed insurance agents and well-researched articles are at your service whether you want to engage in live conversations or conduct independent research. We're committed to not only selling products but also ensuring that you're equipped with the knowledge to make </p>
@@ -65,6 +67,7 @@
       </div>
       <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="box">
+		<span><img src="assets/images/empowerment.png" class="img-fluid" alt=""></span>
           <h3>Education and <br />
             Empowerment</h3>
           <p>We believe in empowering our clients. We're not just here to make sales; we're here to provide you with the insights and understanding you need to make the best choices for yourself. </p>
@@ -73,6 +76,7 @@
 	  
 	  <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="box">
+		<span><img src="assets/images/support.png" class="img-fluid" alt=""></span>
           <h3>Unwavering<br />
             Support</h3>
           <p>Our commitment doesn't end after the sale. We're available to answer your queries at any time, without the need for appointments. Your needs are our priority, and we're here to assist you through every step of the way, including the often complex and stressful claims process. </p>
@@ -81,6 +85,7 @@
 	  
 	  <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="box">
+		<span><img src="assets/images/experties.png" class="img-fluid" alt=""></span>
           <h3>15 Years of <br />
             Expertise</h3>
           <p>With over 15 years of knowledge and experience, PolicyMarket stands out as your reliable partner. When you're faced with the challenges of making a claim, we'll be right there with you, guiding you from start to finish.</p>
@@ -89,6 +94,7 @@
 	  
 	  <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="box">
+		<span><img src="assets/images/protecting-privacy.png" class="img-fluid" alt=""></span>
           <h3>Protecting Your <br />
             Privacy</h3>
           <p>Your security matters. We prioritize your data privacy and will never sell your information to third parties.</p>
@@ -97,6 +103,7 @@
 	  
 	  <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="box">
+		<span><img src="assets/images/cheaper.png" class="img-fluid" alt=""></span>
           <h3>Is it Cheaper with <br />
             PolicyMarket?</h3>
           <p>While insurance rates are regulated by law and no one can offer discounts, we can still help you find potential savings by comparing policies from multiple insurers. Our goal is to make sure you get the right coverage at competitive prices.</p>
@@ -105,6 +112,7 @@
 	  
 	  <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="box">
+		<span><img src="assets/images/Integrity.png" class="img-fluid" alt=""></span>
           <h3>Independence and  <br />
             Integrity</h3>
           <p>PolicyMarket is an independent insurance agency. We're not tied to any single insurance company, and our focus is solely on finding you the best policy, no matter the provider.</p>
