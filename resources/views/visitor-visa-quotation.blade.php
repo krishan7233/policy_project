@@ -53,10 +53,25 @@ $deductible = Session::get('deductible');
     <div class="row">
       <div class="col-lg-4">
         <div class="quote-left">
-      
 
-
-          <p>Super Visa Insurance for Single Person(age 60 years) for 365 days, excluding coverage for pre-existing medical conditions <a href="{{url('visitor-visa-insurance')}}"><span><i class="fa fa-pencil"></i></span></a></p>
+          @php
+          $requestData = Session::get('request_data');
+          $deductible = Session::get('deductible');
+          @endphp
+          <?php 
+            if($deductible['pre_exit1']==1 && $deductible['pre_exit2']==1){
+              $exits_data = "covering pre-existing medical conditions";
+            }elseif($deductible['pre_exit1']==0 && $deductible['pre_exit2']==0){
+              $exits_data = "excluding coverage for pre-existing medical conditions";
+            }
+            elseif($deductible['pre_exit1']==1 && $deductible['pre_exit2']==0){
+              $exits_data="covering pre-existing medical conditions for 1st applicant and excluding coverage for pre-existing medical conditions for 2nd applicant";
+            }
+            elseif($deductible['pre_exit1']==0 && $deductible['pre_exit2']==1){
+              $exits_data="excluding coverage for pre-existing medical conditions for 1st applicant and covering pre-existing medical conditions for 2nd applicant";
+            }
+            ?> 
+          <p>Visitors to Canada Insurance for Couple(age {{$requestData['age1']}} years and {{$requestData['age2']}} years) for {{$requestData['no_of_days1']}} days, {{$exits_data}} <a href="{{url('visitor-visa-insurance')}}"><span><i class="fa fa-pencil"></i></span></a></p>
           <div class="form-field-row">
             <div class="coverage"> <span>Deductible  </span>
               <select class="form-control visitor-couple-deductible-amt" name="deductible_amt">
@@ -203,7 +218,7 @@ $deductible = Session::get('deductible');
               <h3>{{'$'.number_format($tamt2,2)}}</h3>
               <p>Total : <strong>{{$sum_total_amt}}</strong></p>
               <h3><span><strong>{{'$'.number_format(($tamt1+$tamt2)/12,2)}}</strong>/month</span></h3>
-              <h3><span>Deductible <strong>{{$deductible_amt1}}</strong> per claim {{$sur_charge1}}</span></h3>
+              <h3><span>Deductible <strong>{{$deductible_amt1}}</strong> per claim</span></h3>
             </div>
             <div class="btn-section"> <a target="_blank" href="{{url('couple-plan',$companies->id1)}}" class="buy-now">BUY NOW</a> 
             <a href="#" class="plan-details toggle togglePlanDetails" id="toggle" onclick="togglePlanDetails_{{$id1}}({{$id1}})">PLAN DETAILS</a>

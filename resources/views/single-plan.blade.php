@@ -1,13 +1,33 @@
 @extends('layout.commonlayout')
 @section('content')
 <!-- Form section start here -->
+<?php  
+if(Session::get('request_data')){
+  $request_data =  Session::get('request_data');
+ 
+}
+if(Session::get('deductible')){
+  $deductible = Session::get('deductible');
+  
+}
+if($request_data['visa_type']=="superVisaSingle"){
+      $url ="single-detect-quotation";
+}
+if($request_data['visa_type']=="visitorSingle"){
+      $url ="visitor-single-deductable-quotation";
+}
+if($request_data['visa_type']=="visitorFamily"){
+      $url ="visitor-family-deductable-quotation";
+}
+?>
+
 <div class="section-larger">
 
 <div class="container">
 	<div class="row">
     	<div class="col-lg-12">
         	<div class="get-email">
-            	<a href="#" id="EmailBtn">Email/Text these rates</a>
+            	<a href="#" id="EmailBtn">Email/Text these rates </a>
             </div>
 			
 			<div class="emailData" id="HiddnData">
@@ -46,19 +66,23 @@
         </div>
     </div>
 </div>
-
 @php
-
-
 if($company[0]->plan_type==1){
     $photo = $company[0]->basic;
+    $compare_data = json_decode($company[0]->compare_basic,true);
+
 }
 if($company[0]->plan_type==2){
     $photo = $company[0]->standard;
+    $compare_data = json_decode($company[0]->compare_standard,true);
+
 }
 if($company[0]->plan_type==3){
     $photo = $company[0]->enhanced;
+    $compare_data = json_decode($company[0]->compare_enhanced,true);
+
 }
+
 @endphp
 
 <div class="plan-details-page">
@@ -66,7 +90,7 @@ if($company[0]->plan_type==3){
         <div class="row">
             <div class="col-lg-6">
                 <div class="left">
-                <p><a href="#"><i class="fa fa-pencil"></i></a></p>
+                <p><a href="{{ url('/'.$url) }}"><i class="fa fa-pencil"></i></a></p>
                     <img src="{{$photo}}" />
                     <div class="price-section">
               <h3><span>$</span>{{$company[0]->total_charge}}<span></span></h3>
@@ -128,26 +152,244 @@ if($company[0]->plan_type==3){
     </tr>
     <tr>
       <td><strong>Covid-19</strong></td>
-      <td><strong>Hospitalization Covered</strong></td>
+      <td><strong>{{$compare_data['covid_19']}}</strong></td>
     </tr>
     <tr>
       <td><strong>Ambulance</strong>	</td>
-      <td>Max <strong>$5,000</strong></td>
+      <td>Max <strong>{{$compare_data['ambulance']}}</strong></td>
     </tr>
    <tr>
-      <td><strong>Hospitalization</strong><br />
-      	<span>(Related to Emergency)</span>
+      <td><strong>Deductible</strong><br />
+      	<span>(Per Claim or Per Policy)</span>
       </td>
-      <td>Up to Coverage Amount</td>
+     <td>Max <strong>{{$compare_data['deductible_per_claim_or_per_policy']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>$2500 Disappearing Deductible</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['2500_disappearing_deductible']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>Hospitalization(Related to Emergency)</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['hospitalization_related_to_emergency']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>Services of aA Physician A Surgeon</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['services_of_a_physician_a_surgeon']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>Medical Care(Related to Emergencies)</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['medical_care_related_to_emergencies']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>Walk-in Clinic Visits</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['walk_in_clinic_visits']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>Follow Up Treatment</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['follow_up_treatment']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>Coverage ForLab Diagnostics X-Ray</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['coverage_forlab_diagnostics_x_ray']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>Prescriptions(Related to Emergencies)</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['prescriptions_related_to_emergencies']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>Dental Pain Relief</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['dental_pain_relief']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>Dental Repair(Related to Emergencies)</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['dental_repair_related_to_emergencies']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>Assistance Center(24-hour)</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['assistance_center24_hour']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>Ambulance Transportation</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['ambulance_transportation']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>Home Return(Related to Medical Emergencies)</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['home_return_related_to_medical_emergencies']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>Repatriation of Remains</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['repatriation_of_remains']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>Expenses forCremation Burial
+</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['expenses_forcremation_burial']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>Pre-existing Medical Conditions(Stability required)
+</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['pre_existing_medical_conditions_stability_required']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>Expenses forPrivate Duty Nurse Medical Attendant
+</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['expenses_forprivate_duty_nurse_medical_attendant']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>Medical AppliancesRental Purchase
+
+</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['medical_appliancesrental_purchase']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>Side-Trips Benefit(with in Canada and outside of Canada)
+
+
+</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['side_trips_benefit_with_in_canada_and_outside_of_canada']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>Enhanced Benefits
+
+
+</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['enhanced_benefits']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>"Emergency ServicesChiropractor Chiropodist Physiotherapist Osteopath Podiatrist"
+
+
+</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['emergency_serviceschiropractor_chiropodist_physiotherapist_osteo']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>Accidental Death</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['accidental_death']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>Double Dismemberment
+</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['double_dismemberment']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>Single Dismemberment
+</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['single_dismemberment']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>"Bedside CompanionAccommodation Transportation"
+</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['bedside_companionaccommodation_transportation']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>"Hospital ExpensesMeals Accommodation Out-of-pocket"
+</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['hospital_expensesmeals_accommodation_accommodation_out_of_pocket']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>"Maternity Benefits Delivery Coverage"
+</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['maternity_benefits_delivery_coverage']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>Pregnancy Coverage(Related to Complications)
+</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['pregnancy_coverage_related_to_complications']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>Physical Examination(Non-emergency)
+</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['physical_examination_non_emergency']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>Eye Examination(Non-emergency)
+</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['eye_examination_non_emergency']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>Vaccines(Non-emergency)
+</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['vaccines_non_emergency']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>"Coverage forChild Care Exp Escort Expenses"
+</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['coverage_forchild_care_exp_escort_expenses']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>"Coverage forPsychiatric Psychological"
+</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['coverage_forpsychiatric_psychological']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>Return of a Vehicle
+</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['return_of_a_vehicle']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>Sports Injuries
+
+</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['sports_injuries']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>"AccidentsFlight Travel"
+
+</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['accidentsflight_travel']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>Trip-Break Benefit
+
+</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['trip_break_benefit']}}</strong></td>
+    </tr>
+   <tr>
+      <td><strong>Underwritten By
+
+</strong><br />
+      </td>
+     <td>Max <strong>{{$compare_data['underwritten_by']}}</strong></td>
     </tr>
   </tbody>
 </table>
-        </div>
-      </div>
-      <button class="accordion">Eligibility Requirements</button>
-      <div class="panel">
-        <div class="panel-inner">
-        	ddd
         </div>
       </div>
       

@@ -337,35 +337,8 @@ $("#singledob").datepicker({ dateFormat:'dd/mm/yy'});
                 $('.visitor-couple-days2').val(differenceInDays);
             } 
         });
-        $('.visitor').change(function() {
-            var selectedValue = $("input[name='visitor_policy']:checked").val();
-            if(selectedValue == 'visitor1'){
-              $('.visitor-form3').hide();
-              $('.visitor-form2').hide();
-              $('.visitor-form1').show();
-            }
-            if(selectedValue == 'visitor2'){
-              $('.visitor-form1').hide();
-              $('.visitor-form3').hide();
-              $('.visitor-form2').show();
-            }
-            if(selectedValue == 'visitor3'){
-              $('.visitor-form1').hide();
-              $('.visitor-form2').hide();
-              $('.visitor-form3').show();
-            }
-        });
-        $('.super-visa').change(function() {
-          var selectedValue = $("input[name='super_visa']:checked").val();
-          if(selectedValue == 'option1'){
-              $('.super_visa_form2').hide();
-              $('.super_visa_form1').show();
-          }
-          if(selectedValue == 'option2'){
-              $('.super_visa_form1').hide();
-              $('.super_visa_form2').show();
-          }
-        });
+
+
         $('.visitor-couple-policy-date1').change(function() {
           var providedDate = new Date($('.visitor-couple-policy-date1').val());
           if (!isNaN(providedDate.getTime())) {
