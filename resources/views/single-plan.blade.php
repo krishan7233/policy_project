@@ -24,49 +24,9 @@ if($request_data['visa_type']=="visitorFamily"){
 <div class="section-larger">
 
 <div class="container">
-	<div class="row">
-    	<div class="col-lg-12">
-        	<div class="get-email">
-            	<a href="#" id="EmailBtn">Email/Text these rates </a>
-            </div>
-			
-			<div class="emailData" id="HiddnData">
-				<a href="#" class="CloseBtn" id="DismissBtn"> <i class="fa fa-close"></i> </a>
-			<h3>Get an Email/Text</h3>
-				<form>
-        <div class="row">
-			<div class="col-lg-4">
-				<div class="form-group">
-				<input type="text" class="form-control"  placeholder="Your Name">
-			  </div>
-			</div>
-			
-			<div class="col-lg-4">
-				<div class="form-group">
-				<input type="email" class="form-control"  placeholder="Email">
-			  </div>
-			</div>
-			
-			<div class="col-lg-4">
-				<div class="form-group">
-				<input type="text" class="form-control" id="myInput" placeholder="Canadian Phone">
-				<span>Canadian Phone number only.</span>
-			  </div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-12 text-center">
-				<a href="#" class="SendBtn">EMAIL/TEXT</a>
-				<a href="#" class="SendBtn" id="WhtsBtn" style="display: none">WHATSAPP</a>
-			</div>
-		</div>
-		</form>
-			</div>
-			
-        </div>
-    </div>
+@include('layout.email_and_whatsapp')
 </div>
-@php
+<?php
 if($company[0]->plan_type==1){
     $photo = $company[0]->basic;
     $compare_data = json_decode($company[0]->compare_basic,true);
@@ -83,7 +43,7 @@ if($company[0]->plan_type==3){
 
 }
 
-@endphp
+?>
 
 <div class="plan-details-page">
     <div class="container">

@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use App\Models\Buyer;
 use App\Models\User;
+use App\Models\Quote_Detail;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendEmailQuote;
 
 
 class AuthController extends Controller
@@ -1048,7 +1051,11 @@ public function visitorOrderCouplePost(Request $req){
 }
 public function singlePlan($id){
     $data['buy_id'] = $id;
+    
     $data['company']=$this->buyersIdDetail($id);
+    if(empty($data['company'])){
+        return redirect('/');
+    }
     return view('single-plan',$data);
  
 }
@@ -1079,6 +1086,9 @@ public function userData($userData,$company_data){
 public function couplePlan($id){
     $data['buy_id'] = $id;
     $data['company'] = $this->coupleOrderCompanyData($id);
+    if(empty($data['company'])){
+        return redirect('/');
+    }
     return view('couple-plan',$data);
 
 }
@@ -1086,5 +1096,21 @@ public function couplePlanPost(Request $req){
     $company_data = json_encode($this->coupleOrderCompanyData($req->buy_id));
     $last_id = $this->userData($req,$company_data);
     return redirect('couple-order/'.$last_id);
+}
+public function emailAndWhatsappPost(Request $req){
+    
+    $Quote_Detail = new Quote_Detail;
+    $req->validate([
+        'email' => 'required'
+    ]);
+    $recipient = 'ak8735272@gmail.com';
+    Mail::to($recipient)->send(new SendEmailQuote());
+    $Quote_Detail->name = $req->name;
+    $Quote_Detail->email = $req->email;
+    $Quote_Detail->mobile = $req->mobile;
+    $Quote_Detail->send_type = 1;
+    $Quote_Detail->save();
+    return redirect('/');
+
 }
 }
