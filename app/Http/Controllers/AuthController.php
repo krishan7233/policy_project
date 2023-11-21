@@ -150,6 +150,7 @@ class AuthController extends Controller
             'start_date'=>$req->start_date,
             'end_date'=>$req->end_date,
             'no_of_days'=>$req->no_of_days,
+            'visa_type'=>$req->visa_type,
         ];
         $data = [
             'coverage_amt'=>$req->coverage_amt,
@@ -157,7 +158,7 @@ class AuthController extends Controller
             'deductible'=>0,
         ];
         Session::put('request_data', $sessionData);
-        Session::put('single_deduct', $data);
+        Session::put('deductible', $data);
         $data['company_detail']=$this->calculationFilter();
         return view('quotes',$data);
     }
@@ -167,7 +168,7 @@ class AuthController extends Controller
     }
     public function calculationFilter(){
         $requestData = Session::get('request_data');
-        $data = Session::get('single_deduct');
+        $data = Session::get('deductible');
         $pre_exit =$data['pre_exit']; 
         $coverage_amt =$data['coverage_amt']; 
         $age =$requestData['age']; 
@@ -286,7 +287,7 @@ public function deductibleFilter(Request $req){
         'coverage_amt'=>$coverage,
         'pre_exit'=>$pre_exit,
     ];
-    Session::put('single_deduct', $data);
+    Session::put('deductible', $data);
     return true;
 }
 
@@ -295,6 +296,8 @@ public function visitorVisa(){
 }
 
 public function supervisaPost(Request $request){
+
+
     $age1 = $request->super_visa_couple_age1;
     $birth1 = $request->super_visa_couple_birth1;
     $start_date1 = $request->super_visa_couple_start_date1;
@@ -309,6 +312,7 @@ public function supervisaPost(Request $request){
     $days2 = $request->super_visa_couple_days2;
     $coverage_amt2 = $request->super_visa_couple_coverage2;
     $exit2 = $request->super_visa_couple_exit2;
+    $visa_type = $request->visa_type;
     $sessionData = [
         'date_of_birth1'=>$birth1,
         'age1'=>$age1,
@@ -320,6 +324,7 @@ public function supervisaPost(Request $request){
         'start_date2'=>$start_date2,
         'end_date2'=>$end_date2,
         'no_of_days2'=>$days2,
+        'visa_type'=>$visa_type,
     ];
     $data = [
     'coverage_amt1'=>$coverage_amt1,
@@ -644,12 +649,16 @@ public function superVisaDeductibleQuotation(Request $request){
     return view('super-visa-quotation', $data);
 }
 public function visitorSingleCoverageGetQuotation(Request $req){
+    // print_r($req->all());
+    // exit;
     $sessionData = [
         'date_of_birth'=>$req->date_of_birth,
         'age'=>$req->age,
         'start_date'=>$req->start_date,
         'end_date'=>$req->end_date,
         'no_of_days'=>$req->no_of_days,
+        'visa_type'=>$req->visa_type,
+
     ];
     $data = [
         'coverage_amt'=>$req->coverage_amt,
@@ -657,7 +666,7 @@ public function visitorSingleCoverageGetQuotation(Request $req){
         'deductible'=>0,
     ];
     Session::put('request_data', $sessionData);
-    Session::put('single_deduct', $data);
+    Session::put('deductible', $data);
     $data['company_detail']=$this->calculationFilter();
     return view('visitor-single-quotation',$data);
 }
@@ -670,7 +679,7 @@ public function visitorSingleCoverageDeductableGetQuotation(Request $req){
         'coverage_amt'=>$coverage,
         'pre_exit'=>$pre_exit,
     ];
-    Session::put('single_deduct', $data);
+    Session::put('deductible', $data);
     return true;
 }
 public function visitorSingleDeductableQuotation(){
@@ -703,6 +712,8 @@ public function visitorCoupleCoverageGetQuotation(Request $request){
         'start_date2'=>$start_date2,
         'end_date2'=>$end_date2,
         'no_of_days2'=>$days2,
+        'visa_type'=>$request->visa_type,
+
     ];
     $data = [
     'coverage_amt1'=>$coverage_amt1,
@@ -751,6 +762,13 @@ public function visitorFamilyCoverageGetQuotation(Request $request){
         'start_date'=>$request->visitor_family_start_date,
         'end_date'=>$request->visitor_family_end_date,
         'no_of_days'=>$request->visitor_family_days,
+        'visa_type'=>$request->visa_type,
+        'date_of_birth1'=>$request->visitor_family_policy_date1,
+        'date_of_birth2'=>$request->visitor_family_policy_date2,
+        'age1'=>$request->visitor_family_policy_year1,
+        'age2'=>$request->visitor_family_policy_year2,
+
+
     ];
     $data = [
         'coverage_amt'=>$request->visitor_family_coverage_amt,
@@ -758,7 +776,7 @@ public function visitorFamilyCoverageGetQuotation(Request $request){
         'deductible'=>0,
     ];
     Session::put('request_data', $sessionData);
-    Session::put('single_deduct', $data);
+    Session::put('deductible', $data);
     $data['company_detail']=$this->calculationFilter();
     return view('visitor-family-quotation',$data);
 
@@ -773,7 +791,7 @@ public function visitorFamilyDeductible(Request $req){
         'coverage_amt'=>$coverage,
         'pre_exit'=>$pre_exit,
     ];
-    Session::put('single_deduct', $data);
+    Session::put('deductible', $data);
     return true;
 }
 public function visitorFamilyDeductibleQuotation(){

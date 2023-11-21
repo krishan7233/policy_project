@@ -4,8 +4,18 @@
 <!-- Form section start here -->
 <div class="section-larger">
 @php
-$deductible = Session::get('single_deduct');
+$requestData = Session::get('request_data');
+$deductible = Session::get('deductible');
 @endphp
+<?php  
+if($deductible['pre_exit']==1){
+  $exits_data = "covering pre-existing medical conditions";
+}else{
+  $exits_data = "excluding coverage for pre-existing medical conditions";
+
+}
+
+?>
 <div class="container">
 	<div class="row">
     	<div class="col-lg-12">
@@ -54,7 +64,7 @@ $deductible = Session::get('single_deduct');
     <div class="row">
       <div class="col-lg-4">
         <div class="quote-left">
-          <p>Super Visa Insurance for Single Person(age 60 years) for 365 days, excluding coverage for pre-existing medical conditions <a href="{{url('visitor-visa-insurance')}}"><span><i class="fa fa-pencil"></i></span></a></p>
+          <p>Super Visa Insurance for Single Person(age {{$requestData['age']}} years) for {{$requestData['no_of_days']}} days, {{$exits_data}} <a href="{{url('visitor-visa-insurance')}}"><span><i class="fa fa-pencil"></i></span></a></p>
           <div class="form-field-row">
             <div class="coverage"> <span>Deductible</span>
               <select class="form-control visitor_deductible_amt">
@@ -117,7 +127,7 @@ $deductible = Session::get('single_deduct');
             <div class="price-section">
               <h3>{{'$'.number_format($companies->total_charge - $companies->detect_amt, 2)}}</h3>
               <h3><span><strong>{{'$'.$companies->per_month}}</strong>/month</span></h3>
-              <h3><span>Deductible <strong>{{$companies->deductible_amt}}</strong> per claim {{$companies->sur_charge}}</span></h3>
+              <h3><span>Deductible <strong>{{$companies->deductible_amt}}</strong> per claim</span></h3>
             </div>
             <div class="btn-section"> <a target="_blank" href="{{url('single-plan',$companies->id)}}" class="buy-now">BUY NOW</a> 
             <a href="#" class="plan-details toggle togglePlanDetails" id="toggle" onclick="togglePlanDetails_{{$companies->id}}({{$companies->id}})">PLAN DETAILS</a>
