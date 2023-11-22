@@ -100,5 +100,6 @@ Route::get('visitor-family-compare', [AuthController::class, 'visitorFamilyCompa
 Route::get('single-plan/{id}', [AuthController::class, 'singlePlan'])->name('single-plan');
 Route::post('single-plan-post', [AuthController::class, 'singlePlanPost'])->name('single-plan-post');
 Route::post('couple-plan-post', [AuthController::class, 'couplePlanPost'])->name('couple-plan-post');
+Route::post('email-and-whatsapp-post', [AuthController::class, 'emailAndWhatsappPost'])->name('email-and-whatsapp-post');
 
 
