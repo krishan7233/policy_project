@@ -24,7 +24,7 @@ if($deductible['pre_exit']==1){
     <div class="row">
       <div class="col-lg-4">
         <div class="quote-left">
-          <p>Super Visa Insurance for Single Person(age {{$requestData['age']}} years) for {{$requestData['no_of_days']}} days, {{$exits_data}} <a href="{{url('visitor-visa-insurance')}}"><span><i class="fa fa-pencil"></i></span></a></p>
+          <p>Visitors to Canada Insurance for Family(age {{$requestData['age1']}} years and {{$requestData['age2']}} years) for 90 days, {{$exits_data}} <a href="{{url('visitor-visa-insurance')}}"><span><i class="fa fa-pencil"></i></span></a></p>
           <div class="form-field-row">
             <div class="coverage"> <span>Deductible</span>
               <select class="form-control visitor_deductible_amt">
