@@ -177,7 +177,7 @@ $deductible = Session::get('deductible');
               <h3>{{'$'.number_format($tamt1,2)}}</h3></br>
               <h3>{{'$'.number_format($tamt2,2)}}</h3>
               <p>Total : <strong>{{$sum_total_amt}}</strong></p>
-              <h3><span><strong>{{'$'.number_format(($tamt1+$tamt2)/12,2)}}</strong>/month</span></h3>
+              <!-- <h3><span><strong>{{'$'.number_format(($tamt1+$tamt2)/12,2)}}</strong>/month</span></h3> -->
               <h3><span>Deductible <strong>{{$deductible_amt1}}</strong> per claim</span></h3>
             </div>
             <div class="btn-section"> <a target="_blank" href="{{url('couple-plan',$companies->id1)}}" class="buy-now">BUY NOW</a> 

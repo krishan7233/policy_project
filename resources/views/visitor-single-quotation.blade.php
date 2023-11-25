@@ -94,7 +94,7 @@ if($deductible['pre_exit']==1){
             <div class="logo-section"> <img src="{{$photo}}" /> </div>
             <div class="price-section">
               <h3>{{'$'.number_format($companies->total_charge - $companies->detect_amt, 2)}}</h3>
-              <h3><span><strong>{{'$'.$companies->per_month}}</strong>/month</span></h3>
+              <!-- <h3><span><strong>{{'$'.$companies->per_month}}</strong>/month</span></h3> -->
               <h3><span>Deductible <strong>{{$companies->deductible_amt}}</strong> per claim</span></h3>
             </div>
             <div class="btn-section"> <a href="{{url('single-plan',$companies->id)}}" target="_blank" class="buy-now">BUY NOW</a> 
