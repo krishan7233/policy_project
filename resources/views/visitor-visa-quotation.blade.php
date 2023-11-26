@@ -15,6 +15,8 @@
           @php
           $requestData = Session::get('visitor_visa_couple_request_data');
           $deductible = Session::get('visitor_visa_couple_deductible');
+
+
           @endphp
           <?php 
             if($deductible['pre_exit1']==1 && $deductible['pre_exit2']==1){
@@ -92,7 +94,11 @@
       <div class="col-lg-8 quotation_data">
       
 
-
+      <?php
+      echo"<pre>";
+        print_r($company_detail);
+        echo"</pre>";
+      ?>
       @foreach($company_detail as $companies)
         @php
         if(empty($companies->id1) || empty($companies->id2)){
