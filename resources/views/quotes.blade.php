@@ -3,9 +3,6 @@
 
 <!-- Form section start here -->
 <div class="section-larger">
-@php
-$deductible = Session::get('deductible');
-@endphp
 <div class="container">
 @include('layout.email_and_whatsapp')
 </div>
@@ -15,10 +12,10 @@ $deductible = Session::get('deductible');
       <div class="col-lg-4">
         <div class="quote-left">
           @php 
-          $requestData = Session::get('request_data');
-          $data = Session::get('deductible');
+          $requestData = Session::get('super_visa_request_data');
+          $deductible = Session::get('super_visa_deductible');
           @endphp
-          <p>Super Visa Insurance for Single Person(age @if(isset($requestData['age'])) {{$requestData['age']}} @endif years) for @if(isset($requestData['age'])) {{$requestData['no_of_days']}} @endif days, excluding coverage for @if($data['pre_exit']==0) existing @endif @if($data['pre_exit']==1) pre-existing @endif medical conditions <a href="{{url('super-visa')}}"><span><i class="fa fa-pencil"></i></span></a></p>
+          <p>Super Visa Insurance for Single Person(age @if(isset($requestData['age'])) {{$requestData['age']}} @endif years) for @if(isset($requestData['age'])) {{$requestData['no_of_days']}} @endif days, excluding coverage for @if($deductible['pre_exit']==0) existing @endif @if($deductible['pre_exit']==1) pre-existing @endif medical conditions <a href="{{url('super-visa')}}"><span><i class="fa fa-pencil"></i></span></a></p>
           <div class="form-field-row">
             <div class="coverage"> <span>Deductible</span>
               <select class="form-control deductible_amt">

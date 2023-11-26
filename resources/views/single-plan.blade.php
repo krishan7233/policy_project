@@ -2,21 +2,24 @@
 @section('content')
 <!-- Form section start here -->
 <?php  
-if(Session::get('request_data')){
-  $request_data =  Session::get('request_data');
+if(Session::get('super_visa_request_data')){
+  $request_data =  Session::get('super_visa_request_data');
  
 }
-if(Session::get('deductible')){
-  $deductible = Session::get('deductible');
+if(Session::get('super_visa_deductible')){
+  $deductible = Session::get('super_visa_deductible');
   
 }
-if($request_data['visa_type']=="superVisaSingle"){
+if(Session::get('visa_type')){
+      $visa_type = Session::get('visa_type');
+}    
+if($visa_type['visa_type']=="superVisaSingle"){
       $url ="single-detect-quotation";
 }
-if($request_data['visa_type']=="visitorSingle"){
+if($visa_type['visa_type']=="visitorSingle"){
       $url ="visitor-single-deductable-quotation";
 }
-if($request_data['visa_type']=="visitorFamily"){
+if($visa_type['visa_type']=="visitorFamily"){
       $url ="visitor-family-deductable-quotation";
 }
 ?>

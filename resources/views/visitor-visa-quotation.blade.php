@@ -2,9 +2,7 @@
 @section('content')
 <!-- Form section start here -->
 <div class="section-larger">
-@php
-$deductible = Session::get('deductible');
-@endphp
+
 <div class="container">
 @include('layout.email_and_whatsapp')
 </div>
@@ -15,8 +13,8 @@ $deductible = Session::get('deductible');
         <div class="quote-left">
 
           @php
-          $requestData = Session::get('request_data');
-          $deductible = Session::get('deductible');
+          $requestData = Session::get('visitor_visa_couple_request_data');
+          $deductible = Session::get('visitor_visa_couple_deductible');
           @endphp
           <?php 
             if($deductible['pre_exit1']==1 && $deductible['pre_exit2']==1){
@@ -180,7 +178,7 @@ $deductible = Session::get('deductible');
               <!-- <h3><span><strong>{{'$'.number_format(($tamt1+$tamt2)/12,2)}}</strong>/month</span></h3> -->
               <h3><span>Deductible <strong>{{$deductible_amt1}}</strong> per claim</span></h3>
             </div>
-            <div class="btn-section"> <a target="_blank" href="{{url('couple-plan',$companies->id1)}}" class="buy-now">BUY NOW</a> 
+            <div class="btn-section"> <a target="_blank" href="{{url('visitor-couple-plan',$companies->id1)}}" class="buy-now">BUY NOW</a> 
             <a href="#" class="plan-details toggle togglePlanDetails" id="toggle" onclick="togglePlanDetails_{{$id1}}({{$id1}})">PLAN DETAILS</a>
               <div class="compaire">
                 <div class="left">
@@ -188,7 +186,7 @@ $deductible = Session::get('deductible');
                   <label class="form-check-label" for="visitor_couple_compare">Compare</label>
                   <button class="btn btn-primary visitor_couple_compare_data" id="visitor_couple_compare_btn_{{$companies->id1}}" style="display:none;">COMPARE</button>
                 </div>
-                <div class="right"> <a target="_blank" href="{{url('couple-plan',$companies->id1)}}">Benefit Summary</a> </div>
+                <div class="right"> <a target="_blank" href="{{url('visitor-couple-plan',$companies->id1)}}">Benefit Summary</a> </div>
               </div>
             </div>
           </div>
@@ -220,7 +218,7 @@ $deductible = Session::get('deductible');
                 </div>
               </div>
               <div class="col-lg-4">
-                <div class="section3"> <a href="tel:6475709070" class="call-btn"><i class="fa fa-mobile"></i> (647) 570-9070</a> <a href="{{url('couple-plan',$companies->id1)}}" class="benifit-sumry" target="_blank">Benefit Summary</a> <a href="{{url('couple-plan',$companies->id1)}}" target="_blank" class="srt-app">Start Application</a> </div>
+                <div class="section3"> <a href="tel:6475709070" class="call-btn"><i class="fa fa-mobile"></i> (647) 570-9070</a> <a href="{{url('visitor-couple-plan',$companies->id1)}}" class="benifit-sumry" target="_blank">Benefit Summary</a> <a href="{{url('visitor-couple-plan',$companies->id1)}}" target="_blank" class="srt-app">Start Application</a> </div>
               </div>
             </div>
           </div>
