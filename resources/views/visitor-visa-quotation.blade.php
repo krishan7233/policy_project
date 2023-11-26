@@ -94,11 +94,6 @@
       <div class="col-lg-8 quotation_data">
       
 
-      <?php
-      echo"<pre>";
-        print_r($company_detail);
-        echo"</pre>";
-      ?>
       @foreach($company_detail as $companies)
         @php
         if(empty($companies->id1) || empty($companies->id2)){
