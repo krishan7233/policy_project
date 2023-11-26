@@ -147,6 +147,12 @@ class AuthController extends Controller
         return view('plan');
     }
     public function findQuotation(Request $req){
+        $visa_request_type = "single_super_visa";
+        $visa_type = [
+            'visa_type'=>$req->visa_type,
+        ];
+        Session::put('visa_type', $visa_type);
+
         $sessionData = [
             'date_of_birth'=>$req->date_of_birth,
             'age'=>$req->age,
@@ -160,18 +166,32 @@ class AuthController extends Controller
             'pre_exit'=>$req->pre_exit,
             'deductible'=>0,
         ];
-        Session::put('request_data', $sessionData);
-        Session::put('deductible', $data);
-        $data['company_detail']=$this->calculationFilter();
-        return view('quotes',$data);
+        Session::put('super_visa_request_data', $sessionData);
+        Session::put('super_visa_deductible', $data);
+        Session::put('visa_type', $visa_type);
+        $data['company_detail']=$this->calculationFilter($visa_request_type);
+        // return view('quotes',$data);
+        return redirect('single-detect-quotation');
     }
     public function singleDetectQuotation(){
-        $data['company_detail']=$this->calculationFilter();
+        $visa_request_type = "single_super_visa";
+        $data['company_detail']=$this->calculationFilter($visa_request_type);
         return view('quotes',$data);
     }
-    public function calculationFilter(){
-        $requestData = Session::get('request_data');
-        $data = Session::get('deductible');
+    public function calculationFilter($visa_request_type){
+        // exit($visa_request_type);
+        if($visa_request_type=="single_visitor_visa"){
+            $requestData = Session::get('visitor_visa_request_data');
+            $data = Session::get('visitor_visa_deductible');
+        }
+        if($visa_request_type=="single_super_visa"){
+            $requestData = Session::get('super_visa_request_data');
+            $data = Session::get('super_visa_deductible');
+        }
+        if($visa_request_type=="family_visitor_visa"){
+            $requestData = Session::get('visitor_visa_family_request_data');
+            $data = Session::get('visitor_visa_family_deductible');
+        }
         $pre_exit =$data['pre_exit']; 
         $coverage_amt =$data['coverage_amt']; 
         $age =$requestData['age']; 
@@ -279,9 +299,10 @@ class AuthController extends Controller
             $uniqueCompanyDetailArray = array_values($CompanyDetail);
             return (object)$uniqueCompanyDetailArray;
     }
-
+    // visitor visa function
+    
 public function deductibleFilter(Request $req){
-    $requestData = Session::get('request_data');
+    $requestData = Session::get('super_visa_request_data');
     $deductible = $req->deductible;
     $coverage = $req->coverage;
     $pre_exit = $req->check_exit;
@@ -290,15 +311,18 @@ public function deductibleFilter(Request $req){
         'coverage_amt'=>$coverage,
         'pre_exit'=>$pre_exit,
     ];
-    Session::put('deductible', $data);
+    Session::put('super_visa_deductible', $data);
     return true;
 }
+
 
 public function visitorVisa(){
     return view('visitor-visa-insurance'); 
 }
 
 public function supervisaPost(Request $request){
+    $visa_request_type = "couple_super_visa";
+    
 
 
     $age1 = $request->super_visa_couple_age1;
@@ -337,16 +361,21 @@ public function supervisaPost(Request $request){
     'pre_exit2'=>$exit2,
     'deductible2'=>0,
     ];
-    Session::put('request_data', $sessionData);
-    Session::put('deductible', $data);
-    $data['company_detail'] = $this->superVisaCoupleMergeData();
+    $visa_type = [
+        'visa_type'=>$visa_type,
+    ];
+    Session::put('super_visa_couple_request_data', $sessionData);
+    Session::put('super_visa_couple_deductible', $data);
+    Session::put('visa_type', $visa_type);
+    $data['company_detail'] = $this->superVisaCoupleMergeData($visa_request_type);
 
-    return view('super-visa-quotation',$data);
+    // return view('super-visa-quotation',$data);
+    return redirect('super-visa-deductable-quotation');
 
 }
-public function superVisaCoupleMergeData(){
-    $company_detail1=$this->superVisaCalculateCouple1();
-    $company_detail2=$this->superVisaCalculateCouple2();
+public function superVisaCoupleMergeData($visa_request_type){
+    $company_detail1=$this->superVisaCalculateCouple1($visa_request_type);
+    $company_detail2=$this->superVisaCalculateCouple2($visa_request_type);
     $arraycount1= count($company_detail1);
     $arraycount2= count($company_detail2);
     $mergedData = [];
@@ -415,10 +444,18 @@ public function superVisaCoupleMergeData(){
     return $mergedData;
 }
 
-public function superVisaCalculateCouple1(){
+public function superVisaCalculateCouple1($visa_request_type){
+    // exit($visa_request_type);
+    if($visa_request_type =="couple_super_visa"){
+        $requestData = Session::get('super_visa_couple_request_data');
+        $data = Session::get('super_visa_couple_deductible');
+    }
+    if($visa_request_type =="couple_visitor_visa"){
+        $requestData = Session::get('visitor_visa_couple_request_data');
+        $data = Session::get('visitor_visa_couple_deductible');
+    }
     
-    $requestData = Session::get('request_data');
-    $data = Session::get('deductible');
+
     $pre_exit =$data['pre_exit1']; 
     $coverage_amt =$data['coverage_amt1']; 
     $age =$requestData['age1']; 
@@ -523,9 +560,15 @@ public function superVisaCalculateCouple1(){
         $uniqueCompanyDetailArray = array_values($CompanyDetail);
         return $uniqueCompanyDetailArray;
 }
-public function superVisaCalculateCouple2(){
-    $requestData = Session::get('request_data');
-    $data = Session::get('deductible');
+public function superVisaCalculateCouple2($visa_request_type){
+    if($visa_request_type =="couple_super_visa"){
+        $requestData = Session::get('super_visa_couple_request_data');
+        $data = Session::get('super_visa_couple_deductible');
+    }
+    if($visa_request_type =="couple_visitor_visa"){
+        $requestData = Session::get('visitor_visa_couple_request_data');
+        $data = Session::get('visitor_visa_couple_deductible');
+    }
     $pre_exit =$data['pre_exit2']; 
     $coverage_amt =$data['coverage_amt2']; 
     $age =$requestData['age2']; 
@@ -644,16 +687,18 @@ public function superVisaDeductibleCouple(Request $request){
         'pre_exit2' => $request->check_exit2,
         'deductible2' => $request->deductible,
     ];
-    Session::put('deductible', $data);
+    Session::put('super_visa_couple_deductible', $data);
     return true;
 }
 public function superVisaDeductibleQuotation(Request $request){
-    $data['company_detail']=$this->superVisaCoupleMergeData(Session::get('deductible'));
+    $visa_request_type = "couple_super_visa";
+
+    $data['company_detail']=$this->superVisaCoupleMergeData($visa_request_type);
     return view('super-visa-quotation', $data);
 }
 public function visitorSingleCoverageGetQuotation(Request $req){
-    // print_r($req->all());
-    // exit;
+    
+    $visa_request_type = "single_visitor_visa";
     $sessionData = [
         'date_of_birth'=>$req->date_of_birth,
         'age'=>$req->age,
@@ -668,10 +713,15 @@ public function visitorSingleCoverageGetQuotation(Request $req){
         'pre_exit'=>$req->pre_exit,
         'deductible'=>0,
     ];
-    Session::put('request_data', $sessionData);
-    Session::put('deductible', $data);
-    $data['company_detail']=$this->calculationFilter();
-    return view('visitor-single-quotation',$data);
+    $visa_type = [
+        'visa_type'=>$req->visa_type,
+    ];
+    Session::put('visa_type', $visa_type);
+    Session::put('visitor_visa_request_data', $sessionData);
+    Session::put('visitor_visa_deductible', $data);
+    $data['company_detail']=$this->calculationFilter($visa_request_type);
+    // return view('visitor-single-quotation',$data);
+    return redirect('visitor-single-deductable-quotation');
 }
 public function visitorSingleCoverageDeductableGetQuotation(Request $req){
     $deductible = $req->deductible;
@@ -682,14 +732,17 @@ public function visitorSingleCoverageDeductableGetQuotation(Request $req){
         'coverage_amt'=>$coverage,
         'pre_exit'=>$pre_exit,
     ];
-    Session::put('deductible', $data);
+    Session::put('visitor_visa_deductible', $data);
     return true;
 }
 public function visitorSingleDeductableQuotation(){
-    $data['company_detail']=$this->calculationFilter();
+    $visa_request_type = "single_visitor_visa";
+    $data['company_detail']=$this->calculationFilter($visa_request_type);
     return view('visitor-single-quotation',$data);
 }
 public function visitorCoupleCoverageGetQuotation(Request $request){
+    $visa_request_type = "couple_visitor_visa";
+
     $age1 = $request->visitor_visa_couple_age1;
     $birth1 = $request->visitor_visa_couple_birth1;
     $start_date1 = $request->visitor_visa_couple_start_date1;
@@ -726,13 +779,20 @@ public function visitorCoupleCoverageGetQuotation(Request $request){
     'pre_exit2'=>$exit2,
     'deductible2'=>0,
     ];
-    Session::put('request_data', $sessionData);
-    Session::put('deductible', $data);
-    $data['company_detail'] = $this->superVisaCoupleMergeData();
+    $visa_type = [
+        'visa_type'=>$request->visa_type,
+    ];
+    Session::put('visa_type', $visa_type);
+
+    Session::put('visitor_visa_couple_request_data', $sessionData);
+    Session::put('visitor_visa_couple_deductible', $data);
+    $data['company_detail'] = $this->superVisaCoupleMergeData($visa_request_type);
     return view('visitor-visa-quotation',$data);
 
 }
+
 public function visitorVisaDeductibleCouple(Request $request){
+
     $data = [
         'coverage_amt1' => $request->coverage1,
         'pre_exit1' => $request->check_exit1,
@@ -741,16 +801,18 @@ public function visitorVisaDeductibleCouple(Request $request){
         'pre_exit2' => $request->check_exit2,
         'deductible2' => $request->deductible,
     ];
-    Session::put('deductible', $data);
+    Session::put('visitor_visa_couple_deductible', $data);
     return true;
 }
 public function visitorVisaDeductibleQuotation(){
-    $data['company_detail']=$this->superVisaCoupleMergeData(Session::get('deductible'));
+    $visa_request_type ="couple_visitor_visa";
+    $data['company_detail']=$this->superVisaCoupleMergeData($visa_request_type);
     return view('visitor-visa-quotation', $data);
 
 }
 public function visitorFamilyCoverageGetQuotation(Request $request){
-
+    
+    $visa_request_type = "family_visitor_visa";
     if($request->visitor_family_policy_year1>=$request->visitor_family_policy_year2){
         $age = $request->visitor_family_policy_year1;
         $date_of_birth = $request->visitor_family_policy_date1;
@@ -778,14 +840,20 @@ public function visitorFamilyCoverageGetQuotation(Request $request){
         'pre_exit'=>$request->visitor_family_exit,
         'deductible'=>0,
     ];
-    Session::put('request_data', $sessionData);
-    Session::put('deductible', $data);
-    $data['company_detail']=$this->calculationFilter();
+
+    
+    $visa_type = [
+        'visa_type'=>$request->visa_type,
+    ];
+    Session::put('visa_type', $visa_type);
+    Session::put('visitor_visa_family_request_data', $sessionData);
+    Session::put('visitor_visa_family_deductible', $data);
+    $data['company_detail']=$this->calculationFilter($visa_request_type);
     return view('visitor-family-quotation',$data);
 
 }
 public function visitorFamilyDeductible(Request $req){
-    $requestData = Session::get('request_data');
+    $requestData = Session::get('visitor_visa_family_request_data');
     $deductible = $req->deductible;
     $coverage = $req->coverage;
     $pre_exit = $req->check_exit;
@@ -794,11 +862,12 @@ public function visitorFamilyDeductible(Request $req){
         'coverage_amt'=>$coverage,
         'pre_exit'=>$pre_exit,
     ];
-    Session::put('deductible', $data);
+    Session::put('visitor_visa_family_deductible', $data);
     return true;
 }
 public function visitorFamilyDeductibleQuotation(){
-    $data['company_detail']=$this->calculationFilter();
+    $visa_request_type =="family_visitor_visa";
+    $data['company_detail']=$this->calculationFilter($visa_request_type);
     return view('visitor-family-quotation',$data);
 }
 public function addDollarSign($amount) {
@@ -816,7 +885,6 @@ public function removeDollarSign($amount)
     return $numericValue;
 }  
 public function comparePost(Request $req){
-
     $compare = [
         'compare_data'=>$req->compare_data
     ];
@@ -824,10 +892,12 @@ public function comparePost(Request $req){
 }  
 
 public function compareQuote(){
+    $visa_request_type="single_super_visa";
+
     $compareData = Session::get('compare');
     $compareArray = explode(',',$compareData['compare_data']);
     $data['array_check'] = $compareArray;
-    $objectsArray=$this->calculationFilter();
+    $objectsArray=$this->calculationFilter($visa_request_type);
     $outputArray = [];
     foreach ($compareArray as $idToFind) {
         foreach ($objectsArray as $object) {
@@ -852,7 +922,10 @@ public function superVisaCoupleCompare(){
     $compareData = Session::get('compare');
     $compareArray = explode(',',$compareData['compare_data']);
     $data['array_check'] = $compareArray;
-    $objectsArray=$this->superVisaCoupleMergeData(Session::get('deductible'));
+    $visa_request_type ="couple_super_visa";
+
+
+    $objectsArray=$this->superVisaCoupleMergeData($visa_request_type);
     // $objectsArray=$this->calculationFilter();
     $outputArray = [];
     foreach ($compareArray as $idToFind) {
@@ -877,10 +950,12 @@ public function visitorSingleComparePost(Request $req){
     
 }
 public function visitorSingleCompare(){
+    $visa_request_type ="single_visitor_visa";
+
     $compareData = Session::get('compare');
     $compareArray = explode(',',$compareData['compare_data']);
     $data['array_check'] = $compareArray;
-    $objectsArray=$this->calculationFilter();
+    $objectsArray=$this->calculationFilter($visa_request_type);
     $outputArray = [];
     foreach ($compareArray as $idToFind) {
         foreach ($objectsArray as $object) {
@@ -901,10 +976,12 @@ public function visitorCoupleComparePost(Request $req){
     Session::put('compare', $compare);
 }
 public function visitorCoupleCompare(){
+    $visa_request_type ="couple_visitor_visa";
+
     $compareData = Session::get('compare');
     $compareArray = explode(',',$compareData['compare_data']);
     $data['array_check'] = $compareArray;
-    $objectsArray=$this->superVisaCoupleMergeData(Session::get('deductible'));
+    $objectsArray=$this->superVisaCoupleMergeData($visa_request_type);
     $outputArray = [];
     foreach ($compareArray as $idToFind) {
         foreach ($objectsArray as $object) {
@@ -927,10 +1004,12 @@ public function visitorFamilyComparePost(Request $req){
     Session::put('compare', $compare); 
 }
 public function visitorFamilyCompare(){
+    $visa_request_type ="family_visitor_visa";
+
     $compareData = Session::get('compare');
     $compareArray = explode(',',$compareData['compare_data']);
     $data['array_check'] = $compareArray;
-    $objectsArray=$this->calculationFilter();
+    $objectsArray=$this->calculationFilter($visa_request_type);
     $outputArray = [];
     foreach ($compareArray as $idToFind) {
         foreach ($objectsArray as $object) {
@@ -957,8 +1036,10 @@ public function coupleOrder($id){
 
 }
 
-public function coupleOrderCompanyData($id){
-    $objectsArray = $this->superVisaCoupleMergeData(Session::get('deductible'));
+public function coupleOrderCompanyData($visa_request_type,$id){
+
+// exit($visa_request_type);
+    $objectsArray = $this->superVisaCoupleMergeData($visa_request_type);
     $outputArray = [];
         foreach ($objectsArray as $object) {
             if(!empty($object->id1) && !empty($object->id2)){
@@ -1006,8 +1087,10 @@ public function orderPost(Request $req){
 
 
 }
-public function buyersIdDetail($id){
-        $objectsArray = $this->calculationFilter();
+public function buyersIdDetail($visa_request_type,$id){
+
+
+        $objectsArray = $this->calculationFilter($visa_request_type);
     
     $outputArray = [];
     foreach ($objectsArray as $object) {
@@ -1050,15 +1133,44 @@ public function visitorOrderCouplePost(Request $req){
     return redirect('thank-you');    
 }
 public function singlePlan($id){
+    $visa_request_type ="single_super_visa";
+
+
     $data['buy_id'] = $id;
     
-    $data['company']=$this->buyersIdDetail($id);
+    $data['company']=$this->buyersIdDetail($visa_request_type,$id);
     if(empty($data['company'])){
         return redirect('/');
     }
     return view('single-plan',$data);
  
 }
+public function visitorFamilyPlan($id){
+    $visa_request_type ="family_visitor_visa";
+
+
+    $data['buy_id'] = $id;
+    
+    $data['company']=$this->buyersIdDetail($visa_request_type,$id);
+    if(empty($data['company'])){
+        return redirect('/');
+    }
+    return view('single-plan',$data);
+ 
+}
+public function visitorSinglePlan($id){
+    $visa_request_type ="single_visitor_visa";
+
+    $data['buy_id'] = $id;
+    
+    $data['company']=$this->buyersIdDetail($visa_request_type,$id);
+    if(empty($data['company'])){
+        return redirect('/');
+    }
+    return view('single-plan',$data);
+ 
+}
+
 public function singlePlanPost(Request $req){
     $company_data = json_encode($this->buyersIdDetail($req->buy_id));
     $last_id = $this->userData($req,$company_data);
@@ -1084,8 +1196,21 @@ public function userData($userData,$company_data){
     
 }
 public function couplePlan($id){
+    $visa_request_type="couple_super_visa";
+
     $data['buy_id'] = $id;
-    $data['company'] = $this->coupleOrderCompanyData($id);
+    $data['company'] = $this->coupleOrderCompanyData($visa_request_type,$id);
+    if(empty($data['company'])){
+        return redirect('/');
+    }
+    return view('couple-plan',$data);
+
+}
+public function visitorCouplePlan($id){
+    $visa_request_type ="couple_visitor_visa";
+
+    $data['buy_id'] = $id;
+    $data['company'] = $this->coupleOrderCompanyData($visa_request_type,$id);
     if(empty($data['company'])){
         return redirect('/');
     }
@@ -1093,7 +1218,9 @@ public function couplePlan($id){
 
 }
 public function couplePlanPost(Request $req){
-    $company_data = json_encode($this->coupleOrderCompanyData($req->buy_id));
+    $visa_request_type="couple_super_visa";
+
+    $company_data = json_encode($this->coupleOrderCompanyData($visa_request_type,$req->buy_id));
     $last_id = $this->userData($req,$company_data);
     return redirect('couple-order/'.$last_id);
 }
@@ -1103,7 +1230,7 @@ public function emailAndWhatsappPost(Request $req){
     $req->validate([
         'email' => 'required'
     ]);
-    $recipient = 'ak8735272@gmail.com';
+    $recipient = $req->email;
     Mail::to($recipient)->send(new SendEmailQuote());
     $Quote_Detail->name = $req->name;
     $Quote_Detail->email = $req->email;

@@ -3,18 +3,13 @@
 <!-- Form section start here -->
 
 <?php  
-if(Session::get('request_data')){
-  $request_data =  Session::get('request_data');
- 
-}
-if(Session::get('deductible')){
-  $deductible = Session::get('deductible');
-  
-}
-if($request_data['visa_type']=="superVisaCouple"){
+if(Session::get('visa_type')){
+      $visa_type = Session::get('visa_type');
+    }
+if($visa_type['visa_type']=="superVisaCouple"){
       $url ="super-visa-deductable-quotation";
 }
-if($request_data['visa_type']=="visitorCouple"){
+if($visa_type['visa_type']=="visitorCouple"){
       $url ="visitor-visa-deductable-quotation";
 }
 ?>

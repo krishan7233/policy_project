@@ -135,7 +135,7 @@
                   <h4>{{'$'.number_format($compare->total_charge - $compare->detect_amt, 2)}}</h4>
                 </div>
                 <div class="col-sm-12 border_div6"  style="padding:9px;margin-top:1px">
-                  <a href="{{url('single-plan',$compare->id)}}" class="buy-now" target="_blank">BUY NOW</a>
+                  <a href="{{url('visitor-single-plan',$compare->id)}}" class="buy-now" target="_blank">BUY NOW</a>
                 </div>
                 <div class="col-sm-12 border_div7 text_position">
                 {{$compare_data['covid_19']}}

@@ -101,5 +101,8 @@ Route::get('single-plan/{id}', [AuthController::class, 'singlePlan'])->name('sin
 Route::post('single-plan-post', [AuthController::class, 'singlePlanPost'])->name('single-plan-post');
 Route::post('couple-plan-post', [AuthController::class, 'couplePlanPost'])->name('couple-plan-post');
 Route::post('email-and-whatsapp-post', [AuthController::class, 'emailAndWhatsappPost'])->name('email-and-whatsapp-post');
-
+// visitor
+Route::get('visitor-single-plan/{id}', [AuthController::class, 'visitorSinglePlan'])->name('visitor-single-plan');
+Route::get('visitor-couple-plan/{id}', [AuthController::class, 'visitorCouplePlan'])->name('visitor-couple-plan');
+Route::get('visitor-family-plan/{id}', [AuthController::class, 'visitorFamilyPlan'])->name('visitor-family-plan');
 

@@ -3,7 +3,7 @@
 <!-- Form section start here -->
 <div class="section-larger">
 @php
-$deductible = Session::get('deductible');
+$deductible = Session::get('super_visa_couple_deductible');
 @endphp
 
 <?php 
@@ -30,7 +30,7 @@ elseif($deductible['pre_exit1']==0 && $deductible['pre_exit2']==1){
       
           @php
           $age1 = $age2 =  $no_of_days1 =0; 
-          $requestData = Session::get('request_data');
+          $requestData = Session::get('super_visa_couple_request_data');
           $age1 = $requestData['age1'];
           $age2 = $requestData['age2'];
           $no_of_days1 = $requestData['no_of_days1'];

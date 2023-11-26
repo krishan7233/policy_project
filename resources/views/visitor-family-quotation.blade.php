@@ -4,8 +4,8 @@
 <!-- Form section start here -->
 <div class="section-larger">
 @php
-$requestData = Session::get('request_data');
-$deductible = Session::get('deductible');
+$requestData = Session::get('visitor_visa_family_request_data');
+$deductible = Session::get('visitor_visa_family_deductible');
 @endphp
 <?php  
 if($deductible['pre_exit']==1){
@@ -89,7 +89,7 @@ if($deductible['pre_exit']==1){
               <!-- <h3><span><strong>{{'$'.$companies->per_month}}</strong>/month</span></h3> -->
               <h3><span>Deductible <strong>{{$companies->deductible_amt}}</strong> per claim</span></h3>
             </div>
-            <div class="btn-section"> <a target="_blank" href="{{url('single-plan',$companies->id)}}" class="buy-now">BUY NOW</a> 
+            <div class="btn-section"> <a target="_blank" href="{{url('visitor-family-plan',$companies->id)}}" class="buy-now">BUY NOW</a> 
             <a href="#" class="plan-details toggle togglePlanDetails" id="toggle" onclick="togglePlanDetails_{{$companies->id}}({{$companies->id}})">PLAN DETAILS</a>
             <button class="btn btn-primary visitor_family_compareData" id="visitor_family_compare_btn_{{$companies->id}}" style="display:none;">COMPARE</button>
             
@@ -98,7 +98,7 @@ if($deductible['pre_exit']==1){
                 <input type="checkbox" class="form-check-input visitor_family_compare" id="visitor_family_compare" value="{{$companies->id}}">
                   <label class="form-check-label" for="visitor_family_compare">Compare</label>
                 </div>
-                <div class="right"> <a target="_blank" href="{{url('single-plan',$companies->id)}}">Benefit Summary</a> </div>
+                <div class="right"> <a target="_blank" href="{{url('visitor-family-plan',$companies->id)}}">Benefit Summary</a> </div>
               </div>
             </div>
           </div>
@@ -128,7 +128,7 @@ if($deductible['pre_exit']==1){
                 </div>
               </div>
               <div class="col-lg-4">
-                <div class="section3"> <a href="tel:6475709070" class="call-btn"><i class="fa fa-mobile"></i> (647) 570-9070</a> <a  href="{{url('single-plan',$companies->id)}}" class="benifit-sumry" target="_blank">Benefit Summary</a> <a href="{{url('single-plan',$companies->id)}}" target="_blank" class="srt-app">Start Application</a> </div>
+                <div class="section3"> <a href="tel:6475709070" class="call-btn"><i class="fa fa-mobile"></i> (647) 570-9070</a> <a  href="{{url('visitor-family-plan',$companies->id)}}" class="benifit-sumry" target="_blank">Benefit Summary</a> <a href="{{url('visitor-family-plan',$companies->id)}}" target="_blank" class="srt-app">Start Application</a> </div>
               </div>
             </div>
           </div>
