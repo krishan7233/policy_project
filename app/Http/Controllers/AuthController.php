@@ -202,6 +202,7 @@ class AuthController extends Controller
         }else{
         $exit_or_not="YES";
         }
+
             $CompanyDetail =[];
             $price= $this->addDollarSign($coverage_amt);
             $data['companies'] = DB::table('tbl_companies')
@@ -237,6 +238,8 @@ class AuthController extends Controller
             'tbl_deductible.sur_charge',
             )
             ->get();
+            
+
             $CompanyDetail = []; // Initialize an empty array to store unique entries
 
             foreach ($data['companies'] as $company) {
