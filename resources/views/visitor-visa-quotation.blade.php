@@ -15,8 +15,6 @@
           @php
           $requestData = Session::get('visitor_visa_couple_request_data');
           $deductible = Session::get('visitor_visa_couple_deductible');
-
-
           @endphp
           <?php 
             if($deductible['pre_exit1']==1 && $deductible['pre_exit2']==1){
@@ -49,26 +47,34 @@
           <div class="form-field-row">
             <div class="coverage"> <span>Coverage List 1</span>
               <select class="form-control  visitor-couple-coverage-amt1" name="coverage_amt1">
-                <option value="100000" {{$deductible['coverage_amt1']==100000 ? 'selected' : ''}}>100,000</option>
-                <option value="150000" {{$deductible['coverage_amt1']==150000 ? 'selected' : ''}}>150,000</option>
-                <option value="200000" {{$deductible['coverage_amt1']==200000 ? 'selected' : ''}}>200,000</option>
-                <option value="250000" {{$deductible['coverage_amt1']==250000 ? 'selected' : ''}}>250,000</option>
-                <option value="300000" {{$deductible['coverage_amt1']==300000 ? 'selected' : ''}}>300,000</option>
-                <option value="500000" {{$deductible['coverage_amt1']==500000 ? 'selected' : ''}}>500,000</option>
-                <option value="1000000" {{$deductible['coverage_amt1']==1000000 ? 'selected' : ''}}>1,000,000</option>
+              <option value="10000" {{ $deductible['coverage_amt1'] == 10000 ? 'selected' : '' }}>10,000</option>
+              <option value="15000" {{ $deductible['coverage_amt1'] == 15000 ? 'selected' : '' }}>15,000</option>
+                <option value="25000" {{ $deductible['coverage_amt1'] == 25000 ? 'selected' : '' }}>25,000</option>
+                <option value="50000" {{ $deductible['coverage_amt1'] == 50000 ? "selected" : (empty($deductible['coverage_amt1']) ? "selected" :"") }}>50,000</option>
+                <option value="100000" {{ $deductible['coverage_amt1'] == 100000 ? 'selected' : '' }}>100,000</option>
+                <option value="150000" {{ $deductible['coverage_amt1'] == 150000 ? 'selected' : '' }}>150,000</option>
+                <option value="200000" {{ $deductible['coverage_amt1'] == 200000 ? 'selected' : '' }}>200,000</option>
+                <option value="250000" {{ $deductible['coverage_amt1'] == 250000 ? 'selected' : '' }}>250,000</option>
+                <option value="300000" {{ $deductible['coverage_amt1'] == 300000 ? 'selected' : '' }}>300,000</option>
+                <option value="500000" {{ $deductible['coverage_amt1'] == 500000 ? 'selected' : '' }}>500,000</option>
+                <option value="1000000" {{ $deductible['coverage_amt1'] == 1000000 ? 'selected' : '' }}>1,000,000</option>
               </select>
             </div>
           </div>
           <div class="form-field-row">
             <div class="coverage"> <span>Coverage List 2</span>
               <select class="form-control  visitor-couple-coverage-amt2" name="coverage_amt2">
-                <option value="100000" {{$deductible['coverage_amt2']==100000 ? 'selected' : ''}}>100,000</option>
-                <option value="150000" {{$deductible['coverage_amt2']==150000 ? 'selected' : ''}}>150,000</option>
-                <option value="200000" {{$deductible['coverage_amt2']==200000 ? 'selected' : ''}}>200,000</option>
-                <option value="250000" {{$deductible['coverage_amt2']==250000 ? 'selected' : ''}}>250,000</option>
-                <option value="300000" {{$deductible['coverage_amt2']==300000 ? 'selected' : ''}}>300,000</option>
-                <option value="500000" {{$deductible['coverage_amt2']==500000 ? 'selected' : ''}}>500,000</option>
-                <option value="1000000" {{$deductible['coverage_amt2']==1000000 ? 'selected' : ''}}>1,000,000</option>
+              <option value="10000" {{ $deductible['coverage_amt2'] == 10000 ? 'selected' : '' }}>10,000</option>
+              <option value="15000" {{ $deductible['coverage_amt2'] == 15000 ? 'selected' : '' }}>15,000</option>
+                <option value="25000" {{ $deductible['coverage_amt2'] == 25000 ? 'selected' : '' }}>25,000</option>
+                <option value="50000" {{ $deductible['coverage_amt2'] == 50000 ? "selected" : (empty($deductible['coverage_amt2']) ? "selected" :"") }}>50,000</option>
+                <option value="100000" {{ $deductible['coverage_amt2'] == 100000 ? 'selected' : '' }}>100,000</option>
+                <option value="150000" {{ $deductible['coverage_amt2'] == 150000 ? 'selected' : '' }}>150,000</option>
+                <option value="200000" {{ $deductible['coverage_amt2'] == 200000 ? 'selected' : '' }}>200,000</option>
+                <option value="250000" {{ $deductible['coverage_amt2'] == 250000 ? 'selected' : '' }}>250,000</option>
+                <option value="300000" {{ $deductible['coverage_amt2'] == 300000 ? 'selected' : '' }}>300,000</option>
+                <option value="500000" {{ $deductible['coverage_amt2'] == 500000 ? 'selected' : '' }}>500,000</option>
+                <option value="1000000" {{ $deductible['coverage_amt2'] == 1000000 ? 'selected' : '' }}>1,000,000</option>
               </select>
             </div>
           </div>
@@ -93,7 +99,6 @@
       </div>
       <div class="col-lg-8 quotation_data">
       
-
       @foreach($company_detail as $companies)
         @php
         if(empty($companies->id1) || empty($companies->id2)){

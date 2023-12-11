@@ -42,6 +42,10 @@ if($deductible['pre_exit']==1){
           <div class="form-field-row">
             <div class="coverage"> <span>Coverage</span>
               <select class="form-control  visitor_coverage_amt">
+              <option value="10000" {{ $deductible['coverage_amt'] == 10000 ? 'selected' : '' }}>10,000</option>
+                <option value="15000" {{ $deductible['coverage_amt'] == 15000 ? 'selected' : '' }}>15,000</option>
+                <option value="25000" {{ $deductible['coverage_amt'] == 25000 ? 'selected' : '' }}>25,000</option>
+                <option value="50000" {{ $deductible['coverage_amt'] == 50000 ? "selected" : (empty($deductible['coverage_amt']) ? "selected" :"") }}>50,000</option>
                 <option value="100000" {{ $deductible['coverage_amt'] == 100000 ? 'selected' : '' }}>100,000</option>
                 <option value="150000" {{ $deductible['coverage_amt'] == 150000 ? 'selected' : '' }}>150,000</option>
                 <option value="200000" {{ $deductible['coverage_amt'] == 200000 ? 'selected' : '' }}>200,000</option>
@@ -64,6 +68,7 @@ if($deductible['pre_exit']==1){
         </div>
       </div>
       <div class="col-lg-8 quotation_data">
+
       @foreach($company_detail as $companies)
         @php
         if($companies->plan_type==1){
@@ -85,7 +90,7 @@ if($deductible['pre_exit']==1){
           <div class="quote-box">
             <div class="logo-section"> <img src="{{$photo}}" /> </div>
             <div class="price-section">
-              <h3>{{'$'.number_format($companies->total_charge - $companies->detect_amt, 2)}}</h3>
+              <h3>{{'$' . number_format(($companies->total_charge - $companies->detect_amt) * removeDollarSign($companies->rate), 2)}} </h3>
               <!-- <h3><span><strong>{{'$'.$companies->per_month}}</strong>/month</span></h3> -->
               <h3><span>Deductible <strong>{{$companies->deductible_amt}}</strong> per claim</span></h3>
             </div>

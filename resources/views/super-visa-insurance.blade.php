@@ -80,7 +80,7 @@ else {
             <input type="hidden" name="visa_type" value="superVisaSingle">
             <div class="field-dob">
                 <span>Date of Birth</span>
-                <input type="date" id="singledob" class="form-control singledob" value="<?php if(isset($request_data1['date_of_birth'])){ echo $request_data1['date_of_birth'];}  ?>" name="date_of_birth" placeholder="Date of Birth" data-date="" data-date-format="DD MMMM YYYY" max="{{$currentDate->format('Y-m-d')}}">
+                <input type="date" id="singledob" placeholder="DD/MM/YYYY" class="form-control singledob" value="<?php if(isset($request_data1['date_of_birth'])){ echo $request_data1['date_of_birth'];}  ?>" name="date_of_birth" placeholder="Date of Birth" data-date="" data-date-format="DD MMMM YYYY" max="{{$currentDate->format('Y-m-d')}}">
                 <label>DD-MM-YYYY format</label>
             </div>
                 <div class="field-or">or</div>
@@ -304,7 +304,7 @@ else {
             </div>
             <a class="otheramt-toggle" href="javascript: void(0)">+ Enter different coverage amount per applicant</a>
             
-            
+            <input type="text" name="amt_type" class="amt_type" value="yes">
                
             <p>Would you like to cover pre-existing medical conditions?</p>
             

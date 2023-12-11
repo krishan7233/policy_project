@@ -155,16 +155,19 @@ function couplePolicyValidateAge2() {
 
 
 <script>
-// 	$('.otheramt-toggle').click(function() {
-//   $('.otheramt').slideToggle();
-//   if ($('.otheramt-toggle').text() == "+ Enter different coverage amount per applicant")
+	$('.otheramt-toggle').click(function() {
   
-//    {
-//     $(this).text("− Make coverage amount same for all applicants")
-//   } else {
-//     $(this).text("+ Enter different coverage amount per applicant")
-//   }
-// });
+  $('.otheramt').slideToggle();
+  if ($('.otheramt-toggle').text() == "+ Enter different coverage amount per applicant")
+  
+   {
+    // $('.amt_type').val(1);
+    $(this).text("− Make coverage amount same for all applicants")
+  } else {
+    // $('.amt_type').val(0);
+    $(this).text("+ Enter different coverage amount per applicant")
+  }
+});
 
 // single coverage
 function singleCoverageUpdateEndDate() {

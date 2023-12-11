@@ -7,6 +7,7 @@
 @include('layout.email_and_whatsapp')
 </div>
 
+
   <div class="container mt-60">
     <div class="row">
       <div class="col-lg-4">
@@ -78,9 +79,14 @@
             <div class="price-section">
               <h3>{{'$'.number_format($companies->total_charge - $companies->detect_amt, 2)}}</h3>
               <!-- <h3><span><strong>{{'$'.$companies->per_month}}</strong>/month</span></h3> -->
-              <h3><span><strong>{{'$'.number_format(($companies->total_charge - $companies->detect_amt) / 12, 2)}}</strong>/month</span></h3>
+              <?php  if($companies->per_month_exit!=1){
+                ?>
+                <h3><span><strong>{{'$'.number_format(($companies->total_charge - $companies->detect_amt) / 12, 2)}}</strong>/month</span></h3>
+                <?php
+              }?>
               
-              <h3><span>Deductible <strong>{{$companies->deductible_amt}}</strong> per claim</span></h3>
+              
+              <h3><span>Deductiblesss{{$companies->sur_charge}} <strong>{{$companies->deductible_amt}}</strong> per claim</span></h3>
             </div>
             <div class="btn-section"> <a target="_blank" href="{{url('single-plan',$companies->id)}}" class="buy-now">BUY NOW</a> 
             <a href="#" class="plan-details toggle togglePlanDetails" id="toggle" onclick="togglePlanDetails_{{$companies->id}}({{$companies->id}})">PLAN DETAILS</a>

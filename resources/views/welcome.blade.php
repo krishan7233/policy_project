@@ -133,3 +133,14 @@
 
 
 
+<option value="10000" <?php if(isset($deductible2['coverage_amt2']) && $deductible2['coverage_amt2']=="10000"){ echo"selected";}  ?>>10,000 </option>
+                        <option value="15000" <?php if(isset($deductible2['coverage_amt2']) && $deductible2['coverage_amt2']=="15000"){ echo"selected";}  ?>>15,000</option>
+                        <option value="25000" <?php if(isset($deductible2['coverage_amt2']) && $deductible2['coverage_amt2']=="25000"){ echo"selected";}  ?>>25,000</option>
+                        <option value="50000" <?php if(isset($deductible2['coverage_amt2']) && $deductible2['coverage_amt2']=="50000"){ echo"selected";} else{ echo"selected";}  ?>>50,000</option>
+                        <option value="100000" <?php if(isset($deductible2['coverage_amt2']) && $deductible2['coverage_amt2']=="100000"){ echo"selected";}  ?>>100,000</option>
+                        <option value="150000" <?php if(isset($deductible2['coverage_amt2']) && $deductible2['coverage_amt2']=="150000"){ echo"selected";}  ?>>150,000</option>
+                        <option value="200000" <?php if(isset($deductible2['coverage_amt2']) && $deductible2['coverage_amt2']=="200000"){ echo"selected";}  ?>>200,000</option>
+                        <option value="250000" <?php if(isset($deductible2['coverage_amt2']) && $deductible2['coverage_amt2']=="250000"){ echo"selected";}  ?>>250,000</option>
+                        <option value="300000" <?php if(isset($deductible2['coverage_amt2']) && $deductible2['coverage_amt2']=="300000"){ echo"selected";}  ?>>300,000</option
+                        ><option value="500000" <?php if(isset($deductible2['coverage_amt2']) && $deductible2['coverage_amt2']=="500000"){ echo"selected";}  ?>>500,000</option>
+                        <option value="1000000" <?php if(isset($deductible2['coverage_amt2']) && $deductible2['coverage_amt2']=="1000000"){ echo"selected";}  ?>>1,000,000</option>
