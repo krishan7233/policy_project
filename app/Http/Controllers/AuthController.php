@@ -202,6 +202,7 @@ class AuthController extends Controller
         }else{
         $exit_or_not="YES";
         }
+
             $CompanyDetail =[];
             $price= $this->addDollarSign($coverage_amt);
             $data['companies'] = DB::table('tbl_companies')
@@ -237,6 +238,8 @@ class AuthController extends Controller
             'tbl_deductible.sur_charge',
             )
             ->get();
+            
+
             $CompanyDetail = []; // Initialize an empty array to store unique entries
 
             foreach ($data['companies'] as $company) {
@@ -249,7 +252,12 @@ class AuthController extends Controller
             
                 foreach ($data['rates'] as $rates) {
                     if ($rates->rate != "$0") {
-                        $tamt = $this->removeDollarSign($rates->rate) * $no_of_days;
+                        if($visa_request_type=="family_visitor_visa"){
+                            $tamt = $this->removeDollarSign($rates->rate)* 2 * $no_of_days;
+                        }else{
+                            $tamt = $this->removeDollarSign($rates->rate) * $no_of_days;
+                        }
+                        
             
                         if ($company->sur_charge == "B" || $company->sur_charge == "NA") {
                             $sur_charge = 0;
@@ -340,6 +348,8 @@ public function supervisaPost(Request $request){
     $coverage_amt2 = $request->super_visa_couple_coverage2;
     $exit2 = $request->super_visa_couple_exit2;
     $visa_type = $request->visa_type;
+    $amt_type = $request->amt_type;
+    $coverage_amt2=($amt_type==1)?$coverage_amt2:$coverage_amt1;
     $sessionData = [
         'date_of_birth1'=>$birth1,
         'age1'=>$age1,
@@ -361,6 +371,8 @@ public function supervisaPost(Request $request){
     'pre_exit2'=>$exit2,
     'deductible2'=>0,
     ];
+
+
     $visa_type = [
         'visa_type'=>$visa_type,
     ];
@@ -757,6 +769,8 @@ public function visitorCoupleCoverageGetQuotation(Request $request){
     $days2 = $request->visitor_visa_couple_days2;
     $coverage_amt2 = $request->visitor_visa_couple_coverage2;
     $exit2 = $request->visitor_visa_couple_exit2;
+    $amt_type = $request->amt_type;
+    $coverage_amt2=($amt_type==1)?$coverage_amt2:$coverage_amt1;
     $sessionData = [
         'date_of_birth1'=>$birth1,
         'age1'=>$age1,
@@ -779,6 +793,7 @@ public function visitorCoupleCoverageGetQuotation(Request $request){
     'pre_exit2'=>$exit2,
     'deductible2'=>0,
     ];
+    // die(print_r($data));
     $visa_type = [
         'visa_type'=>$request->visa_type,
     ];
@@ -866,7 +881,7 @@ public function visitorFamilyDeductible(Request $req){
     return true;
 }
 public function visitorFamilyDeductibleQuotation(){
-    $visa_request_type =="family_visitor_visa";
+    $visa_request_type ="family_visitor_visa";
     $data['company_detail']=$this->calculationFilter($visa_request_type);
     return view('visitor-family-quotation',$data);
 }

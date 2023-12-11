@@ -303,7 +303,8 @@ else {
             </div>
             </div>
             <a class="otheramt-toggle" href="javascript: void(0)">+ Enter different coverage amount per applicant</a>
-            
+            <input type="hidden" name="amt_type" class="amt_type" value="0" >
+          
             
                
             <p>Would you like to cover pre-existing medical conditions?</p>

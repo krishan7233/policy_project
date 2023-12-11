@@ -48,8 +48,11 @@ if($deductible['pre_exit']==1){
           <div class="form-field-row">
             <div class="coverage"> <span>Coverage</span>
               <select class="form-control  visitor-single-coverage-amt">
-                <option value="15000" {{ $deductible['coverage_amt'] == 15000 ? 'selected' : '' }}>15,000</option>
+              <option value="10000" {{ $deductible['coverage_amt'] == 10000 ? 'selected' : '' }}>10,000</option>  
+              <option value="15000" {{ $deductible['coverage_amt'] == 15000 ? 'selected' : '' }}>15,000</option>
+                <option value="20000" {{ $deductible['coverage_amt'] == 20000 ? 'selected' : '' }}>20,000</option>
                 <option value="25000" {{ $deductible['coverage_amt'] == 25000 ? 'selected' : '' }}>25,000</option>
+                <option value="30000" {{ $deductible['coverage_amt'] == 30000 ? 'selected' : '' }}>30,000</option>
                 <option value="50000" {{ $deductible['coverage_amt'] == 50000 ? "selected" : (empty($deductible['coverage_amt']) ? "selected" :"") }}>50,000</option>
                 <option value="100000" {{ $deductible['coverage_amt'] == 100000 ? 'selected' : '' }}>100,000</option>
                 <option value="150000" {{ $deductible['coverage_amt'] == 150000 ? 'selected' : '' }}>150,000</option>
