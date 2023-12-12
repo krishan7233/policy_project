@@ -147,9 +147,11 @@
 
         }
 
+        $companies_id1=$companies->company_id1;
+
         }else{
         $id1=$tamt1=$company_name1=$company_status1=$company_photo1=$aggregate_price1=$start_age1=$end_age1=$aggregate_id1=$age_id1=$pre_exit1=
-        $plan_type1=$no_of_days1=$total_charge1=$per_month1=$total_charge1=$deductible_amt1=$sur_charge1=$detect_amt1=$photo=0;
+        $plan_type1=$no_of_days1=$total_charge1=$per_month1=$total_charge1=$deductible_amt1=$sur_charge1=$detect_amt1=$photo=$companies_id1=0;
         }
         if(!empty($companies->id2)){
         $id2 = $companies->id2;
@@ -191,7 +193,7 @@
               <h3>{{'$'.number_format($tamt2,2)}}</h3>
               <p>Total : <strong>{{$sum_total_amt}}</strong></p>
               <!-- <h3><span><strong>{{'$'.number_format(($tamt1+$tamt2)/12,2)}}</strong>/month</span></h3> -->
-              <h3><span>Deductible <strong>{{$deductible_amt1}}</strong> per claim</span></h3>
+              <h3><span>Deductible <strong>{{$deductible_amt1}}</strong> <?php if($companies_id1==4){ echo"per policy";}else{ echo"per claim";}  ?></span></h3>
             </div>
             <div class="btn-section"> <a target="_blank" href="{{url('visitor-couple-plan',$companies->id1)}}" class="buy-now">BUY NOW</a> 
             <a href="#" class="plan-details toggle togglePlanDetails" id="toggle" onclick="togglePlanDetails_{{$id1}}({{$id1}})">PLAN DETAILS</a>
