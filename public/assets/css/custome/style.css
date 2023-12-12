@@ -69,7 +69,7 @@
 }
 
 .number {
-    background: #b2dfdb;
+    background: pink;
     color: #000;
     position: absolute;
     top: 35%;
@@ -82,7 +82,7 @@
 }
 
 .number2 {
-    background: #fff9c4;
+    background: gray;
     color: #000;
     position: absolute;
     top: 35%;
