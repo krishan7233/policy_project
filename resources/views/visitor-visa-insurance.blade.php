@@ -473,12 +473,7 @@ else {
             	<div class="coverage">
                 	 <span>Coverage</span>
                     <select class="form-control" name="visitor_family_coverage_amt">
-
-                    <option value="10000" <?php if(isset($deductible3['coverage_amt']) && $deductible3['coverage_amt']=="10000"){ echo"selected";}  ?>>10,000 </option>
-                        <option value="15000" <?php if(isset($deductible3['coverage_amt']) && $deductible3['coverage_amt']=="15000"){ echo"selected";}  ?>>15,000</option>
-                        <option value="25000" <?php if(isset($deductible3['coverage_amt']) && $deductible3['coverage_amt']=="25000"){ echo"selected";}  ?>>25,000</option>
-                        <option value="50000" <?php if(isset($deductible3['coverage_amt']) && $deductible3['coverage_amt']=="50000"){ echo"selected";} else{ echo"selected";}  ?>>50,000</option>
-                        <option value="100000" <?php if(isset($deductible3['coverage_amt']) && $deductible3['coverage_amt']=="100000"){ echo"selected";}  ?>>100,000</option>
+                    	<option value="100000" <?php if(isset($deductible3['coverage_amt']) && $deductible3['coverage_amt']=="100000"){ echo"selected";}  ?>>100,000 (min. requirement)</option>
                         <option value="150000" <?php if(isset($deductible3['coverage_amt']) && $deductible3['coverage_amt']=="150000"){ echo"selected";}  ?>>150,000</option>
                         <option value="200000" <?php if(isset($deductible3['coverage_amt']) && $deductible3['coverage_amt']=="200000"){ echo"selected";}  ?>>200,000</option>
                         <option value="250000" <?php if(isset($deductible3['coverage_amt']) && $deductible3['coverage_amt']=="250000"){ echo"selected";}  ?>>250,000</option>
