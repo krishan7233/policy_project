@@ -83,7 +83,7 @@
                 <h3><span><strong>{{'$'.number_format(($companies->total_charge - $companies->detect_amt) / 12, 2)}}</strong>/month</span></h3>
                 <?php
               }?>
-              <h3><span>Deductible <strong>{{$companies->deductible_amt}}</strong> <?php if($companies->company_id==4){ echo"per policy";}else{ echo"per claim";}  ?> </span></h3>
+              <h3><span>Deductible <strong>{{$companies->deductible_amt}}</strong> <?php if($companies->company_id==4){ echo" per policy";}else{ echo" per claim";}  ?> </span></h3>
             </div>
             <div class="btn-section"> <a target="_blank" href="{{url('single-plan',$companies->id)}}" class="buy-now">BUY NOW</a> 
             <a href="#" class="plan-details toggle togglePlanDetails" id="toggle" onclick="togglePlanDetails_{{$companies->id}}({{$companies->id}})">PLAN DETAILS</a>
