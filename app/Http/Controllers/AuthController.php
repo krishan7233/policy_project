@@ -223,7 +223,8 @@ class AuthController extends Controller
             'tbl_companies.created_at', 
             'tbl_companies.updated_at', 
             'tbl_companies.photo', 
-            'tbl_companies.basic', 
+            'tbl_companies.basic',
+            'tbl_companies.per_month_exit',  
             'tbl_companies.standard', 
             'tbl_companies.enhanced', 
             'tbl_companies.compare_basic', 
@@ -257,6 +258,10 @@ class AuthController extends Controller
                         }else{
                             $tamt = $this->removeDollarSign($rates->rate) * $no_of_days;
                         }
+                        if($company->company_id==9){
+                            $no_of_days = $no_of_days-5;
+                        }
+                        $tamt = $this->removeDollarSign($rates->rate) * $no_of_days;
                         
             
                         if ($company->sur_charge == "B" || $company->sur_charge == "NA") {
@@ -281,6 +286,7 @@ class AuthController extends Controller
                                 'compare_standard' => $company->compare_standard,
                                 'compare_enhanced' => $company->compare_enhanced,
                                 'company_name' => $company->company_name,
+                                'per_month_exit' => $company->per_month_exit,
                                 'company_status' => $company->status,
                                 'company_photo' => $company->photo,
                                 'company_created_at' => $company->created_at,
@@ -304,8 +310,12 @@ class AuthController extends Controller
                     }
                 }
             }
+            usort($CompanyDetail, function ($a, $b) {
+                return $a->total_charge - $b->total_charge;
+            });
+            
             $uniqueCompanyDetailArray = array_values($CompanyDetail);
-            return (object)$uniqueCompanyDetailArray;
+            return (object) $uniqueCompanyDetailArray;
     }
     // visitor visa function
     
@@ -330,9 +340,6 @@ public function visitorVisa(){
 
 public function supervisaPost(Request $request){
     $visa_request_type = "couple_super_visa";
-    
-
-
     $age1 = $request->super_visa_couple_age1;
     $birth1 = $request->super_visa_couple_birth1;
     $start_date1 = $request->super_visa_couple_start_date1;
@@ -411,6 +418,7 @@ public function superVisaCoupleMergeData($visa_request_type){
             'compare_standard1' => isset($company_detail1[$i]->compare_standard1)?$company_detail1[$i]->compare_standard1:"",
             'compare_enhanced1' => isset($company_detail1[$i]->compare_enhanced1)?$company_detail1[$i]->compare_enhanced1:"",
             'company_photo1' => isset($company_detail1[$i]->company_photo1)?$company_detail1[$i]->company_photo1:"",
+            'per_month_exit1' => isset($company_detail1[$i]->per_month_exit1)?$company_detail1[$i]->per_month_exit1:"",
             'aggregate_price1' => isset($company_detail1[$i]->aggregate_price1)?$company_detail1[$i]->aggregate_price1:"",
             'start_age1' => isset($company_detail1[$i]->start_age1)?$company_detail1[$i]->start_age1:"",
             'end_age1' => isset($company_detail1[$i]->end_age1)?$company_detail1[$i]->end_age1:"",
@@ -501,7 +509,8 @@ public function superVisaCalculateCouple1($visa_request_type){
         'tbl_companies.updated_at', 
         'tbl_companies.photo',
         'tbl_companies.basic', 
-        'tbl_companies.standard', 
+        'tbl_companies.standard',
+        'tbl_companies.per_month_exit',  
         'tbl_companies.enhanced', 
         'tbl_companies.compare_basic', 
         'tbl_companies.compare_standard', 
@@ -546,6 +555,7 @@ public function superVisaCalculateCouple1($visa_request_type){
                             'standard1' => $company->standard,
                             'enhanced1' => $company->enhanced,
                             'compare_basic1' => $company->compare_basic,
+                            'per_month_exit1' => $company->per_month_exit,
                             'compare_standard1' => $company->compare_standard,
                             'compare_enhanced1' => $company->compare_enhanced,
                             'company_created_at1' => $company->created_at,
@@ -569,6 +579,9 @@ public function superVisaCalculateCouple1($visa_request_type){
                 }
             }
         }
+        usort($CompanyDetail, function ($a, $b) {
+            return $a->total_charge1 - $b->total_charge1;
+        });
         $uniqueCompanyDetailArray = array_values($CompanyDetail);
         return $uniqueCompanyDetailArray;
 }
@@ -613,6 +626,7 @@ public function superVisaCalculateCouple2($visa_request_type){
         'tbl_companies.created_at', 
         'tbl_companies.updated_at', 
         'tbl_companies.photo',
+        'tbl_companies.per_month_exit', 
         'tbl_companies.basic', 
         'tbl_companies.standard', 
         'tbl_companies.enhanced', 
@@ -664,6 +678,7 @@ public function superVisaCalculateCouple2($visa_request_type){
                             'standard2' => $company->standard,
                             'enhanced2' => $company->enhanced,
                             'compare_basic2' => $company->compare_basic,
+                            'per_month_exit2' => $company->per_month_exit,
                             'compare_standard2' => $company->compare_standard,
                             'compare_enhanced2' => $company->compare_enhanced,
                             'company_created_at2' => $company->created_at,
@@ -687,6 +702,9 @@ public function superVisaCalculateCouple2($visa_request_type){
                 }
             }
         }
+        usort($CompanyDetail, function ($a, $b) {
+            return $a->total_charge2 - $b->total_charge2;
+        });
         $uniqueCompanyDetailArray = array_values($CompanyDetail);
         return $uniqueCompanyDetailArray;
 }
