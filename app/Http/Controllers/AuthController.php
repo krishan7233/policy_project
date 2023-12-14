@@ -196,6 +196,7 @@ class AuthController extends Controller
         $coverage_amt =$data['coverage_amt']; 
         $age =$requestData['age']; 
         $no_of_days =$requestData['no_of_days']; 
+        // exit($no_of_days);
         $deductible =$data['deductible']; 
         if($pre_exit==0){
         $exit_or_not="NOT";
@@ -239,7 +240,6 @@ class AuthController extends Controller
             'tbl_deductible.sur_charge',
             )
             ->get();
-            
 
             $CompanyDetail = []; // Initialize an empty array to store unique entries
 
@@ -253,17 +253,16 @@ class AuthController extends Controller
             
                 foreach ($data['rates'] as $rates) {
                     if ($rates->rate != "$0") {
+                        
                         if($visa_request_type=="family_visitor_visa"){
                             $tamt = $this->removeDollarSign($rates->rate)* 2 * $no_of_days;
                         }else{
                             $tamt = $this->removeDollarSign($rates->rate) * $no_of_days;
                         }
                         if($company->company_id==9){
-                            $no_of_days = $no_of_days-5;
+                            $tamt = $this->removeDollarSign($rates->rate) * $no_of_days-5;
                         }
-                        $tamt = $this->removeDollarSign($rates->rate) * $no_of_days;
-                        
-            
+
                         if ($company->sur_charge == "B" || $company->sur_charge == "NA") {
                             $sur_charge = 0;
                         } else {
@@ -299,7 +298,7 @@ class AuthController extends Controller
                                 'pre_exit' => $exit_or_not,
                                 'rate' => $rates->rate,
                                 'plan_type' => $rates->plan_type,
-                                'no_of_days' => $no_of_days,
+                                'no_of_days' => ($company->company_id==9)?$no_of_days-5:$no_of_days,
                                 'total_charge' => $tamt,
                                 'per_month' => number_format($tamt / 12, 2),
                                 'deductible_amt' => $company->deductible_amt,
