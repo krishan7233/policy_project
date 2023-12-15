@@ -193,7 +193,19 @@
               <h3>{{'$'.number_format($tamt2,2)}}</h3>
               <p>Total : <strong>{{$sum_total_amt}}</strong></p>
               <!-- <h3><span><strong>{{'$'.number_format(($tamt1+$tamt2)/12,2)}}</strong>/month</span></h3> -->
-              <h3><span>Deductible <strong>{{$deductible_amt1}}</strong> <?php if($companies_id1==4 || 11 || 10 || 7){ echo" per policy";}else{ echo" per claim";}  ?></span></h3>
+              <h3><span>Deductible <strong>{{$deductible_amt1}}</strong> 
+              <?php if ($companies_id1 == 4 || $companies_id1 == 11 || $companies_id1 == 10 || $companies_id1 == 7) { 
+                if($companies_id1 == 4 && $companies->plan_type1==1){
+                  echo "per claim";
+                }else{
+                  echo "per policy";
+                }
+                } 
+              else { echo "per claim"; } ?>
+              <?php 
+              //if($companies_id1==4 || 11 || 10 || 7){ echo" per policy";}else{ echo" per claim";} 
+               ?>
+            </span></h3>
             </div>
             <div class="btn-section"> <a target="_blank" href="{{url('visitor-couple-plan',$companies->id1)}}" class="buy-now">BUY NOW</a> 
             <a href="#" class="plan-details toggle togglePlanDetails" id="toggle" onclick="togglePlanDetails_{{$id1}}({{$id1}})">PLAN DETAILS</a>
