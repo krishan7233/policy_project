@@ -259,9 +259,7 @@ class AuthController extends Controller
                         }else{
                             $tamt = $this->removeDollarSign($rates->rate) * $no_of_days;
                         }
-                        if($company->company_id==9){
-                            $tamt = $this->removeDollarSign($rates->rate) * $no_of_days-5;
-                        }
+
 
                         if ($company->sur_charge == "B" || $company->sur_charge == "NA") {
                             $sur_charge = 0;
@@ -298,7 +296,7 @@ class AuthController extends Controller
                                 'pre_exit' => $exit_or_not,
                                 'rate' => $rates->rate,
                                 'plan_type' => $rates->plan_type,
-                                'no_of_days' => ($company->company_id==9)?$no_of_days-5:$no_of_days,
+                                'no_of_days' => $no_of_days,
                                 'total_charge' => $tamt,
                                 'per_month' => number_format($tamt / 12, 2),
                                 'deductible_amt' => $company->deductible_amt,
