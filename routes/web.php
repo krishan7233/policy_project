@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminLoginController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -106,3 +108,12 @@ Route::get('visitor-single-plan/{id}', [AuthController::class, 'visitorSinglePla
 Route::get('visitor-couple-plan/{id}', [AuthController::class, 'visitorCouplePlan'])->name('visitor-couple-plan');
 Route::get('visitor-family-plan/{id}', [AuthController::class, 'visitorFamilyPlan'])->name('visitor-family-plan');
 
+
+// admin dashboard
+Route::get('admin-login', [AdminLoginController::class, 'admin_login'])->name('admin-login');
+Route::post('admin-login-post', [AdminLoginController::class, 'adminLoginPost'])->name('admin-login-post');
+// dashboard
+Route::get('admin-dashboard', [DashboardController::class, 'dashboard'])->name('admin-dashboard');
+Route::get('admin-registration-list', [DashboardController::class, 'registrationList'])->name('admin-registration-list');
+Route::post('admin-registration-update-status', [DashboardController::class, 'registrationUpdateStatus'])->name('admin-registration-update-status');
+Route::get('admin-detectible-list/{id}', [DashboardController::class, 'amountDetectibleList'])->name('admin-detectible-list');
