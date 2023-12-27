@@ -117,3 +117,10 @@ Route::get('admin-dashboard', [DashboardController::class, 'dashboard'])->name('
 Route::get('admin-registration-list', [DashboardController::class, 'registrationList'])->name('admin-registration-list');
 Route::post('admin-registration-update-status', [DashboardController::class, 'registrationUpdateStatus'])->name('admin-registration-update-status');
 Route::get('admin-detectible-list/{id}', [DashboardController::class, 'amountDetectibleList'])->name('admin-detectible-list');
+Route::get('admin-add-rate', [DashboardController::class, 'addRate'])->name('admin-add-rate');
+Route::post('admin-rate-price-post', [DashboardController::class, 'ratePricePost'])->name('admin-rate-price-post');
+Route::post('admin-get-detectible', [DashboardController::class, 'getDetictible'])->name('admin-get-detectible');
+Route::post('admmin-add-rate-post', [DashboardController::class, 'addRatePost'])->name('admmin-add-rate-post');
+Route::get('admmin-edit-rate/{id}', [DashboardController::class, 'editRate'])->name('admmin-edit-rate');
+Route::get('admmin-view-rate/{id}', [DashboardController::class, 'viewRate'])->name('admmin-view-rate');
+Route::get('admin-rate-price-get', [DashboardController::class, 'ratePriceGet'])->name('admin-rate-price-get');

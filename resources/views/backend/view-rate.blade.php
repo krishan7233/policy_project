@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+
   <title>visa-insurance.greenberrysignature</title>
 
   <!-- Google Font: Source Sans Pro -->
@@ -10,6 +12,7 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{asset('backend/plugins/fontawesome-free/css/all.min.css')}}">
   <!-- DataTables -->
+  
   <link rel="stylesheet" href="{{asset('backend/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{asset('backend/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{asset('backend/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
@@ -82,111 +85,73 @@
 
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Registration List</h3>
+                <h3 class="card-title">View Rate</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-              <form>
-                <div class="row">
-                  <div class="col">
-                    <select name="" id="" class="form-control">
-                      <option value="">--select company--</option>
-                      @foreach(allCompany() as $company)
-                      <option value="">{{$company->company_name}}</option>
-                      @endforeach
-                    </select>
-                  </div>
-                  <div class="col">
-                    <select name="" id="" class="form-control">
-                      <option value="">--select type--</option>
-                      <option value="1">Basic</option>
-                      <option value="2">Standard</option>
-                      <option value="3">Enhanched</option>
-                    </select>
-                  </div>
-                  <div class="col">
-                    <select name="" id="" class="form-control">
-                      <option value="">-- select medical --</option>
-                      <option value="0">Yes</option>
-                      <option value="1">No</option>
-                    </select>
-                  </div>
-                  <div class="col">
-                    <input type="submit" class="btn btn-primary" value="Search">
-                  </div>
+              <form action="{{url('admmin-add-rate-post')}}" method="post" class="p-3">
+               
+            <div class="row">
+                
+                <div class="col-sm-6">
+                    <input type="hidden" name="id" value="{{$record->id}}">
+                <div class="form-group">
+                    <label for="email">Company Name:</label>
+                    <input type="text" class="form-control" readonly   value="{{companyId($record->c_id)}}">
+                    </div>
                 </div>
-              </form></br>
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-                  <tr>
-                    <th>SR.NO.</th>
-                    <th>COMPANY 
-                      NAME</th>
-                    <th>PHOTO</th>
-                    <th>AGGREGATE 
-                      PRICE</th>
-                    <th>AGE</th>
-                    <th>
-                      EXIT
-                      WITHOUT</th>
-                    <th>PRICE</th>
-                    <th>PLAN TYPE</th>
-                    <th>FORMULA</th>
-                    <th>DAY DISCOUNT</th>
-                    <th>PER 
-                      POLICY
-                       CLAIM</th>
-                    <th>DISPLAY 
-                      PERMISION</th>
+                <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="Aggregate">Aggregate Price:</label>
+                    <input type="text" class="form-control" readonly   value="{{findAggregate($record->aggregate_id)->price}}">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="Age">Age:</label>
+                    <input type="text" class="form-control" readonly   value="{{findAge($record->age_id)->start_age}} - {{findAge($record->age_id)->end_age}}">
 
-                    <th>ACTION</th>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="Medical">Medical:</label>
+                    <?php 
+                    if($record->pre_exit==1){
+                        $exit = "Yes";
+                    }else{
+                        $exit = "No";
+                    }
+                    ?>
+                    <input type="text" class="form-control" readonly   value="{{$exit}}">
 
-
-                  </tr>
-                  </thead>
-                  <tbody>
-
-
-                  @foreach($registers as $register)
-
-                  <?php 
-                  $photo = "";
-                  $companyData= companyName($register->c_id);
-                  if($register->plan_type==1){
-                    $photo=$companyData->basic;
-                  }
-                  else if($register->plan_type==2){
-                    $photo=$companyData->standard;
-                  }else{
-                    $photo=$companyData->enhanced;
-                  }
-                  ?>
-                  <tr>
-                    <td>{{$register->id}}</td>
-                    <td><a href="{{url('admin-detectible-list/'.$companyData->id)}}" target="_blank">{{$companyData->company_name}}</a></td>
-                    <td><img style="height:20px;" src="{{$photo}}" alt=""></td>
-                    <td>{{findAggregate($register->aggregate_id)->price}}</td>
-                    <td>{{findAge($register->age_id)->start_age}} - {{findAge($register->age_id)->end_age}}</td>
-                    <td>{{$register->pre_exit}}</td>
-                    <td>{{$register->rate}}</td>
-                    <td>{{planType($register->plan_type)}}</td>
-                    <td>{{$companyData->formula}}</td>
-                    <td>{{$companyData->day_discount}}</td>
-                    <td>{{$companyData->per_plicy_claim}}</td>
-                    <td>{{$companyData->visa_type_permission}}</td>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="Plan Type">Plan Type:</label>
+                    <?php  
+                    if($record->plan_type==1){
+                        $plan_type = "Basic";
+                    }else if($record->plan_type==2){
+                        $plan_type = "Standard";
+                    }else{
+                        $plan_type = "Enhanced";
+                    }
                     
-                    <td>
-                    <i style="color:blue;"class="fa fa-eye"></i>
-                    <i class="fa fa-edit"></i>
+                    ?>
+                    <input type="text" class="form-control" readonly   value="{{$plan_type}}">
 
-
-
-                    </td>
-                  </tr>
-                  @endforeach
-                  </tbody>
-                 
-                </table>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="Age">Day Rate:</label>
+                    <input type="text" class="form-control" name="rate" placeholder="Day Rate" value="{{$record->rate}}" readonly>
+                    </div>
+                </div>
+            </div> 
+        </form>
               </div>
               <!-- /.card-body -->
             </div>
@@ -270,43 +235,7 @@
   
   
   </script>
-<script>
-  $(function () {
-  // DataTable for example1 with buttons
-  $('#example1').DataTable({
-    "paging": true,
-    "lengthChange": true,
-    "lengthMenu": [10, 25, 50, 100, 500,1000,10000], // Customize the options in the dropdown
-    "searching": true,
-    "ordering": true,
-    "info": true,
-    "autoWidth": false,
-    "responsive": true,
-  });
-});
-</script>
-<script>
-  function handleApprovalChange(selectElement) {
-    var id = selectElement.dataset.registerId;
-    var approval = selectElement.value;
-    var url = "{{ url('admin-registration-update-status') }}";
-        $.ajax({
-              url: url,
-              type: "POST",
-              data: {
-                  _token: "{{ csrf_token() }}",
-                  id: id,
-                  approval: approval,
-              },
-              success: function(response) {
-                location.reload();
-              },
-              error: function(error) {
-                  console.log(error);
-                  // Handle the error here
-              }
-          });
-  }
-</script>
+
+
 </body>
 </html>

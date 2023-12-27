@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | DataTables</title>
+  <title>visa-insurance.greenberrysignature</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -86,7 +86,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-              <button class="btn btn-primary">Add New Day Price Rate</button>
+                <a href="{{url('admin-add-rate')}}"><button class="btn btn-primary">Add New Day Price Rate</button></a>
 </br>
 </br>
               <form>
@@ -179,8 +179,8 @@
                     <td>{{$companyData->visa_type_permission}}</td>
                     
                     <td>
-                    <i style="color:blue;"class="fa fa-eye"></i>
-                    <i class="fa fa-edit"></i>
+                    <a href="{{url('admmin-view-rate/'.$register->id)}}"><i style="color:blue;"class="fa fa-eye"></i></a>
+                    <a href="{{url('admmin-edit-rate/'.$register->id)}}"><i class="fa fa-edit"></i></a>
 
 
 
