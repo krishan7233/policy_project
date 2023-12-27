@@ -55,8 +55,12 @@
         </div>
       </div>
       <div class="col-lg-8 quotation_data">
+
       @foreach($company_detail as $companies)
         @php
+        if($companies->company_id==15 || $companies->company_id==16){
+          continue;
+        }
         
         if($companies->plan_type==1){
           $photo = $companies->basic;
@@ -65,7 +69,6 @@
         if($companies->plan_type==2){
           $photo = $companies->standard;
           $compare_data = json_decode($companies->compare_standard,true);
-
         }
         if($companies->plan_type==3){
           $photo = $companies->enhanced;
@@ -80,7 +83,7 @@
               <?php 
               if($companies->company_id==12){
                 ?>
-                              <h3>{{'$'.number_format($companies->total_charge+$companies->detect_amt, 2)}}</h3>
+                <h3>{{'$'.number_format($companies->total_charge+$companies->detect_amt, 2)}}</h3>
                 <?php
               }
               else if($companies->company_id==9){

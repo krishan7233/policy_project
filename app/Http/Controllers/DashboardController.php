@@ -40,7 +40,7 @@ class DashboardController extends Controller
             }
             $query->where('pre_exit',$exit);
         }
-        $data['registers'] = $query->limit(10)->get();
+        $data['registers'] = $query->orderBy('id', 'DESC')->get();
         
         return view('backend.rate-list',$data);
 
@@ -76,5 +76,113 @@ class DashboardController extends Controller
         $data['company_name']=companyName($id)->company_name;
 
         return view('backend.detectible-list',$data);
+    }
+    public function addRate(){
+        $data['title'] = "Rate Price Add";
+
+
+        return view('backend.add-rate',$data);
+    }
+    public function ratePricePost(Request $req){
+        $priceList = companyWiseAggregatePrice($req->company);
+        $ageList = companyWiseAgeGroup($req->company);
+        $detectList = companyWiseDetectible($req->company);
+        
+
+        $ageOptions = "";
+        $priceOptions = "";        
+        $detectOptions = "";        
+        foreach ($priceList as $price) {
+            $priceOptions .= "<option value='".$price->id."'>".$price->price."</option>";
+        }
+        
+        foreach ($ageList as $age) {
+            $ageOptions .= "<option value='".$age->id."'>".$age->start_age.'-'.$age->end_age."</option>";
+        }
+        
+        foreach ($detectList as $detect) {
+            $detectOptions .= "<option value='".$detect->id."'>".$detect->deductible_amt."</option>";
+        }
+        
+        $data = ['price' => $priceOptions, 'age' => $ageOptions,'detect'=>$detectOptions];
+        return response()->json($data);
+    }
+
+    public function getDetictible(Request $req){
+        $detectOptions = "";        
+
+        $detectibleList = detectible($req->company,$req->age_id);
+        foreach ($detectibleList as $detect) {
+            $detectOptions .= "<option value='".$detect->id."'>".$detect->deductible_amt."</option>";
+        }
+        return $detectOptions;
+        
+    }
+    public function addRatePost(Request $req){
+        
+        $req->validate([
+            'company_id' => 'required',
+            'aggregate_price' => 'required',
+            'age' => 'required',
+            'medical' => 'required',
+            'plan_type' => 'required',
+            'rate' => 'required',
+        ]);
+        $data = [
+            'c_id'=>$req->company_id,
+            'aggregate_id'=>$req->aggregate_price,
+            'age_id'=>$req->age,
+            'pre_exit'=>$req->medical,
+            'plan_type'=>$req->plan_type,
+            'rate'=>$req->rate,
+        ];
+        if($req->id){
+            if(DB::table('tbl_rates')->where('id',$req->id)->update($data)){
+                return redirect("admin-registration-list")->with('success','record updated successfully.');
+            }
+            return redirect()->back()->with('error','New record something wrong.');
+
+        }
+        else{
+            if(DB::table('tbl_rates')->insert($data)){
+                return redirect("admin-registration-list")->with('success','New record added successfully.');
+            }
+        }
+        return redirect()->back()->with('error','New record something wrong.');
+
+    }
+    public function editRate($id){
+        $data['title'] = "Edit Rate";
+        $data['record'] = findRate($id);
+        return view('backend.edit-rate',$data);    
+    }
+    public function ratePriceGet(Request $req){
+        
+        $priceList = companyWiseAggregatePrice($req->company);
+        $ageList = companyWiseAgeGroup($req->company);
+        $detectList = companyWiseDetectible($req->company);
+        
+
+        $ageOptions = "";
+        $priceOptions = "";        
+        $detectOptions = "";        
+        foreach ($priceList as $price) {
+            $priceOptions .= "<option value='".$price->id."'>".$price->price."</option>";
+        }
+        
+        foreach ($ageList as $age) {
+            $ageOptions .= "<option value='".$age->id."'>".$age->start_age.'-'.$age->end_age."</option>";
+        }
+        
+        foreach ($detectList as $detect) {
+            $detectOptions .= "<option value='".$detect->id."'>".$detect->deductible_amt."</option>";
+        }
+        
+        $data = ['price' => $priceOptions, 'age' => $ageOptions,'detect'=>$detectOptions];
+        return response()->json($data);    
+    }
+    public function viewRate($id){
+        $data['record'] = findRate($id);
+        return view('backend.view-rate',$data); 
     }
 }
