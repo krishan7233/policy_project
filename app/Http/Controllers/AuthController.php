@@ -238,10 +238,12 @@ class AuthController extends Controller
             'tbl_aggregate_policy_limit.id as aggregate_id',
             'tbl_age_group.id as age_id',
             'tbl_deductible.deductible_amt',
+            'tbl_deductible.multiplication_factor', 
+
             'tbl_deductible.sur_charge',
             )
             ->get();
-
+            
             $CompanyDetail = []; // Initialize an empty array to store unique entries
 
             foreach ($data['companies'] as $company) {
@@ -256,13 +258,32 @@ class AuthController extends Controller
                     if ($rates->rate != "$0") {
                         
                         if($visa_request_type=="family_visitor_visa"){
-                            $tamt = $this->removeDollarSign($rates->rate)* 2 * $no_of_days;
-                        }else{
-                            $tamt = $this->removeDollarSign($rates->rate) * $no_of_days;
+                            $tamt = $this->removeDollarSign($rates->rate)* 2 * $no_of_days*$company->multiplication_factor;
+                        }
+                        elseif($company->company_id==9){
+                            $tamt = $this->removeDollarSign($rates->rate) * ($no_of_days-5)*$company->multiplication_factor;
+                        }
+                        elseif($company->company_id==14 || $company->company_id==17){
+                            $tamt = ($this->removeDollarSign($rates->rate) * $no_of_days*$company->multiplication_factor)+10;
+                        }
+                        // elseif($company->company_id==8 && $deductible>0){
+                        // $companies_direct_income = DB::table('rate_with_detectible_amt')
+                        //         ->where('coverage',$price)
+                        //         ->where('start_age', '<=', $age)
+                        //         ->where('end_age', '>=', $age)
+                        //         ->where('detectible', $deductible)
+                        //         ->first();
+                        //         echo"<pre>";
+                        //         print_r($companies_direct_income);
+                        //         exit;
+                        // }
+
+                        else{
+                            $tamt = $this->removeDollarSign($rates->rate) * $no_of_days*$company->multiplication_factor;
                         }
 
 
-                        if ($company->sur_charge == "B" || $company->sur_charge == "NA") {
+                        if ($company->sur_charge == "B") {
                             $sur_charge = 0;
                         } else {
                             $sur_charge = $company->sur_charge;
@@ -303,6 +324,7 @@ class AuthController extends Controller
                                 'deductible_amt' => $company->deductible_amt,
                                 'sur_charge' => $sur_charge,
                                 'detect_amt' => ($sur_charge / 100) * $tamt,
+                                'final_result' => $tamt,
                             ];
                         }
                     }
@@ -498,7 +520,6 @@ public function superVisaCalculateCouple1($visa_request_type){
         ->where('tbl_aggregate_policy_limit.price',$price)
         ->where('tbl_deductible.start_age', '<=', $age)
         ->where('tbl_deductible.end_age', '>=', $age)
-        ->where('tbl_deductible.end_age', '>=', $age)
         ->where('tbl_deductible.deductible_amt',$deductible)
         ->select('tbl_companies.id as company_id',
         'tbl_companies.company_name',
@@ -536,7 +557,7 @@ public function superVisaCalculateCouple1($visa_request_type){
                 if ($rates->rate != "$0") {
                     $tamt = $this->removeDollarSign($rates->rate) * $no_of_days;
         
-                    if ($company->sur_charge == "B" || $company->sur_charge == "NA") {
+                    if ($company->sur_charge == "B") {
                         $sur_charge = 0;
                     } else {
                         $sur_charge = $company->sur_charge;

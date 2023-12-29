@@ -92,6 +92,7 @@
                     <th>SR.NO.</th>
                     <th>AMOUNT</th>
                     <th>PERCENTAGE</th>
+                    <th>MULTIPLICATION FACTORS</th>
                     <th>START DATE</th>
                     <th>END DATE</th>
                     <th>ACTION</th>
@@ -108,6 +109,7 @@
                     <td>{{$i++}}</td>
                     <td>{{$detect->deductible_amt}}</td>
                     <td>{{$detect->sur_charge}} % </td>
+                    <td>{{$detect->multiplication_factor}} </td>
                     <td>{{$detect->start_age}}</td>
                     <td>{{$detect->end_age}}</td>
                     

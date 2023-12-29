@@ -90,10 +90,7 @@
               <!-- /.card-header -->
               <div class="card-body">
               <form action="{{url('admmin-add-rate-post')}}" method="post" class="p-3">
-                <?php 
-                print_r($record);
                 
-                ?>
                 @csrf
                 @if ($errors->any())
                 <div class="alert alert-danger">
