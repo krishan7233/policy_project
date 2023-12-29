@@ -179,6 +179,8 @@ class AuthController extends Controller
         return view('quotes',$data);
     }
     public function calculationFilter($visa_request_type){
+        DB::enableQueryLog();
+
         // exit($visa_request_type);
         if($visa_request_type=="single_visitor_visa"){
             $requestData = Session::get('visitor_visa_request_data');
@@ -239,13 +241,11 @@ class AuthController extends Controller
             'tbl_age_group.id as age_id',
             'tbl_deductible.deductible_amt',
             'tbl_deductible.multiplication_factor', 
-
             'tbl_deductible.sur_charge',
             )
             ->get();
             
             $CompanyDetail = []; // Initialize an empty array to store unique entries
-
             foreach ($data['companies'] as $company) {
                 $data['rates'] = DB::table('tbl_rates')
                     ->where('c_id', $company->company_id)
@@ -266,17 +266,16 @@ class AuthController extends Controller
                         elseif($company->company_id==14 || $company->company_id==17){
                             $tamt = ($this->removeDollarSign($rates->rate) * $no_of_days*$company->multiplication_factor)+10;
                         }
-                        // elseif($company->company_id==8 && $deductible>0){
-                        // $companies_direct_income = DB::table('rate_with_detectible_amt')
-                        //         ->where('coverage',$price)
-                        //         ->where('start_age', '<=', $age)
-                        //         ->where('end_age', '>=', $age)
-                        //         ->where('detectible', $deductible)
-                        //         ->first();
-                        //         echo"<pre>";
-                        //         print_r($companies_direct_income);
-                        //         exit;
-                        // }
+                        elseif($company->company_id==8 && $deductible>0){
+                            // exit($this->removeDollarSign($price));
+                        $companies_direct_income = DB::table('rate_with_detectible_amt')
+                                ->where('coverage',$this->removeDollarSign($price))
+                                ->where('start_age', '<=', $age)
+                                ->where('end_age', '>=', $age)
+                                ->where('detectible', $deductible)
+                                ->first();
+                                $tamt = ($companies_direct_income->rate * $no_of_days);
+                        }
 
                         else{
                             $tamt = $this->removeDollarSign($rates->rate) * $no_of_days*$company->multiplication_factor;
