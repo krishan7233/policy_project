@@ -20,7 +20,6 @@
             <div class="coverage"> <span>Deductible</span>
               <select class="form-control deductible_amt">
                 <option value="0" {{ $deductible['deductible'] == 0 ? 'selected' : '' }}>0</option>
-                <option value="75" {{ $deductible['deductible'] == 75 ? 'selected' : '' }}>75</option>
                 <option value="100" {{ $deductible['deductible'] == 100 ? 'selected' : '' }}>100</option>
                 <option value="250" {{ $deductible['deductible'] == 250 ? 'selected' : '' }}>250</option>
                 <option value="500" {{ $deductible['deductible'] == 500 ? 'selected' : '' }}>500</option>
@@ -56,12 +55,8 @@
         </div>
       </div>
       <div class="col-lg-8 quotation_data">
-
       @foreach($company_detail as $companies)
         @php
-        if($companies->company_id==15 || $companies->company_id==16){
-          continue;
-        }
         
         if($companies->plan_type==1){
           $photo = $companies->basic;
@@ -70,6 +65,7 @@
         if($companies->plan_type==2){
           $photo = $companies->standard;
           $compare_data = json_decode($companies->compare_standard,true);
+
         }
         if($companies->plan_type==3){
           $photo = $companies->enhanced;
@@ -81,10 +77,24 @@
           <div class="quote-box">
             <div class="logo-section"> <img src="{{$photo}}" /> </div>
             <div class="price-section">
-              
-              <h3>{{'$'.number_format($companies->final_result, 2)}}</h3>
+              <?php 
+              if($companies->company_id==12){
+                ?>
+                              <h3>{{'$'.number_format($companies->total_charge+$companies->detect_amt, 2)}}</h3>
+                <?php
+              }
+              else if($companies->company_id==9){
+                $five_days_amt = removeSign($companies->rate)*5;
+              ?>
+              <h3>{{'$'.number_format($companies->total_charge - $companies->detect_amt-$five_days_amt, 2)}}</h3>
+
+              <?php
+              }
+              else{
+              ?>
+              <h3>{{'$'.number_format($companies->total_charge - $companies->detect_amt, 2)}}</h3>
                <?php  
-              
+               }
                if($companies->per_month_exit!=1){
                 ?>
                 <h3><span><strong>{{'$'.number_format(($companies->total_charge - $companies->detect_amt) / 12, 2)}}</strong>/month</span></h3>

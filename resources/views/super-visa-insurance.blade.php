@@ -71,13 +71,12 @@ else {
         <div class="tab-content" id="nav-tabContent">
           <div class="tab-pane fade super_visa_form1 show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
             
-          <form class="form-1" action="{{url('find-quotation')}}" method="post">
+<form class="form-1" action="{{url('find-quotation')}}" method="post">
               @csrf
             <div class="form-field-row">
             @php
                 $currentDate = \Carbon\Carbon::now()->subYears(40);
             @endphp
-            <input type="hidden" name="visitor_type" value="1">
             <input type="hidden" name="visa_type" value="superVisaSingle">
             <div class="field-dob">
                 <span>Date of Birth</span>
@@ -174,7 +173,6 @@ else {
             	<div class="field-dob">
                 	 <span>Date of Birth</span>
                    <input type="hidden" name="visa_type" value="superVisaCouple">
-                   <!-- <input type="hidden" name="visitor_type" value="1"> -->
                 	<input type="date" class="form-control super-visa-couple-date1" name="super_visa_couple_birth1" value="<?php if(isset($request_data2['date_of_birth1'])){ echo $request_data2['date_of_birth1'];} ?>" placeholder="Date of Birth" max="{{$currentDate->format('Y-m-d')}}">
 
                     <label>DD-MM-YYYY format</label>

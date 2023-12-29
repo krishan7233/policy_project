@@ -636,6 +636,13 @@
 
 
 
+
+.mob-slide {
+	display:none;
+}
+
+
+
 .main-slider .carousel-caption {
     position: absolute;
     right: 0;
@@ -1620,7 +1627,7 @@ span.text-black{
 
 /* ====== 1.3 - CAROUSEL STARTS ====== */
 .hero-image{
-        background: #f3f6fc;
+       background: radial-gradient(circle at 18.7% 37.8%, rgb(250, 250, 250) 0%, rgb(225, 234, 238) 90%);
     padding-top: 150px;
 	padding-bottom:60px;
 }
@@ -1771,7 +1778,8 @@ span.text-black{
 
 .CounterSection {
 	padding:80px 0;
-	    background: #f3f6fc;
+	background: radial-gradient(circle at 18.7% 37.8%, rgb(250, 250, 250) 0%, rgb(225, 234, 238) 90%);
+
 }
 
 
@@ -3702,4 +3710,115 @@ label {
     z-index: 100;
 }
 /* ====== 7 - CONTACT US PAGE ENDS ====== */
+
+
+
+
+.calltoact {
+	background-image: url("https://visa-insurance.greenberrysignature.co.in/assets/images/cta.jpg");
+	padding:50px 0;
+	text-align:center;
+	background-repeat:no-repeat;
+	background-position:center;
+	background-size:cover;
+	background-attachment:fixed;
+}
+
+.calltoact h1{
+	text-align:center;
+	color:#fff;
+	margin:0px;
+	padding:0px 0 25px 0;
+	font-size:40px;
+	font-weight:500;
+}
+
+
+.calltoact h4{
+	text-align:center;
+	color:#fff;
+	margin: 0px 0 30px 0;
+	padding:0px;
+	font-size:30px;
+	font-weight:500;
+}
+
+.calltoact h4 a{
+	color:#d91203;
+}
+
+.calltoact h4 i{
+	width:50px;
+	height:50px;
+	border-radius:50%;
+	border:#d91203 solid 1px;
+	line-height:50px;
+	text-align:center;
+	color:#d91203;
+}
+
+.calltoact h6{
+	margin:0px;
+	padding:0px;
+	display:inline;
+}
+
+.calltoact h6 a{
+	background:#fff;
+	padding:15px 25px;
+	border-radius:15px;
+	color:#000;
+	font-size:16px;
+	font-weight:700;
+	display:inline-block;
+}
+
+
+
+
+
+
+@keyframes our-legacy_float-up-down__kYf5h {
+	0% {
+		transform: translateY(0)
+	}
+
+	50% {
+		transform: translateY(-15px)
+	}
+
+	to {
+		transform: translateY(0)
+	}
+}
+
+
+  .desk-slide{  
+  animation: our-legacy_float-up-down__kYf5h 3s ease-in-out infinite;
+  
+}
+
+
+.main-slider .btn {
+    letter-spacing: 0;
+    text-transform: capitalize;
+    padding: 15px 40px !important;
+    font-size: 16px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -20,7 +20,8 @@
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active"> 
-			<img src="assets/images/banner-1.png" alt="..."> 
+			<img src="assets/images/banner-1.png" alt="..." class="desk-slide"> 
+			<img src="assets/images/banner-1-mob.png" alt="..." class="mob-slide">
 			<div class="carousel-caption">
 				<div class="hero-text">
 				  <h1 class="text-pink">Compare in Seconds, Save for a Lifetime,<span>Buy with Confidence</span></h1>
@@ -29,7 +30,7 @@
 		  </div>
 			</div>
             <div class="carousel-item"> 
-			<img src="assets/images/banner-2.png" alt="..."> 
+			<img src="assets/images/banner-2.png" alt="..." class="desk-slide"> 
 			<div class="carousel-caption">
 				<div class="hero-text">
 				  <h1 class="text-pink">Insure Your Peace of Mind  <span>with PolicyMarket</span></h1>
@@ -38,7 +39,7 @@
 		  </div>
 			</div>
 			<div class="carousel-item"> 
-			<img src="assets/images/banner-3.png" alt="...">
+			<img src="assets/images/banner-3.png" alt="..." class="desk-slide">
 			<div class="carousel-caption">
 				<div class="hero-text">
 				  <h1 class="text-pink">Your Insurance Journey Begins  <span>at PolicyMarket.ca</span></h1>
@@ -361,6 +362,18 @@
       </div>
    </div>
 
+
+<div class="section calltoact">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1>Reach Out to us</h1>
+				<h4><i class="fa fa-phone" aria-hidden="true"></i><a href="tel:+19058777777"> 905-877-7777</a></h4>
+				<h6><a href="#">Get a Quote</a></h6>
+			</div>
+		</div>
+	</div>
+</div>
 
 
 <div class="section-large blog-section">
