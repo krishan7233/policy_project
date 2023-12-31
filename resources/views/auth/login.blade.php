@@ -4,16 +4,16 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>KAILA INNOVATION</title>
+	<title>Visa</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
-	<link rel="stylesheet" href="{{asset('assets/css/fontawesome-all.min.css')}}">
-	<link rel="stylesheet" href="{{asset('assets/font/flaticon.css')}}">
+	<link rel="stylesheet" href="{{asset('auth/css/bootstrap.min.css')}}">
+	<link rel="stylesheet" href="{{asset('auth/css/fontawesome-all.min.css')}}">
+	<link rel="stylesheet" href="{{asset('auth/font/flaticon.css')}}">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="{{asset('assets/style.css')}}">
-	<script src="{{asset('assets/sweetalert.min.js')}}"></script>
-	<script src="{{asset('assets/jquery/3.6.1/jquery.min.js')}}"></script>
+	<link rel="stylesheet" href="{{asset('auth/style.css')}}">
+	<script src="{{asset('auth/sweetalert.min.js')}}"></script>
+	<script src="{{asset('auth/jquery/3.6.1/jquery.min.js')}}"></script>
     
 <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet" />
 	
@@ -82,15 +82,15 @@
 		</div>
 	</section>
     <!-- jquery-->
-	<script src="{{asset('assets/js/jquery-3.5.0.min.js')}}"></script>
+	<script src="{{asset('auth/js/jquery-3.5.0.min.js')}}"></script>
 	<!-- Bootstrap js -->
-	<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+	<script src="{{asset('auth/js/bootstrap.min.js')}}"></script>
 	<!-- Imagesloaded js -->
-	<script src="{{asset('assets/js/imagesloaded.pkgd.min.js')}}"></script>
+	<script src="{{asset('auth/js/imagesloaded.pkgd.min.js')}}"></script>
 	<!-- Validator js -->
-	<script src="{{asset('assets/js/validator.min.js')}}"></script>
+	<script src="{{asset('auth/js/validator.min.js')}}"></script>
 	<!-- Custom Js -->
-	<script src="{{asset('assets/js/main.js')}}"></script>
+	<script src="{{asset('auth/js/main.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script>
 

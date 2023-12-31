@@ -179,7 +179,6 @@ class AuthController extends Controller
         return view('quotes',$data);
     }
     public function calculationFilter($visa_request_type){
-        DB::enableQueryLog();
 
         // exit($visa_request_type);
         if($visa_request_type=="single_visitor_visa"){
@@ -244,7 +243,9 @@ class AuthController extends Controller
             'tbl_deductible.sur_charge',
             )
             ->get();
-            
+            // echo"<pre>";
+            // print_r($data['companies']);
+            // exit;
             $CompanyDetail = []; // Initialize an empty array to store unique entries
             foreach ($data['companies'] as $company) {
                 $data['rates'] = DB::table('tbl_rates')
@@ -264,19 +265,23 @@ class AuthController extends Controller
                             $tamt = $this->removeDollarSign($rates->rate) * ($no_of_days-5)*$company->multiplication_factor;
                         }
                         elseif($company->company_id==14 || $company->company_id==17){
-                            $tamt = ($this->removeDollarSign($rates->rate) * $no_of_days*$company->multiplication_factor)+10;
+                            $tamt = ($this->removeDollarSign($rates->rate) * $no_of_days*$company->multiplication_factor);
                         }
-                        elseif($company->company_id==8 && $deductible>0){
+                        elseif( ($company->company_id==18 && $deductible>0) ){
                             // exit($this->removeDollarSign($price));
+                            // exit('hh');
+                            DB::enableQueryLog();
+
                         $companies_direct_income = DB::table('rate_with_detectible_amt')
                                 ->where('coverage',$this->removeDollarSign($price))
                                 ->where('start_age', '<=', $age)
                                 ->where('end_age', '>=', $age)
                                 ->where('detectible', $deductible)
+                                ->where('medical',$pre_exit)
                                 ->first();
                                 $tamt = ($companies_direct_income->rate * $no_of_days);
-                        }
 
+                        }
                         else{
                             $tamt = $this->removeDollarSign($rates->rate) * $no_of_days*$company->multiplication_factor;
                         }

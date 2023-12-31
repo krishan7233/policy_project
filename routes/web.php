@@ -124,3 +124,4 @@ Route::post('admmin-add-rate-post', [DashboardController::class, 'addRatePost'])
 Route::get('admmin-edit-rate/{id}', [DashboardController::class, 'editRate'])->name('admmin-edit-rate');
 Route::get('admmin-view-rate/{id}', [DashboardController::class, 'viewRate'])->name('admmin-view-rate');
 Route::get('admin-rate-price-get', [DashboardController::class, 'ratePriceGet'])->name('admin-rate-price-get');
+Route::get('admin-logout', [DashboardController::class, 'logout'])->name('admin-logout');
