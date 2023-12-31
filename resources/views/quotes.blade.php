@@ -59,7 +59,7 @@
 
       @foreach($company_detail as $companies)
         @php
-        if($companies->company_id==15 || $companies->company_id==16){
+        if($companies->company_id==15 || $companies->company_id==16 || $companies->company_id==13){
           continue;
         }
         
@@ -86,8 +86,16 @@
                <?php  
               
                if($companies->per_month_exit!=1){
+                if($companies->company_id==14 || $companies->company_id==17){
                 ?>
-                <h3><span><strong>{{'$'.number_format(($companies->total_charge - $companies->detect_amt) / 12, 2)}}</strong>/month</span></h3>
+                <h3><span><strong>{{'$'.number_format((($companies->final_result) / 12)+10, 2)}}</strong>/month</span></h3>
+                <?php
+                }else{
+                  ?>
+                  <h3><span><strong>{{'$'.number_format(($companies->final_result) / 12, 2)}}</strong>/month</span></h3>
+                  <?php
+                }
+                ?>
                 <?php
               }?>
               <h3><span>Deductible <strong>{{$companies->deductible_amt}}</strong> 

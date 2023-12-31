@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -184,5 +185,11 @@ class DashboardController extends Controller
     public function viewRate($id){
         $data['record'] = findRate($id);
         return view('backend.view-rate',$data); 
+    }
+    public function logout()
+    {
+        // exit("hello");
+        Auth::logout();
+        return redirect('admin-login');
     }
 }
