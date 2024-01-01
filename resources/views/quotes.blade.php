@@ -26,6 +26,7 @@
                 <option value="500" {{ $deductible['deductible'] == 500 ? 'selected' : '' }}>500</option>
                 <option value="1000" {{ $deductible['deductible'] == 1000 ? 'selected' : '' }}>1000</option>
                 <option value="2500" {{ $deductible['deductible'] == 2500 ? 'selected' : '' }}>2500</option>
+                <option value="3000" {{ $deductible['deductible'] == 3000 ? 'selected' : '' }}>3000</option>
                 <option value="5000" {{ $deductible['deductible'] == 5000 ? 'selected' : '' }}>5000</option>
                 <option value="10000" {{ $deductible['deductible'] == 10000 ? 'selected' : '' }}>10000</option>
               </select>

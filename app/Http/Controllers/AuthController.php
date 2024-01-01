@@ -248,6 +248,18 @@ class AuthController extends Controller
             // exit;
             $CompanyDetail = []; // Initialize an empty array to store unique entries
             foreach ($data['companies'] as $company) {
+
+
+                // if($company->company_id==14){
+                //     $data['rates'] = DB::table('tbl_rates')
+                //     ->where('c_id', $company->company_id)
+                //     ->where('age_id', $company->age_id)
+                //     ->where('aggregate_id', $company->aggregate_id)
+                //     ->where('pre_exit', $pre_exit)
+                //     ->get();
+                //     print_r($data['rates']);
+                //     exit;
+                // }
                 $data['rates'] = DB::table('tbl_rates')
                     ->where('c_id', $company->company_id)
                     ->where('age_id', $company->age_id)
@@ -256,7 +268,16 @@ class AuthController extends Controller
                     ->get();
             
                 foreach ($data['rates'] as $rates) {
+
+                    // if($company->company_id==14){
+                    //     exit('hell');
+                    // }
                     if ($rates->rate != "$0") {
+                        if ($company->sur_charge == "B") {
+                            $sur_charge = 0;
+                        } else {
+                            $sur_charge = $company->sur_charge;
+                        }
                         
                         if($visa_request_type=="family_visitor_visa"){
                             $tamt = $this->removeDollarSign($rates->rate)* 2 * $no_of_days*$company->multiplication_factor;
@@ -264,13 +285,14 @@ class AuthController extends Controller
                         elseif($company->company_id==9){
                             $tamt = $this->removeDollarSign($rates->rate) * ($no_of_days-5)*$company->multiplication_factor;
                         }
-                        elseif($company->company_id==14 || $company->company_id==17){
+                        elseif($company->company_id==17){
                             $tamt = ($this->removeDollarSign($rates->rate) * $no_of_days*$company->multiplication_factor);
                         }
-                        elseif( ($company->company_id==18 && $deductible>0) ){
-                            // exit($this->removeDollarSign($price));
-                            // exit('hh');
-                            DB::enableQueryLog();
+                        elseif( $company->company_id==18 || ($company->company_id==8 && $deductible>0) || $company->company_id==14){
+                        // elseif( ($company->company_id==14)){
+                        //     // exit($this->removeDollarSign($price));
+                        //     exit('hh');
+                            // DB::enableQueryLog();
 
                         $companies_direct_income = DB::table('rate_with_detectible_amt')
                                 ->where('coverage',$this->removeDollarSign($price))
@@ -278,8 +300,12 @@ class AuthController extends Controller
                                 ->where('end_age', '>=', $age)
                                 ->where('detectible', $deductible)
                                 ->where('medical',$pre_exit)
+                                ->where('c_id',$company->company_id)
                                 ->first();
                                 $tamt = ($companies_direct_income->rate * $no_of_days);
+                                // $queries = DB::getQueryLog();
+                                // print_r($queries);
+                                // // exit;
 
                         }
                         else{
@@ -287,11 +313,7 @@ class AuthController extends Controller
                         }
 
 
-                        if ($company->sur_charge == "B") {
-                            $sur_charge = 0;
-                        } else {
-                            $sur_charge = $company->sur_charge;
-                        }
+                        
             
                         // Create a unique key based on company_id and rate
                         $uniqueKey = $company->company_id . '_' . $rates->rate;
